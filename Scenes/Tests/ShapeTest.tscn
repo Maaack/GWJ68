@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh8aqcakbwv5a"]
+
+[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Tests/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
+[ext_resource type="Script" path="res://Scenes/Tests/ShapeTest.gd" id="1_nvmm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u5je"]
+size = Vector2(1600, 20)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(427, 237)
+script = ExtResource("1_nvmm2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(370, 146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_6u5je")
+
+[node name="MetalPiece2D" parent="." instance=ExtResource("1_8mkap")]
+position = Vector2(-28, 16)
+
+[node name="MetalPiece2D2" parent="." instance=ExtResource("1_8mkap")]
+position = Vector2(75, 46)
+
+[node name="MetalPiece2D3" parent="." instance=ExtResource("1_8mkap")]
+position = Vector2(153, -106)

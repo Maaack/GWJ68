@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c485gcvalxniv"]
+
+[ext_resource type="Script" path="res://Scenes/Tests/Pieces/MetalPiece2D.gd" id="1_n1pxb"]
+
+[node name="MetalPiece2D" type="RigidBody2D"]
+position = Vector2(26, -1)
+input_pickable = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_n1pxb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -4, 7, -4, 7, 3, -7, 3)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-7, -4, 7, -4, 7, 3, -7, 3)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
