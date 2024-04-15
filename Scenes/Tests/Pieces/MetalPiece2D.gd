@@ -1,6 +1,7 @@
 class_name MetalPiece2D
 extends RigidBody2D
 
+const ROTATION_STEPS = 4
 signal clicked
 
 var held = false
@@ -8,12 +9,13 @@ var held = false
 func _input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("select"):
 		clicked.emit(self)
+		rotation = (round((rotation / PI) * ROTATION_STEPS) / ROTATION_STEPS) * PI
 	if event.is_action_pressed("rotate_left"):
 		if held:
-			rotation += PI/4
+			rotation += PI/ROTATION_STEPS
 	if event.is_action_pressed("rotate_right"):
 		if held:
-			rotation -= PI/4
+			rotation -= PI/ROTATION_STEPS
 
 func _physics_process(delta):
 	if held:
