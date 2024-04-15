@@ -21,9 +21,14 @@ func _physics_process(delta):
 	if held:
 		global_transform.origin = get_global_mouse_position()
 
-func set_polygon(new_value : PackedVector2Array):
-	$Polygon2D.polygon = new_value
-	$CollisionPolygon2D.polygon = new_value
+func merge_to(other_piece : MetalPiece2D):
+	for child in get_children():
+		if child is CollisionPolygon2D or child is Polygon2D:
+			var _globa_position = child.global_position
+			child.call_deferred("reparent", other_piece)
+			child.global_position = _globa_position
+	other_piece.mass += mass
+	queue_free()
 
 func get_polygon():
 	return $Polygon2D.polygon
@@ -37,20 +42,11 @@ func pickup():
 func drop(impulse=Vector2.ZERO):
 	if held:
 		freeze = false
-		apply_central_impulse(impulse)
+		apply_central_impulse(impulse * mass)
 		held = false
-
 
 func _on_body_entered(body):
 	print(body)
 	if body is MetalPiece2D:
 		if body.held:
-			var position_offset = position - body.position
-			var _transform = transform.rotated(rotation - body.rotation)
-			var _transformed_polygon: PackedVector2Array = []
-			for _vector in get_polygon(): _transformed_polygon.append(_transform.basis_xform(_vector + position_offset))
-			var new_polygons = Geometry2D.merge_polygons(_transformed_polygon, body.get_polygon())
-			if new_polygons.size() != 1:
-				return
-			body.call_deferred("set_polygon", new_polygons[0])
-			queue_free()
+			merge_to(body)
