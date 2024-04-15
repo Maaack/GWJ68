@@ -50,5 +50,7 @@ func _on_body_entered(body):
 			var _transformed_polygon: PackedVector2Array = []
 			for _vector in get_polygon(): _transformed_polygon.append(_transform.basis_xform(_vector + position_offset))
 			var new_polygons = Geometry2D.merge_polygons(_transformed_polygon, body.get_polygon())
+			if new_polygons.size() != 1:
+				return
 			body.call_deferred("set_polygon", new_polygons[0])
 			queue_free()
