@@ -23,5 +23,6 @@ func _on_pickable_clicked(object):
 
 func _unhandled_input(event):
 	if event.is_action_released("select") and held_object:
-		held_object.drop(Input.get_last_mouse_velocity())
+		if is_instance_valid(held_object) and held_object is MetalPiece2D:
+			held_object.drop(Input.get_last_mouse_velocity())
 		held_object = null
