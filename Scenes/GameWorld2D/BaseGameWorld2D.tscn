@@ -91,6 +91,7 @@ delete_delay = 0.2
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area")]
 script = ExtResource("7_ecyfw")
 forge_area = NodePath("../ForgeArea2D")
+forge_temperature = 2000.0
 
 [node name="GarbageArea2D" type="Area2D" parent="."]
 

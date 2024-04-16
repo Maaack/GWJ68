@@ -18,7 +18,6 @@ polygon = PackedVector2Array(-7, -4, 7, -4, 7, 3, -7, 3)
 [node name="HeatController" type="Node" parent="." node_paths=PackedStringArray("body_2d")]
 script = ExtResource("2_2fmst")
 specific_heat_capacity = 300.0
-thermal_conductivity = 20.0
 body_2d = NodePath("..")
 
 [node name="Timer" type="Timer" parent="HeatController"]

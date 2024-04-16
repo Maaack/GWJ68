@@ -65,7 +65,14 @@ func move_origin(new_origin_offset : Vector2):
 			continue
 		child.position += new_origin_offset
 
+func _can_bind_with_piece(piece : MetalPiece2D) -> bool:
+	var _this_temp = heat_controller.body_temperature
+	var _other_temp = piece.heat_controller.body_temperature
+	var _min_melting_point = min(heat_controller.melting_point, piece.heat_controller.melting_point)
+	return (_this_temp + _other_temp) / 2 > _min_melting_point
+		
+
 func _on_body_entered(body):
 	if body is MetalPiece2D:
-		if body.held:
+		if _can_bind_with_piece(body):
 			merge_to(body)
