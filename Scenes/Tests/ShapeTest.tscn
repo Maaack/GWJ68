@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh8aqcakbwv5a"]
+[gd_scene load_steps=7 format=3 uid="uid://bh8aqcakbwv5a"]
 
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Tests/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
 [ext_resource type="Script" path="res://Scenes/Tests/ShapeTest.gd" id="1_nvmm2"]
 [ext_resource type="Script" path="res://Scenes/Tests/DragControl.gd" id="3_pv70o"]
+[ext_resource type="Script" path="res://Scenes/Tests/SpawnController.gd" id="4_g8uij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u5je"]
 size = Vector2(1600, 20)
@@ -57,3 +58,9 @@ shape = SubResource("RectangleShape2D_jum7f")
 [node name="DragController" type="Node" parent="." node_paths=PackedStringArray("container")]
 script = ExtResource("3_pv70o")
 container = NodePath("../PiecesContainer2D")
+
+[node name="SpawnController" type="Node" parent="." node_paths=PackedStringArray("container", "spawn_position_node_2d")]
+script = ExtResource("4_g8uij")
+container = NodePath("../PiecesContainer2D")
+spawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
+spawn_piece = ExtResource("1_8mkap")
