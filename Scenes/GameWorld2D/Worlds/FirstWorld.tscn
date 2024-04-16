@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5rw70otxnmqc"]
+
+[ext_resource type="PackedScene" uid="uid://baxpfxwed8vex" path="res://Scenes/GameWorld2D/BaseGameWorld2D.tscn" id="1_kmgxr"]
+[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="2_0qqqa"]
+
+[node name="FirstGameWorld2D" instance=ExtResource("1_kmgxr")]
+
+[node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("2_0qqqa")]
+position = Vector2(-28, 16)
+
+[node name="MetalPiece2D4" parent="PiecesContainer2D" index="2" instance=ExtResource("2_0qqqa")]
+position = Vector2(-20, -4)
+
+[node name="MetalPiece2D5" parent="PiecesContainer2D" index="3" instance=ExtResource("2_0qqqa")]
+position = Vector2(-46, 95)
+
+[node name="MetalPiece2D6" parent="PiecesContainer2D" index="4" instance=ExtResource("2_0qqqa")]
+position = Vector2(-55, 110)
+
+[node name="MetalPiece2D2" parent="PiecesContainer2D" index="5" instance=ExtResource("2_0qqqa")]
+position = Vector2(75, 46)
+
+[node name="MetalPiece2D3" parent="PiecesContainer2D" index="6" instance=ExtResource("2_0qqqa")]
+position = Vector2(111, -21)

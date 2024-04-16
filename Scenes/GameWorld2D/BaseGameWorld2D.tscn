@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://baxpfxwed8vex"]
+
+[ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
+[ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
+[ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="3_menv6"]
+[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="4_thki7"]
+[ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
+[ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
+size = Vector2(1600, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alc1k"]
+size = Vector2(20, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7m681"]
+size = Vector2(40, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5jbj"]
+size = Vector2(6, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewraq"]
+size = Vector2(40, 30)
+
+[node name="GameWorld2D" type="Node2D"]
+script = ExtResource("1_0hvr0")
+
+[node name="PiecesContainer2D" type="Node2D" parent="."]
+position = Vector2(110, 103)
+
+[node name="SpawnMarker2D" type="Marker2D" parent="PiecesContainer2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(480, 249)
+shape = SubResource("RectangleShape2D_32sbf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(464, -11)
+shape = SubResource("RectangleShape2D_32sbf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-11, 120)
+shape = SubResource("RectangleShape2D_alc1k")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(330, 120)
+shape = SubResource("RectangleShape2D_alc1k")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(300, 159)
+shape = SubResource("RectangleShape2D_7m681")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(277, 142)
+shape = SubResource("RectangleShape2D_y5jbj")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(300, 63)
+shape = SubResource("RectangleShape2D_7m681")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(277, 46)
+shape = SubResource("RectangleShape2D_y5jbj")
+
+[node name="DragController" type="Node" parent="." node_paths=PackedStringArray("container")]
+script = ExtResource("2_xcqt5")
+container = NodePath("../PiecesContainer2D")
+
+[node name="SpawnController" type="Node" parent="." node_paths=PackedStringArray("container", "spawn_position_node_2d")]
+script = ExtResource("3_menv6")
+container = NodePath("../PiecesContainer2D")
+spawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
+spawn_piece = ExtResource("4_thki7")
+
+[node name="GarbageController" type="Node" parent="." node_paths=PackedStringArray("garbage_area")]
+script = ExtResource("5_t0soh")
+garbage_area = NodePath("../GarbageArea2D")
+delete_delay = 0.2
+
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area")]
+script = ExtResource("6_gr1go")
+trade_area = NodePath("../TradeArea2D2")
+delete_delay = 0.2
+
+[node name="GarbageArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GarbageArea2D"]
+position = Vector2(300, 142)
+shape = SubResource("RectangleShape2D_ewraq")
+
+[node name="TradeArea2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D2"]
+position = Vector2(300, 46)
+shape = SubResource("RectangleShape2D_ewraq")
