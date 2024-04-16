@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh8aqcakbwv5a"]
+[gd_scene load_steps=12 format=3 uid="uid://bh8aqcakbwv5a"]
 
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Tests/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
 [ext_resource type="Script" path="res://Scenes/Tests/ShapeTest.gd" id="1_nvmm2"]
 [ext_resource type="Script" path="res://Scenes/Tests/DragControl.gd" id="3_pv70o"]
 [ext_resource type="Script" path="res://Scenes/Tests/SpawnController.gd" id="4_g8uij"]
 [ext_resource type="Script" path="res://Scenes/Tests/GarbageController.gd" id="5_alc1w"]
+[ext_resource type="Script" path="res://Scenes/Tests/TradeController.gd" id="6_ug6rg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u5je"]
 size = Vector2(1600, 20)
@@ -74,6 +75,14 @@ shape = SubResource("RectangleShape2D_jxbqh")
 position = Vector2(277, 142)
 shape = SubResource("RectangleShape2D_uvki0")
 
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(300, 63)
+shape = SubResource("RectangleShape2D_jxbqh")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(277, 46)
+shape = SubResource("RectangleShape2D_uvki0")
+
 [node name="DragController" type="Node" parent="." node_paths=PackedStringArray("container")]
 script = ExtResource("3_pv70o")
 container = NodePath("../PiecesContainer2D")
@@ -86,12 +95,24 @@ spawn_piece = ExtResource("1_8mkap")
 
 [node name="GarbageController" type="Node" parent="." node_paths=PackedStringArray("garbage_area")]
 script = ExtResource("5_alc1w")
-garbage_area = NodePath("../Area2D")
+garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(110, 103)
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area")]
+script = ExtResource("6_ug6rg")
+trade_area = NodePath("../TradeArea2D2")
+delete_delay = 0.2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(190, 38)
+[node name="GarbageArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GarbageArea2D"]
+position = Vector2(300, 142)
 shape = SubResource("RectangleShape2D_hw313")
+
+[node name="TradeArea2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D2"]
+position = Vector2(300, 46)
+shape = SubResource("RectangleShape2D_hw313")
+
+[connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
