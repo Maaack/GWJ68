@@ -1,14 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh8aqcakbwv5a"]
+[gd_scene load_steps=6 format=3 uid="uid://bh8aqcakbwv5a"]
 
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Tests/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
 [ext_resource type="Script" path="res://Scenes/Tests/ShapeTest.gd" id="1_nvmm2"]
+[ext_resource type="Script" path="res://Scenes/Tests/DragControl.gd" id="3_pv70o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u5je"]
 size = Vector2(1600, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jum7f"]
+size = Vector2(20, 240)
+
 [node name="Node2D" type="Node2D"]
-position = Vector2(427, 237)
+position = Vector2(110, 84)
 script = ExtResource("1_nvmm2")
+
+[node name="PiecesContainer2D" type="Node2D" parent="."]
+
+[node name="MetalPiece2D" parent="PiecesContainer2D" instance=ExtResource("1_8mkap")]
+position = Vector2(-28, 16)
+
+[node name="MetalPiece2D4" parent="PiecesContainer2D" instance=ExtResource("1_8mkap")]
+position = Vector2(-20, -4)
+
+[node name="MetalPiece2D5" parent="PiecesContainer2D" instance=ExtResource("1_8mkap")]
+position = Vector2(-46, 95)
+
+[node name="MetalPiece2D6" parent="PiecesContainer2D" instance=ExtResource("1_8mkap")]
+position = Vector2(-55, 110)
+
+[node name="MetalPiece2D2" parent="PiecesContainer2D" instance=ExtResource("1_8mkap")]
+position = Vector2(75, 46)
+
+[node name="MetalPiece2D3" parent="PiecesContainer2D" instance=ExtResource("1_8mkap")]
+position = Vector2(111, -21)
+
+[node name="SpawnMarker2D" type="Marker2D" parent="PiecesContainer2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(370, 146)
@@ -16,11 +42,18 @@ position = Vector2(370, 146)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_6u5je")
 
-[node name="MetalPiece2D" parent="." instance=ExtResource("1_8mkap")]
-position = Vector2(-28, 16)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-14, -241)
+shape = SubResource("RectangleShape2D_6u5je")
 
-[node name="MetalPiece2D2" parent="." instance=ExtResource("1_8mkap")]
-position = Vector2(75, 46)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-490, -112)
+shape = SubResource("RectangleShape2D_jum7f")
 
-[node name="MetalPiece2D3" parent="." instance=ExtResource("1_8mkap")]
-position = Vector2(153, -106)
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-150, -115)
+shape = SubResource("RectangleShape2D_jum7f")
+
+[node name="DragController" type="Node" parent="." node_paths=PackedStringArray("container")]
+script = ExtResource("3_pv70o")
+container = NodePath("../PiecesContainer2D")
