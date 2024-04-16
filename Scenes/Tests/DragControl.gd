@@ -7,7 +7,13 @@ var held_object = null
 
 func _ready():
 	for node in container.get_children():
-		if node is MetalPiece2D:
+		_catch_clicked_signal(node)
+	if not container.child_entered_tree.is_connected(_catch_clicked_signal):
+		container.child_entered_tree.connect(_catch_clicked_signal)
+
+func _catch_clicked_signal(node):
+	if node is MetalPiece2D:
+		if not node.clicked.is_connected(_on_pickable_clicked):
 			node.clicked.connect(_on_pickable_clicked)
 
 func _on_pickable_clicked(object):
