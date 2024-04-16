@@ -8,6 +8,8 @@ var held : bool = false
 @onready var heat_controller : HeatController = $HeatController
 @onready var polygon_2d : Polygon2D = $Polygon2D
 
+var hold_offset : Vector2 = Vector2.ZERO
+
 func _ready():
 	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 
@@ -67,6 +69,7 @@ func drop(impulse=Vector2.ZERO):
 		held = false
 
 func move_origin(new_origin_offset : Vector2):
+	hold_offset += new_origin_offset
 	for child in get_children():
 		if not child is Node2D:
 			continue
