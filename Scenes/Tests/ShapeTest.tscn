@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Tests/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
 [ext_resource type="Script" path="res://Scenes/Tests/ShapeTest.gd" id="1_nvmm2"]
-[ext_resource type="Script" path="res://Scenes/Tests/DragControl.gd" id="3_pv70o"]
-[ext_resource type="Script" path="res://Scenes/Tests/SpawnController.gd" id="4_g8uij"]
-[ext_resource type="Script" path="res://Scenes/Tests/GarbageController.gd" id="5_alc1w"]
-[ext_resource type="Script" path="res://Scenes/Tests/TradeController.gd" id="6_ug6rg"]
+[ext_resource type="Script" path="res://Scripts/DragControl.gd" id="3_pv70o"]
+[ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="4_g8uij"]
+[ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_alc1w"]
+[ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_ug6rg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u5je"]
 size = Vector2(1600, 20)
