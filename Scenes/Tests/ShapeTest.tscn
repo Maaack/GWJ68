@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bh8aqcakbwv5a"]
 
-[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Tests/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
+[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="1_8mkap"]
 [ext_resource type="Script" path="res://Scenes/Tests/ShapeTest.gd" id="1_nvmm2"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="3_pv70o"]
 [ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="4_g8uij"]
