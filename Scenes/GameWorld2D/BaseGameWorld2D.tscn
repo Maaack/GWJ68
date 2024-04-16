@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=14 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="4_thki7"]
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
+[ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(1600, 20)
@@ -21,6 +22,9 @@ size = Vector2(6, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewraq"]
 size = Vector2(40, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw3bm"]
+size = Vector2(50, 80)
 
 [node name="GameWorld2D" type="Node2D"]
 script = ExtResource("1_0hvr0")
@@ -84,6 +88,10 @@ script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
 
+[node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area")]
+script = ExtResource("7_ecyfw")
+forge_area = NodePath("../ForgeArea2D")
+
 [node name="GarbageArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GarbageArea2D"]
@@ -95,5 +103,11 @@ shape = SubResource("RectangleShape2D_ewraq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D2"]
 position = Vector2(300, 46)
 shape = SubResource("RectangleShape2D_ewraq")
+
+[node name="ForgeArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ForgeArea2D"]
+position = Vector2(25, 200)
+shape = SubResource("RectangleShape2D_jw3bm")
 
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
