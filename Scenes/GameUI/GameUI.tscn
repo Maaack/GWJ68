@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=5 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="PackedScene" uid="uid://b5rw70otxnmqc" path="res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn" id="1_kqx6s"]
 [ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="3_x1qn4"]
+[ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Examples/Scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="4_fp045"]
 
 [node name="GameUI" type="Control"]
 texture_filter = 1
@@ -9,10 +11,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 4.0
-offset_right = 1.0
-offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ph6xg")
@@ -31,7 +29,9 @@ handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 physics_object_picking = true
-size = Vector2i(320, 240)
+size = Vector2i(640, 360)
+size_2d_override = Vector2i(320, 180)
+size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="FirstGameWorld2D" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_kqx6s")]
@@ -59,5 +59,9 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "$ 0"
+
+[node name="PauseController" type="Node" parent="."]
+script = ExtResource("3_x1qn4")
+pause_menu_packed = ExtResource("4_fp045")
 
 [connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]

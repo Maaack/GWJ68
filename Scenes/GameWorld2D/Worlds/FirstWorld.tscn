@@ -6,19 +6,19 @@
 [node name="FirstGameWorld2D" instance=ExtResource("1_kmgxr")]
 
 [node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("2_0qqqa")]
-position = Vector2(-28, 16)
+position = Vector2(104, 47)
 
 [node name="MetalPiece2D4" parent="PiecesContainer2D" index="2" instance=ExtResource("2_0qqqa")]
-position = Vector2(-20, -4)
+position = Vector2(112, 27)
 
 [node name="MetalPiece2D5" parent="PiecesContainer2D" index="3" instance=ExtResource("2_0qqqa")]
-position = Vector2(-46, 95)
+position = Vector2(86, 126)
 
 [node name="MetalPiece2D6" parent="PiecesContainer2D" index="4" instance=ExtResource("2_0qqqa")]
-position = Vector2(-55, 110)
+position = Vector2(77, 141)
 
 [node name="MetalPiece2D2" parent="PiecesContainer2D" index="5" instance=ExtResource("2_0qqqa")]
-position = Vector2(75, 46)
+position = Vector2(207, 77)
 
 [node name="MetalPiece2D3" parent="PiecesContainer2D" index="6" instance=ExtResource("2_0qqqa")]
-position = Vector2(111, -21)
+position = Vector2(243, 10)
