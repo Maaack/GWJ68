@@ -95,3 +95,5 @@ shape = SubResource("RectangleShape2D_ewraq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D2"]
 position = Vector2(300, 46)
 shape = SubResource("RectangleShape2D_ewraq")
+
+[connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]

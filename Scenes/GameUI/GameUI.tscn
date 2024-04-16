@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=3 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="PackedScene" uid="uid://b5rw70otxnmqc" path="res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn" id="1_kqx6s"]
+[ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
 
-[node name="Control" type="Control"]
+[node name="GameUI" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +15,7 @@ offset_right = 1.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ph6xg")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -32,3 +35,29 @@ size = Vector2i(320, 240)
 render_target_update_mode = 4
 
 [node name="FirstGameWorld2D" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_kqx6s")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "$ 0"
+
+[connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]
