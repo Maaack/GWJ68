@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
 [ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
-[ext_resource type="PackedScene" uid="uid://bure766u003wd" path="res://Scenes/Pieces/L_Blueprint2D.tscn" id="8_dg4um"]
+[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/LTradeOffer.tres" id="7_wdu4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(360, 20)
@@ -87,11 +87,11 @@ script = ExtResource("5_t0soh")
 garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
-[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area", "blueprint_2d")]
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area")]
 script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
-blueprint_2d = NodePath("../L_Blueprint2D")
+trade_offer = ExtResource("7_wdu4d")
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area")]
 script = ExtResource("7_ecyfw")
@@ -123,26 +123,35 @@ position = Vector2(25, 50)
 shape = SubResource("RectangleShape2D_jw3bm")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(0, 3)
-scale = Vector2(1, 0.969697)
-polygon = PackedVector2Array(114, 51.5625, 160, 51.5625, 160, 87.9688, 114, 88)
+position = Vector2(140, 68)
+polygon = PackedVector2Array(-26, -14.4375, 20, -14.4375, 20, 20.625, -26, 20.625)
 
-[node name="Label" type="Label" parent="Polygon2D"]
+[node name="SellValue" type="Label" parent="Polygon2D"]
+unique_name_in_owner = true
 texture_filter = 1
-offset_left = 119.0
-offset_top = 54.0
-offset_right = 159.0
-offset_bottom = 77.0
+offset_left = -24.0
+offset_top = -15.4688
+offset_right = 16.0
+offset_bottom = 7.53125
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
-text = "$2"
+text = "$0"
 metadata/_edit_use_anchors_ = true
 
-[node name="BluePrintMarker2D" type="Marker2D" parent="."]
-position = Vector2(144, 78)
-scale = Vector2(1, 0.969697)
+[node name="PrecisionLabel" type="Label" parent="Polygon2D"]
+unique_name_in_owner = true
+texture_filter = 1
+offset_left = -24.0
+offset_top = 0.53125
+offset_right = 16.0
+offset_bottom = 23.5312
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "100%"
 
-[node name="L_Blueprint2D" parent="." instance=ExtResource("8_dg4um")]
-position = Vector2(226, 49)
+[node name="TradePolygon" type="Polygon2D" parent="Polygon2D"]
+unique_name_in_owner = true
+position = Vector2(6, 9)
+color = Color(0, 0, 0, 1)
 
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]

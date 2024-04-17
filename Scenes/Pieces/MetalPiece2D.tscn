@@ -25,7 +25,6 @@ body_2d = NodePath("..")
 
 [node name="Timer" type="Timer" parent="HeatController"]
 wait_time = 3.0
-autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HeatController/Timer" to="HeatController" method="print_status"]
