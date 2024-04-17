@@ -6,6 +6,7 @@ const AREA_RESOLUTION_VECTOR : Vector2i = Vector2i(8, 8)
 const ROTATION_STEPS : float = PI/4
 
 signal piece_sold(value : int)
+signal offer_completed
 
 @export var trade_area : Area2D
 @export var delete_delay : float = 0.0
@@ -16,8 +17,15 @@ signal piece_sold(value : int)
 			%SellValue.text = "$ %d" % trade_offer.value
 			%TradePolygon.polygon = trade_offer.polygon
 			%PrecisionLabel.text = "> %d%%" % round(trade_offer.precision_required * 100)
+			tally = trade_offer.tally
 
 @export var trade_offers : Array[TradeOffer]
+
+var tally : int :
+	set(value):
+		tally = value
+		if is_inside_tree():
+			%TallyLabel.text = "%d" % tally
 
 func _ready():
 	trade_offer = trade_offers.pick_random()
@@ -68,6 +76,16 @@ func rotate_polygon(polygon: PackedVector2Array, rotation: float) -> PackedVecto
 		rotated_polygon.append(Vector2(x, y))
 	return rotated_polygon
 
+func _get_next_trade_offer():
+	trade_offer = trade_offers.pick_random()
+
+func _lower_tally():
+	if tally > 0:
+		tally -= 1
+		if tally == 0:
+			offer_completed.emit()
+			_get_next_trade_offer()
+
 func _score_piece(piece : MetalPiece2D):
 	piece.update_polygon_shape()
 	var scoring_polygon = piece.get_polygon()
@@ -90,7 +108,7 @@ func _score_piece(piece : MetalPiece2D):
 	print(max_overlapping_percent)
 	if max_overlapping_percent >= trade_offer.precision_required:
 		piece_sold.emit(trade_offer.value)
-		
+		_lower_tally()
 
 func _delete_piece(object):
 	if object is MetalPiece2D and not object.scored:
