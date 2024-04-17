@@ -12,13 +12,13 @@ position = Vector2(104, 47)
 position = Vector2(112, 27)
 
 [node name="MetalPiece2D5" parent="PiecesContainer2D" index="3" instance=ExtResource("2_0qqqa")]
-position = Vector2(86, 126)
+position = Vector2(85, 49)
 
 [node name="MetalPiece2D6" parent="PiecesContainer2D" index="4" instance=ExtResource("2_0qqqa")]
-position = Vector2(77, 141)
+position = Vector2(76, 64)
 
 [node name="MetalPiece2D2" parent="PiecesContainer2D" index="5" instance=ExtResource("2_0qqqa")]
-position = Vector2(207, 77)
+position = Vector2(62, 82)
 
 [node name="MetalPiece2D3" parent="PiecesContainer2D" index="6" instance=ExtResource("2_0qqqa")]
-position = Vector2(243, 10)
+position = Vector2(98, 15)

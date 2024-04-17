@@ -4,16 +4,19 @@
 [ext_resource type="Script" path="res://Scenes/Pieces/HeatController.gd" id="2_2fmst"]
 
 [node name="MetalPiece2D" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
 input_pickable = true
+can_sleep = false
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_wkewi")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-7, -4, 7, -4, 7, 3, -7, 3)
+polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-7, -4, 7, -4, 7, 3, -7, 3)
+polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
 
 [node name="HeatController" type="Node" parent="." node_paths=PackedStringArray("body_2d")]
 script = ExtResource("2_2fmst")
@@ -21,6 +24,7 @@ specific_heat_capacity = 300.0
 body_2d = NodePath("..")
 
 [node name="Timer" type="Timer" parent="HeatController"]
+wait_time = 3.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -5,6 +5,7 @@ extends Node
 @export var specific_heat_capacity : float = 1.0
 @export var thermal_conductivity : float = 1.0
 @export var body_2d : MetalPiece2D
+@export var melting_collider_layer : int
 
 var ambient_temperature : float
 var body_temperature : float
@@ -16,6 +17,8 @@ func update_heat(delta : float):
 	conduction_heat_transfer *= thermal_conductivity * delta * body_area
 	var temperature_diff := conduction_heat_transfer / (specific_heat_capacity * body_mass)
 	body_temperature += temperature_diff
+	if melting_collider_layer > 0 and melting_collider_layer <= 32:
+		body_2d.set_collision_layer_value(melting_collider_layer, body_temperature < melting_point)
 
 func _process(delta):
 	update_heat(delta)

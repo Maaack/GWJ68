@@ -9,6 +9,7 @@ var held : bool = false
 @onready var polygon_2d : Polygon2D = $Polygon2D
 
 var hold_offset : Vector2 = Vector2.ZERO
+var merging : bool = false
 
 func _ready():
 	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
@@ -27,21 +28,39 @@ func _physics_process(delta):
 	if held:
 		global_transform.origin = get_global_mouse_position()
 
-func merge_to(relative_polygon : PackedVector2Array, other_piece : MetalPiece2D):
+func merge_to(other_piece : MetalPiece2D):
 	for child in get_children():
 		if child is CollisionPolygon2D:
 			child.reparent(other_piece)
 	other_piece.mass += mass
-	other_piece.add_polygon(relative_polygon)
+	other_piece.update_polygon_shape()
 	queue_free()
 
 func get_polygon() -> PackedVector2Array:
 	return polygon_2d.polygon
 
-func add_polygon(polygon : PackedVector2Array):
-	var new_polygons = Geometry2D.merge_polygons(get_polygon(), polygon)
-	if new_polygons.size() == 1:
-		polygon_2d.polygon = new_polygons[0]
+func update_polygon_shape():
+	move_origin(-hold_offset)
+	var full_polygon : PackedVector2Array
+	var merge_list : Array[PackedVector2Array] = []
+	for child in get_children():
+		if child is CollisionPolygon2D:
+			var child_polygon = transform_polygon(child.polygon, child.transform, child.position)
+			if not full_polygon:
+				full_polygon = child_polygon
+			merge_list.append(child_polygon)
+	var _last_merge_count = merge_list.size() + 1
+	while(merge_list.size() > 0 and merge_list.size() < _last_merge_count):
+		var duplicate_merge_list = merge_list.duplicate()
+		merge_list.clear()
+		for merge_polygon in duplicate_merge_list:
+			var merged_polygons = Geometry2D.merge_polygons(full_polygon, merge_polygon)
+			if merged_polygons.size() != 1:
+				merge_list.append(merge_polygon)
+			full_polygon = merged_polygons[0]
+
+	polygon_2d.polygon = full_polygon
+	polygon_2d.position = Vector2.ZERO
 
 func get_surface_area() -> float:
 	var polygon := get_polygon()
@@ -75,13 +94,13 @@ func move_origin(new_origin_offset : Vector2):
 			continue
 		child.position += new_origin_offset
 
-func _get_polygon_relative_to_piece(other_piece : MetalPiece2D) -> PackedVector2Array:
-	var position_offset = polygon_2d.global_position - other_piece.polygon_2d.global_position
-	var _transform = transform.rotated(other_piece.global_rotation)
-	var _transformed_polygon: PackedVector2Array = []
-	var _transformed_offset = position_offset.rotated(-other_piece.global_rotation)
-	for _vector in get_polygon(): _transformed_polygon.append(_transform.basis_xform(_vector) + _transformed_offset)
-	return _transformed_polygon
+func transform_polygon(polygon : PackedVector2Array, body_transform : Transform2D, offset : Vector2 = Vector2.ZERO) -> PackedVector2Array:
+	var global_polygon : PackedVector2Array = []
+	for vertex in polygon:
+		var global_vertex = body_transform.basis_xform(vertex)
+		global_vertex += offset
+		global_polygon.append(round(global_vertex))
+	return global_polygon
 
 func _polygons_overlap(polygon_a : PackedVector2Array, polygon_b : PackedVector2Array) -> bool:
 	var new_polygons = Geometry2D.merge_polygons(polygon_a, polygon_b)
@@ -95,13 +114,29 @@ func _is_temp_greater_than_melting(heat_controller_a : HeatController, heat_cont
 	var _min_melting_point = min(heat_controller_a.melting_point, heat_controller_b.melting_point)
 	return (_temp_a + _temp_b) / 2 > _min_melting_point
 
-func _can_merge_with_piece(polygon : PackedVector2Array, piece : MetalPiece2D) -> bool:
+func _can_merge_with_piece(piece : MetalPiece2D) -> bool:
 	var _melting_temp = _is_temp_greater_than_melting(heat_controller, piece.heat_controller)
-	var _polygons_overlap = _polygons_overlap(polygon, piece.get_polygon())
+	var _global_polygon_1 = transform_polygon(get_polygon(), polygon_2d.global_transform, polygon_2d.global_position)
+	var _global_polygon_2 = transform_polygon(piece.get_polygon(), piece.polygon_2d.global_transform, piece.polygon_2d.global_position)
+	var _polygons_overlap = _polygons_overlap(_global_polygon_1, _global_polygon_2)
 	return _melting_temp and _polygons_overlap
 
 func _on_body_entered(body):
-	if body is MetalPiece2D and not body.held:
-		var relative_polygon = _get_polygon_relative_to_piece(body)
-		if _can_merge_with_piece(relative_polygon, body):
-			call_deferred("merge_to", relative_polygon, body)
+	if body is MetalPiece2D and not held and not body.merging:
+		if _can_merge_with_piece(body):
+			merging = true
+			call_deferred("merge_to", body)
+
+func get_polygon_center_of_mass() -> Vector2:
+	var area_sum = 0.0
+	var center_sum = Vector2.ZERO
+	var _polygon = get_polygon()
+	for i in range(_polygon.size()):
+		var current_vertex = _polygon[i]
+		var next_vertex = _polygon[(i + 1) % _polygon.size()]
+		var cross_product = current_vertex.cross(next_vertex)
+		var area = cross_product / 2.0
+		area_sum += area
+		center_sum += (current_vertex + next_vertex) * area
+	var _center_of_mass = center_sum / (3.0 * area_sum)
+	return _center_of_mass

@@ -2,6 +2,7 @@ class_name DragController
 extends Node
 
 @export var container : Node2D
+@export var throw_mod : float = 1.0
 
 var held_object = null
 
@@ -24,5 +25,5 @@ func _on_pickable_clicked(object):
 func _unhandled_input(event):
 	if event.is_action_released("select") and held_object:
 		if is_instance_valid(held_object) and held_object is MetalPiece2D:
-			held_object.drop(Input.get_last_mouse_velocity())
+			held_object.drop(Input.get_last_mouse_velocity() * throw_mod)
 		held_object = null

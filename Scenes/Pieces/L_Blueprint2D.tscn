@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bure766u003wd"]
+
+[ext_resource type="PackedScene" uid="uid://dur8ud8ntt0dt" path="res://Scenes/Pieces/PieceBlueprint2D.tscn" id="1_kvxns"]
+
+[node name="L_Blueprint2D" instance=ExtResource("1_kvxns")]
+
+[node name="Polygon2D" parent="." index="0"]
+polygon = PackedVector2Array(-4, -10, 0, -10, 0, -2, 4, -2, 4, 2, -4, 2, -4, -2)

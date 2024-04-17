@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dur8ud8ntt0dt"]
+
+[ext_resource type="Script" path="res://Scenes/Pieces/PieceBase2D.gd" id="1_gp7n8"]
+
+[node name="PieceBlueprint2D" type="Node2D"]
+script = ExtResource("1_gp7n8")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)

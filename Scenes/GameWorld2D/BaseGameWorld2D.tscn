@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=15 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
 [ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
+[ext_resource type="PackedScene" uid="uid://bure766u003wd" path="res://Scenes/Pieces/L_Blueprint2D.tscn" id="8_dg4um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(360, 20)
@@ -28,16 +29,18 @@ size = Vector2(50, 80)
 
 [node name="GameWorld2D" type="Node2D"]
 script = ExtResource("1_0hvr0")
+metadata/_edit_vertical_guides_ = [160.0]
+metadata/_edit_horizontal_guides_ = [90.0]
 
 [node name="PiecesContainer2D" type="Node2D" parent="."]
 
 [node name="SpawnMarker2D" type="Marker2D" parent="PiecesContainer2D"]
-position = Vector2(152, 5)
+position = Vector2(82, 17)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(160, 190)
+position = Vector2(160, 100)
 shape = SubResource("RectangleShape2D_32sbf")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -49,7 +52,7 @@ position = Vector2(-10, 90)
 shape = SubResource("RectangleShape2D_alc1k")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(330, 90)
+position = Vector2(170, 90)
 shape = SubResource("RectangleShape2D_alc1k")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
@@ -61,16 +64,17 @@ position = Vector2(277, 142)
 shape = SubResource("RectangleShape2D_y5jbj")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(300, 63)
+position = Vector2(140, 85)
 shape = SubResource("RectangleShape2D_7m681")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(277, 46)
+position = Vector2(117, 68)
 shape = SubResource("RectangleShape2D_y5jbj")
 
 [node name="DragController" type="Node" parent="." node_paths=PackedStringArray("container")]
 script = ExtResource("2_xcqt5")
 container = NodePath("../PiecesContainer2D")
+throw_mod = 0.1
 
 [node name="SpawnController" type="Node" parent="." node_paths=PackedStringArray("container", "spawn_position_node_2d")]
 script = ExtResource("3_menv6")
@@ -83,35 +87,62 @@ script = ExtResource("5_t0soh")
 garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
-[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area")]
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area", "blueprint_2d")]
 script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
+blueprint_2d = NodePath("../L_Blueprint2D")
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area")]
 script = ExtResource("7_ecyfw")
 forge_area = NodePath("../ForgeArea2D")
-forge_temperature = 2000.0
+forge_temperature = 4000.0
 
 [node name="GarbageArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GarbageArea2D"]
 position = Vector2(300, 142)
 shape = SubResource("RectangleShape2D_ewraq")
 
 [node name="TradeArea2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D2"]
-position = Vector2(300, 46)
+position = Vector2(140, 68)
 shape = SubResource("RectangleShape2D_ewraq")
 
 [node name="ForgeArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ForgeArea2D"]
-position = Vector2(25, 141)
+position = Vector2(25, 50)
 shape = SubResource("RectangleShape2D_jw3bm")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(274, 31, 320, 31, 320, 67, 274, 67)
+position = Vector2(0, 3)
+scale = Vector2(1, 0.969697)
+polygon = PackedVector2Array(114, 51.5625, 160, 51.5625, 160, 87.9688, 114, 88)
+
+[node name="Label" type="Label" parent="Polygon2D"]
+texture_filter = 1
+offset_left = 119.0
+offset_top = 54.0
+offset_right = 159.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "$2"
+metadata/_edit_use_anchors_ = true
+
+[node name="BluePrintMarker2D" type="Marker2D" parent="."]
+position = Vector2(144, 78)
+scale = Vector2(1, 0.969697)
+
+[node name="L_Blueprint2D" parent="." instance=ExtResource("8_dg4um")]
+position = Vector2(226, 49)
 
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
