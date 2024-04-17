@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TradeOffer" load_steps=2 format=3 uid="uid://cnnphi7fmnwsq"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="1_soklj"]
+
+[resource]
+script = ExtResource("1_soklj")
+value = 5
+polygon = PackedVector2Array(-4, -2, 4, -2, 4, -6, 8, -6, 8, 2, -8, 2, -8, -6, -4, -6)
+tally = 3
+precision_required = 0.95
+check_size = 0
+check_resolution = 2
