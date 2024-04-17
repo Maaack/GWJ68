@@ -30,7 +30,7 @@ const SizeDict : Dictionary = {
 }
 
 @export var value : int = 0
-@export var polygon : PackedVector2Array = []
+@export var polygon : PackedVector2Array
 @export var tally : int = 0
 @export var precision_required : float = 1.0
 @export var check_size : Sizes = Sizes.TINY :

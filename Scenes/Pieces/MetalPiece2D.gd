@@ -59,6 +59,7 @@ func update_polygon_shape():
 			if merged_polygons.size() != 1:
 				merge_list.append(merge_polygon)
 			full_polygon = merged_polygons[0]
+		_last_merge_count = merge_list.size()
 
 	polygon_2d.polygon = full_polygon
 	polygon_2d.position = Vector2.ZERO
