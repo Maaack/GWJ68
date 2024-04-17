@@ -7,10 +7,10 @@
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
 [ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
-[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/LTradeOffer.tres" id="7_wdu4d"]
-[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/SquareTradeOffer.tres" id="8_l0y1t"]
-[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/ZTradeOffer.tres" id="9_ikus7"]
-[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/LineTradeOffer.tres" id="10_uhb7w"]
+[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/TradeOffers/LTradeOffer.tres" id="7_wdu4d"]
+[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/SquareTradeOffer.tres" id="8_l0y1t"]
+[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/ZTradeOffer.tres" id="9_ikus7"]
+[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/LineTradeOffer.tres" id="10_uhb7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(360, 20)
