@@ -169,4 +169,8 @@ unique_name_in_owner = true
 position = Vector2(6, 9)
 color = Color(0, 0, 0, 1)
 
+[node name="DayTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=6 format=3 uid="uid://d1njcddlmjnif"]
 
+[ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_jawvc"]
 [ext_resource type="PackedScene" uid="uid://b5rw70otxnmqc" path="res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn" id="1_kqx6s"]
 [ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="3_x1qn4"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jawvc")
 script = ExtResource("1_ph6xg")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -23,13 +25,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 3
+stretch_shrink = 8
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 physics_object_picking = true
-size = Vector2i(213, 120)
+size = Vector2i(160, 90)
 size_2d_override = Vector2i(160, 90)
 size_2d_override_stretch = true
 render_target_update_mode = 4
@@ -60,8 +62,87 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "$ 0"
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 240
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 240
+
+[node name="DayProgressBar" type="ProgressBar" parent="MarginContainer/Control/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 12)
+layout_mode = 2
+mouse_filter = 2
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
 [node name="PauseController" type="Node" parent="."]
 script = ExtResource("3_x1qn4")
 pause_menu_packed = ExtResource("4_fp045")
 
+[node name="NightTimeControl" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="NightTimeControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -110.5
+offset_right = 171.5
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NightTimeControl/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NightTimeControl/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="DayOverLabel" type="Label" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Day Over"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "The stuff you did today."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NextDayButton" type="Button" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next Day"
+
+[connection signal="day_ended" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_ended"]
+[connection signal="day_progress_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_progress_updated"]
 [connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]
+[connection signal="pressed" from="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextDayButton" to="." method="_on_next_day_button_pressed"]
