@@ -1,7 +1,7 @@
 class_name MetalPiece2D
 extends RigidBody2D
 
-const ROTATION_STEPS = 4
+const ROTATION_STEPS : float = PI/4
 signal clicked
 
 var held : bool = false
@@ -10,6 +10,7 @@ var held : bool = false
 
 var hold_offset : Vector2 = Vector2.ZERO
 var merging : bool = false
+var scored : bool = false
 
 func _ready():
 	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
@@ -17,12 +18,12 @@ func _ready():
 func _input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("select"):
 		clicked.emit(self)
-		rotation = (round((rotation / PI) * ROTATION_STEPS) / ROTATION_STEPS) * PI
+		rotation = round(rotation / ROTATION_STEPS) * ROTATION_STEPS
 	if held:
 		if event.is_action_pressed("rotate_left"):
-			rotation += PI/ROTATION_STEPS
+			rotation += ROTATION_STEPS
 		if event.is_action_pressed("rotate_right"):
-			rotation -= PI/ROTATION_STEPS
+			rotation -= ROTATION_STEPS
 
 func _physics_process(delta):
 	if held:
