@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=18 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
 [ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
 [ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/LTradeOffer.tres" id="7_wdu4d"]
+[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/SquareTradeOffer.tres" id="8_l0y1t"]
+[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/ZTradeOffer.tres" id="9_ikus7"]
+[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/LineTradeOffer.tres" id="10_uhb7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(360, 20)
@@ -92,6 +95,7 @@ script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
 trade_offer = ExtResource("7_wdu4d")
+trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_l0y1t"), ExtResource("9_ikus7"), ExtResource("10_uhb7w"), ExtResource("7_wdu4d")])
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area")]
 script = ExtResource("7_ecyfw")

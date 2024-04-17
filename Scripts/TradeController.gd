@@ -17,8 +17,10 @@ signal piece_sold(value : int)
 			%TradePolygon.polygon = trade_offer.polygon
 			%PrecisionLabel.text = "> %d%%" % round(trade_offer.precision_required * 100)
 
+@export var trade_offers : Array[TradeOffer]
+
 func _ready():
-	trade_offer = trade_offer
+	trade_offer = trade_offers.pick_random()
 	if not trade_area.body_entered.is_connected(_delete_piece):
 		trade_area.body_entered.connect(_delete_piece)
 
