@@ -55,13 +55,12 @@ func _get_polygon_area_points(area_size : Vector2, area_resolution : Vector2i, p
 func _get_overlapping_points(area_size : Vector2, area_resolution : Vector2i, polygon_1 : PackedVector2Array, polygon_2 : PackedVector2Array) -> Array[bool]:
 	var area_points_1 = _get_polygon_area_points(area_size, area_resolution, polygon_1)
 	var area_points_2 = _get_polygon_area_points(area_size, area_resolution, polygon_2)
-	var overlapping_points : Array[bool]
+	var overlapping_points : Array[bool] = []
 	for i in range(area_points_1.size()):
 		overlapping_points.append(area_points_1[i] == area_points_2[i])
 	return overlapping_points
 
 func _get_percentage_overlapping_points(area_size : Vector2, area_resolution : Vector2i, polygon_1 : PackedVector2Array, polygon_2 : PackedVector2Array) -> float:
-	var overlap_percent : float
 	var overlapping_points := _get_overlapping_points(area_size, area_resolution, polygon_1, polygon_2)
 	var total_overlapped : int = 0
 	for overlap_result in overlapping_points:

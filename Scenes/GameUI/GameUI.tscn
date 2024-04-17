@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=7 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_jawvc"]
 [ext_resource type="PackedScene" uid="uid://b5rw70otxnmqc" path="res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn" id="1_kqx6s"]
 [ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="3_x1qn4"]
 [ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Examples/Scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="4_fp045"]
+[ext_resource type="PackedScene" uid="uid://ewdbpeyjjv41" path="res://Scenes/GameUI/NightPanelContainer.tscn" id="6_u8plx"]
 
 [node name="GameUI" type="Control"]
 texture_filter = 1
@@ -55,13 +56,6 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MoneyLabel" type="Label" parent="MarginContainer/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "$ 0"
-
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -83,6 +77,25 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "$ 0"
+
+[node name="RentLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "$ 0 Due"
+
 [node name="PauseController" type="Node" parent="."]
 script = ExtResource("3_x1qn4")
 pause_menu_packed = ExtResource("4_fp045")
@@ -97,52 +110,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="NightTimeControl"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -171.5
-offset_top = -110.5
-offset_right = 171.5
-offset_bottom = 110.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="NightTimeControl/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NightTimeControl/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="DayOverLabel" type="Label" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Day Over"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "The stuff you did today."
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="NextDayButton" type="Button" parent="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NightPanelContainer" parent="NightTimeControl" instance=ExtResource("6_u8plx")]
 unique_name_in_owner = true
-layout_mode = 2
-text = "Next Day"
+layout_mode = 1
 
 [connection signal="day_ended" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_ended"]
 [connection signal="day_progress_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_progress_updated"]
 [connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]
-[connection signal="pressed" from="NightTimeControl/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextDayButton" to="." method="_on_next_day_button_pressed"]
+[connection signal="next_day_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_day_pressed"]

@@ -1,3 +1,4 @@
+class_name GameWorld2D
 extends Node2D
 
 signal money_updated(new_value : int)
@@ -7,6 +8,7 @@ signal day_ended()
 
 @export var starting_money : int = 0
 @export var day_length : float = 60.0
+@export var daily_rent_due : int = 0
 
 var day_progress : float = 0.0 :
 	set(value):
@@ -19,10 +21,10 @@ var day_count : int = 0 :
 		day_count_updated.emit(day_count)
 		
 
-@onready var _money : int = starting_money :
+@onready var money : int = starting_money :
 	set(value):
-		_money = value
-		money_updated.emit(_money)
+		money = value
+		money_updated.emit(money)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
@@ -30,7 +32,7 @@ func _unhandled_input(event):
 
 
 func _on_trade_controller_piece_sold(value):
-	_money += value
+	money += value
 
 func start_day():
 	day_count += 1
@@ -42,9 +44,6 @@ func _end_day():
 func _process(delta):
 	var time_passed : float = day_length - $DayTimer.time_left
 	day_progress = time_passed / day_length
-
-func _ready():
-	start_day()
 
 func _on_day_timer_timeout():
 	_end_day()

@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://ewdbpeyjjv41"]
+
+[ext_resource type="Script" path="res://Scenes/GameUI/NightPanelContainer.gd" id="1_rr2ko"]
+[ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_tyu3s"]
+
+[node name="NightPanelContainer" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -110.5
+offset_right = 171.5
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tyu3s")
+script = ExtResource("1_rr2ko")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="DayOverLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Day Over"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "The stuff you did today."
+horizontal_alignment = 1
+
+[node name="CashAvailableContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/CashAvailableContainer"]
+layout_mode = 2
+text = "Cash Available"
+
+[node name="CashAvailableLabel" type="Label" parent="MarginContainer/VBoxContainer/CashAvailableContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$ 0"
+horizontal_alignment = 2
+
+[node name="RentDueContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RentDueContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Rent Due"
+
+[node name="RentDueLabel" type="Label" parent="MarginContainer/VBoxContainer/RentDueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "- $ 0"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TotalRemainingContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TotalRemainingContainer"]
+layout_mode = 2
+text = "Total Remaining"
+
+[node name="TotalRemainingLabel" type="Label" parent="MarginContainer/VBoxContainer/TotalRemainingContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$ 0"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="NextDayButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next Day"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextDayButton" to="." method="_on_next_day_button_pressed"]

@@ -120,8 +120,8 @@ func _can_merge_with_piece(piece : MetalPiece2D) -> bool:
 	var _melting_temp = _is_temp_greater_than_melting(heat_controller, piece.heat_controller)
 	var _global_polygon_1 = transform_polygon(get_polygon(), polygon_2d.global_transform, polygon_2d.global_position)
 	var _global_polygon_2 = transform_polygon(piece.get_polygon(), piece.polygon_2d.global_transform, piece.polygon_2d.global_position)
-	var _polygons_overlap = _polygons_overlap(_global_polygon_1, _global_polygon_2)
-	return _melting_temp and _polygons_overlap
+	var _polygons_overlap_flag = _polygons_overlap(_global_polygon_1, _global_polygon_2)
+	return _melting_temp and _polygons_overlap_flag
 
 func _on_body_entered(body):
 	if body is MetalPiece2D and not held and not body.merging:
