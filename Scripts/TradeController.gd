@@ -27,10 +27,11 @@ func _get_polygon_area_points(area_size : Vector2, area_resolution : Vector2i, p
 	var area_corner_offset := -(area_size / 2)
 	var area_points : Array[bool] = []
 	var point_ratio := area_size / Vector2(area_resolution)
+	var half_step := point_ratio / 2
 	for x in range(area_resolution.x):
 		for y in range(area_resolution.y):
 			point = Vector2(x, y) * point_ratio
-			point += area_corner_offset
+			point += area_corner_offset + half_step
 			area_points.append(Geometry2D.is_point_in_polygon(point, polygon))
 	return area_points
 
