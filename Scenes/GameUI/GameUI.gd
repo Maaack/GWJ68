@@ -42,3 +42,8 @@ func _on_night_panel_container_next_day_pressed():
 	night_time_control.hide()
 	pay_rent()
 	start_day()
+
+
+func _on_persistent_shop_panel_container_pieces_bought(metal_pieces):
+	for metal_piece in metal_pieces:
+		game_world.spawn_metal_piece(metal_piece)

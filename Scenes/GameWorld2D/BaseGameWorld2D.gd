@@ -30,6 +30,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		$SpawnController.spawn()
 
+func spawn_metal_piece(metal_piece : MetalPiece):
+	$SpawnController.spawn_metal_piece(metal_piece)
 
 func _on_trade_controller_piece_sold(value):
 	money += value

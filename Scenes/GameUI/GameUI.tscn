@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=8 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_jawvc"]
 [ext_resource type="PackedScene" uid="uid://b5rw70otxnmqc" path="res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn" id="1_kqx6s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="3_x1qn4"]
 [ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Examples/Scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="4_fp045"]
 [ext_resource type="PackedScene" uid="uid://ewdbpeyjjv41" path="res://Scenes/GameUI/NightPanelContainer.tscn" id="6_u8plx"]
+[ext_resource type="PackedScene" uid="uid://cv35tq64lymjw" path="res://Scenes/GameUI/PersistentShopPanelContainer.tscn" id="7_v5ekr"]
 
 [node name="GameUI" type="Control"]
 texture_filter = 1
@@ -114,7 +115,47 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 1
 
+[node name="ShopControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="ShopControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopControl/Panel/MarginContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/Panel/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(0, 176)
+layout_mode = 2
+
+[node name="PersistentShopPanelContainer" parent="ShopControl/Panel/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("7_v5ekr")]
+layout_mode = 2
+
 [connection signal="day_ended" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_ended"]
 [connection signal="day_progress_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_progress_updated"]
 [connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]
 [connection signal="next_day_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_day_pressed"]
+[connection signal="pieces_bought" from="ShopControl/Panel/MarginContainer/ScrollContainer/HBoxContainer/PersistentShopPanelContainer" to="." method="_on_persistent_shop_panel_container_pieces_bought"]
