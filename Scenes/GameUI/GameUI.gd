@@ -2,6 +2,7 @@ extends Control
 
 const MONEY_LABEL_TEXT = "$ %d"
 const RENT_LABEL_TEXT = "$ %d Due"
+const DAY_COUNT_LABEL_TEXT = "Day %02d"
 
 @onready var money_label : Label = %MoneyLabel
 @onready var rent_label : Label = %RentLabel
@@ -9,6 +10,7 @@ const RENT_LABEL_TEXT = "$ %d Due"
 @onready var night_panel_container : PanelContainer = %NightPanelContainer
 @onready var game_world : GameWorld2D = $SubViewportContainer/SubViewport/FirstGameWorld2D
 @onready var shop_panel : ShopPanel = %ShopPanel
+@onready var day_count_label : Label = %DayCountLabel
 
 func _on_first_game_world_2d_money_updated(new_value):
 	shop_panel.money_available = new_value
@@ -30,6 +32,7 @@ func _end_day():
 	night_panel_container.cash_available = game_world.money
 	night_panel_container.rent_due = game_world.daily_rent_due
 	night_panel_container.update()
+	pay_rent()
 
 func _on_first_game_world_2d_day_ended():
 	_end_day()
@@ -42,7 +45,6 @@ func pay_rent():
 
 func _on_night_panel_container_next_day_pressed():
 	night_time_control.hide()
-	pay_rent()
 	start_day()
 
 func _on_shop_panel_pieces_bought(metal_pieces):
@@ -51,3 +53,6 @@ func _on_shop_panel_pieces_bought(metal_pieces):
 
 func _on_shop_panel_money_spent(money):
 	game_world.money -= money
+
+func _on_first_game_world_2d_day_count_updated(new_value):
+	day_count_label.text = DAY_COUNT_LABEL_TEXT % new_value

@@ -97,6 +97,11 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "$ 0 Due"
 
+[node name="DayCountLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Day 1"
+
 [node name="PauseController" type="Node" parent="."]
 script = ExtResource("3_x1qn4")
 pause_menu_packed = ExtResource("4_fp045")
@@ -130,6 +135,7 @@ layout_mode = 1
 offset_left = 126.0
 offset_bottom = 200.0
 
+[connection signal="day_count_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_count_updated"]
 [connection signal="day_ended" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_ended"]
 [connection signal="day_progress_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_progress_updated"]
 [connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]
