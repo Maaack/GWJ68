@@ -10,6 +10,8 @@ signal day_ended()
 @export var day_length : float = 60.0
 @export var daily_rent_due : int = 0
 
+@onready var drag_controller : DragController = $DragController
+
 var day_progress : float = 0.0 :
 	set(value):
 		day_progress = value
@@ -42,6 +44,7 @@ func start_day():
 
 func _end_day():
 	day_ended.emit()
+	drag_controller.drop()
 
 func _process(delta):
 	var time_passed : float = day_length - $DayTimer.time_left
