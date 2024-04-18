@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c485gcvalxniv"]
+[gd_scene load_steps=4 format=3 uid="uid://c485gcvalxniv"]
 
 [ext_resource type="Script" path="res://Scenes/Pieces/MetalPiece2D.gd" id="1_wkewi"]
 [ext_resource type="Script" path="res://Scenes/Pieces/HeatController.gd" id="2_2fmst"]
+[ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="2_7hdgw"]
 
 [node name="MetalPiece2D" type="RigidBody2D"]
 collision_layer = 2
@@ -11,6 +12,7 @@ can_sleep = false
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_wkewi")
+starting_metal_piece = ExtResource("2_7hdgw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)

@@ -6,4 +6,4 @@
 script = ExtResource("1_20rxi")
 mass = 3.0
 polygon = PackedVector2Array(-4, -4, 0, -4, 0, 0, 4, 0, 4, 4, -4, 4)
-color = Color(1, 1, 1, 1)
+color = Color(0.472195, 0.193333, 1.44392e-07, 1)

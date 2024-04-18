@@ -6,4 +6,4 @@
 script = ExtResource("1_hihsx")
 mass = 4.0
 polygon = PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)
-color = Color(1, 1, 1, 1)
+color = Color(0.472195, 0.193333, 1.44392e-07, 1)
