@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://nl57xmijyl03"]
+
+[ext_resource type="Gradient" uid="uid://dc6xden8jxt7a" path="res://Scenes/Pieces/HeatGradient.tres" id="1_a4jnl"]
+
+[resource]
+gradient = ExtResource("1_a4jnl")

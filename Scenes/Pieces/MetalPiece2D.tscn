@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c485gcvalxniv"]
+[gd_scene load_steps=5 format=3 uid="uid://c485gcvalxniv"]
 
 [ext_resource type="Script" path="res://Scenes/Pieces/MetalPiece2D.gd" id="1_wkewi"]
 [ext_resource type="Script" path="res://Scenes/Pieces/HeatController.gd" id="2_2fmst"]
 [ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="2_7hdgw"]
+[ext_resource type="Gradient" uid="uid://dc6xden8jxt7a" path="res://Scenes/Pieces/HeatGradient.tres" id="3_5cum6"]
 
 [node name="MetalPiece2D" type="RigidBody2D"]
 collision_layer = 2
@@ -24,6 +25,7 @@ polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
 script = ExtResource("2_2fmst")
 specific_heat_capacity = 300.0
 body_2d = NodePath("..")
+heat_gradient = ExtResource("3_5cum6")
 
 [node name="Timer" type="Timer" parent="HeatController"]
 wait_time = 3.0
