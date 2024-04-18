@@ -8,8 +8,10 @@ const RENT_LABEL_TEXT = "$ %d Due"
 @onready var night_time_control : Control = %NightTimeControl
 @onready var night_panel_container : PanelContainer = %NightPanelContainer
 @onready var game_world : GameWorld2D = $SubViewportContainer/SubViewport/FirstGameWorld2D
+@onready var shop_panel : ShopPanel = %ShopPanel
 
 func _on_first_game_world_2d_money_updated(new_value):
+	shop_panel.money_available = new_value
 	money_label.text = MONEY_LABEL_TEXT % new_value
 
 func _on_first_game_world_2d_day_progress_updated(new_value):
@@ -43,7 +45,9 @@ func _on_night_panel_container_next_day_pressed():
 	pay_rent()
 	start_day()
 
-
-func _on_persistent_shop_panel_container_pieces_bought(metal_pieces):
+func _on_shop_panel_pieces_bought(metal_pieces):
 	for metal_piece in metal_pieces:
 		game_world.spawn_metal_piece(metal_piece)
+
+func _on_shop_panel_money_spent(money):
+	game_world.money -= money

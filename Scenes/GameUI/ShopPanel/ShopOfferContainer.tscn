@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://be5s7cw1g1euk"]
 
-[ext_resource type="Script" path="res://Scenes/GameUI/ShopPanelContainer.gd" id="1_m5kq2"]
-[ext_resource type="PackedScene" uid="uid://csxsjb78qpsnx" path="res://Scenes/GameUI/ShapeCountContainer.tscn" id="1_x7vna"]
+[ext_resource type="Script" path="res://Scenes/GameUI/ShopPanel/ShopOfferContainer.gd" id="1_u58ue"]
+[ext_resource type="PackedScene" uid="uid://csxsjb78qpsnx" path="res://Scenes/GameUI/ShopPanel/ShapeCountContainer.tscn" id="2_215ad"]
 
-[node name="ShopPanelContainer" type="PanelContainer"]
+[node name="ShopOfferContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 176)
 offset_right = 158.0
 offset_bottom = 176.0
-script = ExtResource("1_m5kq2")
-shape_count_container_scene = ExtResource("1_x7vna")
+script = ExtResource("1_u58ue")
+shape_count_container_scene = ExtResource("2_215ad")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -87,6 +87,7 @@ text = "1:30"
 layout_mode = 2
 
 [node name="BuyButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Buy"
 

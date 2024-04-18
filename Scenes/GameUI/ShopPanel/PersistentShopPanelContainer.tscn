@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cv35tq64lymjw"]
 
-[ext_resource type="PackedScene" uid="uid://be5s7cw1g1euk" path="res://Scenes/GameUI/ShopPanelContainer.tscn" id="1_fhsfp"]
+[ext_resource type="PackedScene" uid="uid://be5s7cw1g1euk" path="res://Scenes/GameUI/ShopPanel/ShopOfferContainer.tscn" id="1_4utfj"]
 [ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="2_w0axk"]
 [ext_resource type="Script" path="res://Scripts/Resources/MetalPieceCount.gd" id="3_ffdyq"]
 [ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="4_wp07m"]
@@ -27,7 +27,7 @@ script = ExtResource("3_ffdyq")
 metal_piece = ExtResource("6_uqptm")
 count = 2
 
-[node name="PersistentShopPanelContainer" instance=ExtResource("1_fhsfp")]
+[node name="PersistentShopOfferContainer" instance=ExtResource("1_4utfj")]
 metal_piece_count_array = Array[ExtResource("3_ffdyq")]([SubResource("Resource_m0v0l"), SubResource("Resource_bj8jb"), SubResource("Resource_kr03i"), SubResource("Resource_lhsc6")])
 buy_count = 5
 buy_cost = 1
@@ -37,3 +37,6 @@ text = "5"
 
 [node name="BuyCostLabel" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2"]
 text = "$1"
+
+[node name="BuyButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="2"]
+disabled = true

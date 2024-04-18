@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://csxsjb78qpsnx"]
+
+[ext_resource type="Script" path="res://Scenes/GameUI/ShopPanel/ShapeCountContainer.gd" id="1_e83xt"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ckad1"]
+color = Color(1, 1, 1, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[node name="ShapeCountContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(40, 60)
+script = ExtResource("1_e83xt")
+total_count = null
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="CenterContainer/Control"]
+unique_name_in_owner = true
+
+[node name="CountLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+
+[node name="DivisionSeparator" type="HSeparator" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ckad1")
+
+[node name="TotalLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
