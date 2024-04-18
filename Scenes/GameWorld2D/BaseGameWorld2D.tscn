@@ -1,16 +1,20 @@
-[gd_scene load_steps=18 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=22 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
 [ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="3_menv6"]
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="4_thki7"]
+[ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="5_hl5mp"]
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
+[ext_resource type="Resource" uid="uid://dyt7qqhdrpk6d" path="res://Scripts/Resources/MetalPieces/CornerPiece2x2.tres" id="6_qbd48"]
 [ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
-[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/TradeOffers/LTradeOffer.tres" id="7_wdu4d"]
-[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/SquareTradeOffer.tres" id="8_l0y1t"]
-[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/ZTradeOffer.tres" id="9_ikus7"]
-[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/LineTradeOffer.tres" id="10_uhb7w"]
+[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/TradeOffers/LTradeOffer.tres" id="7_krsw3"]
+[ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="7_x12q4"]
+[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/SquareTradeOffer.tres" id="8_k6soe"]
+[ext_resource type="Resource" uid="uid://btq2t7apr2oo" path="res://Scripts/Resources/MetalPieces/LinePiece3x1.tres" id="8_p5ap1"]
+[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/ZTradeOffer.tres" id="9_xws7r"]
+[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/LineTradeOffer.tres" id="10_ttudp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(360, 20)
@@ -85,6 +89,7 @@ script = ExtResource("3_menv6")
 container = NodePath("../PiecesContainer2D")
 spawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 spawn_piece = ExtResource("4_thki7")
+spawn_piece_list = Array[Resource("res://Scripts/Resources/MetalPiece.gd")]([ExtResource("5_hl5mp"), ExtResource("6_qbd48"), ExtResource("7_x12q4"), ExtResource("8_p5ap1")])
 
 [node name="GarbageController" type="Node" parent="." node_paths=PackedStringArray("garbage_area")]
 script = ExtResource("5_t0soh")
@@ -95,8 +100,8 @@ delete_delay = 0.2
 script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
-trade_offer = ExtResource("7_wdu4d")
-trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_l0y1t"), ExtResource("9_ikus7"), ExtResource("10_uhb7w"), ExtResource("7_wdu4d")])
+trade_offer = ExtResource("7_krsw3")
+trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_k6soe"), ExtResource("9_xws7r"), ExtResource("10_ttudp"), ExtResource("7_krsw3")])
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area")]
 script = ExtResource("7_ecyfw")

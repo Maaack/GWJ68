@@ -4,9 +4,19 @@ extends RigidBody2D
 const ROTATION_STEPS : float = PI/4
 signal clicked
 
+@export var starting_metal_piece : MetalPiece :
+	set(value):
+		starting_metal_piece = value
+		if starting_metal_piece and is_inside_tree():
+			starting_collision_polygon_2d.polygon = starting_metal_piece.polygon
+			polygon_2d.polygon = starting_metal_piece.polygon
+			polygon_2d.color = starting_metal_piece.color
+			mass = starting_metal_piece.mass
+
 var held : bool = false
 @onready var heat_controller : HeatController = $HeatController
 @onready var polygon_2d : Polygon2D = $Polygon2D
+@onready var starting_collision_polygon_2d : CollisionPolygon2D = $CollisionPolygon2D
 
 var hold_offset : Vector2 = Vector2.ZERO
 var merging : bool = false
@@ -14,6 +24,7 @@ var scored : bool = false
 
 func _ready():
 	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
+	starting_metal_piece = starting_metal_piece
 
 func _input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("select"):

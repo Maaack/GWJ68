@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MetalPiece" load_steps=2 format=3 uid="uid://bp80ahqw7v0jh"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/MetalPiece.gd" id="1_vtoqo"]
+
+[resource]
+script = ExtResource("1_vtoqo")
+mass = 2.0
+polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
+color = Color(1, 1, 1, 1)
