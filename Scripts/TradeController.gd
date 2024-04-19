@@ -20,6 +20,8 @@ signal offer_completed
 			tally = trade_offer.tally
 
 @export var trade_offers : Array[TradeOffer]
+@export var trade_completed_particles_2d : GPUParticles2D
+@export var trade_accepted_particles_2d : GPUParticles2D
 
 var tally : int :
 	set(value):
@@ -78,12 +80,22 @@ func rotate_polygon(polygon: PackedVector2Array, rotation: float) -> PackedVecto
 func _get_next_trade_offer():
 	trade_offer = trade_offers.pick_random()
 
+func _offer_completed():
+	trade_completed_particles_2d.emitting = true
+	offer_completed.emit()
+	_get_next_trade_offer()
+
 func _lower_tally():
 	if tally > 0:
 		tally -= 1
 		if tally == 0:
-			offer_completed.emit()
-			_get_next_trade_offer()
+			_offer_completed()
+		else:
+			trade_accepted_particles_2d.emitting = true
+
+func _piece_accepted():
+	piece_sold.emit(trade_offer.value)
+	_lower_tally()
 
 func _score_piece(piece : MetalPiece2D):
 	piece.update_polygon_shape()
@@ -106,8 +118,7 @@ func _score_piece(piece : MetalPiece2D):
 		rotation += ROTATION_STEPS
 	print(max_overlapping_percent)
 	if max_overlapping_percent >= trade_offer.precision_required:
-		piece_sold.emit(trade_offer.value)
-		_lower_tally()
+		_piece_accepted()
 
 func _delete_piece(object):
 	if object is MetalPiece2D and not object.scored:

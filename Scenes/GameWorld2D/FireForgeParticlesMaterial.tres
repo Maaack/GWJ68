@@ -1,0 +1,25 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://dg3jqbgbnfqg7"]
+
+[ext_resource type="Gradient" uid="uid://cgruetifwfuwm" path="res://Scenes/Pieces/FireGradient.tres" id="1_o7oja"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sxo24"]
+gradient = ExtResource("1_o7oja")
+
+[sub_resource type="Curve" id="Curve_r8kmb"]
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 49.2175, 0, 0, Vector2(1, 10), 43.4061, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fha6w"]
+curve = SubResource("Curve_r8kmb")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 360.0
+gravity = Vector3(0, -98, 0)
+scale_curve = SubResource("CurveTexture_fha6w")
+color_ramp = SubResource("GradientTexture1D_sxo24")
+turbulence_enabled = true

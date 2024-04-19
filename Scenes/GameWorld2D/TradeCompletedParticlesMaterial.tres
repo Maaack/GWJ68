@@ -1,0 +1,20 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://by7hek5nbsuf8"]
+
+[ext_resource type="Gradient" uid="uid://bx4herycuedum" path="res://Scenes/GameWorld2D/RainbowGradient.tres" id="1_yk18w"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8faeo"]
+gradient = ExtResource("1_yk18w")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+color_initial_ramp = SubResource("GradientTexture1D_8faeo")

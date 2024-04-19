@@ -1,8 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=25 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
+[ext_resource type="Material" uid="uid://dg3jqbgbnfqg7" path="res://Scenes/GameWorld2D/FireForgeParticlesMaterial.tres" id="2_x1620"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
 [ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="3_menv6"]
+[ext_resource type="Material" uid="uid://by7hek5nbsuf8" path="res://Scenes/GameWorld2D/TradeCompletedParticlesMaterial.tres" id="3_rckuj"]
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="4_thki7"]
 [ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="5_hl5mp"]
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
@@ -15,29 +17,19 @@
 [ext_resource type="Resource" uid="uid://btq2t7apr2oo" path="res://Scripts/Resources/MetalPieces/LinePiece3x1.tres" id="8_p5ap1"]
 [ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/ZTradeOffer.tres" id="9_xws7r"]
 [ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/LineTradeOffer.tres" id="10_ttudp"]
-[ext_resource type="Gradient" uid="uid://cgruetifwfuwm" path="res://Scenes/Pieces/FireGradient.tres" id="16_b7cjo"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_sxo24"]
-gradient = ExtResource("16_b7cjo")
-
-[sub_resource type="Curve" id="Curve_r8kmb"]
-max_value = 10.0
-_data = [Vector2(0, 0), 0.0, 49.2175, 0, 0, Vector2(1, 10), 43.4061, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_fha6w"]
-curve = SubResource("Curve_r8kmb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cuyqj"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3te0j"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(20, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 angle_max = 360.0
-gravity = Vector3(0, -98, 0)
-scale_curve = SubResource("CurveTexture_fha6w")
-color_ramp = SubResource("GradientTexture1D_sxo24")
-turbulence_enabled = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(320, 80)
@@ -62,10 +54,31 @@ script = ExtResource("1_0hvr0")
 metadata/_edit_vertical_guides_ = [160.0, -20.0, 0.0, 180.0]
 metadata/_edit_horizontal_guides_ = [90.0]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="ForgeFireParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(26, 90)
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_cuyqj")
+process_material = ExtResource("2_x1620")
+
+[node name="TradeCompletedParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(138, 53)
+emitting = false
+amount = 16
+process_material = ExtResource("3_rckuj")
+lifetime = 2.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="TradeAcceptedParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(138, 53)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_3te0j")
+lifetime = 2.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
 
 [node name="PiecesContainer2D" type="Node2D" parent="."]
 
@@ -117,18 +130,20 @@ script = ExtResource("5_t0soh")
 garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
-[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area")]
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area", "trade_completed_particles_2d", "trade_accepted_particles_2d")]
 script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
 trade_offer = ExtResource("7_krsw3")
 trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_k6soe"), ExtResource("9_xws7r"), ExtResource("10_ttudp"), ExtResource("7_krsw3")])
+trade_completed_particles_2d = NodePath("../TradeCompletedParticles2D")
+trade_accepted_particles_2d = NodePath("../TradeAcceptedParticles2D")
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area", "forge_fire_particles_2d")]
 script = ExtResource("7_ecyfw")
 forge_area = NodePath("../ForgeArea2D")
 forge_temperature = 4000.0
-forge_fire_particles_2d = NodePath("../GPUParticles2D")
+forge_fire_particles_2d = NodePath("../ForgeFireParticles2D")
 
 [node name="GarbageArea2D" type="Area2D" parent="."]
 collision_layer = 0
