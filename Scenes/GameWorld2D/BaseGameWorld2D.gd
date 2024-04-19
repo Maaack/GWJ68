@@ -11,6 +11,7 @@ signal day_ended()
 @export var daily_rent_due : int = 0
 
 @onready var drag_controller : DragController = $DragController
+@onready var forge_controller : ForgeController = $ForgeController
 
 var day_progress : float = 0.0 :
 	set(value):
@@ -41,10 +42,12 @@ func _on_trade_controller_piece_sold(value):
 func start_day():
 	day_count += 1
 	$DayTimer.start(day_length)
+	forge_controller.enabled = true
 
 func _end_day():
-	day_ended.emit()
+	forge_controller.enabled = false
 	drag_controller.drop()
+	day_ended.emit()
 
 func _process(delta):
 	var time_passed : float = day_length - $DayTimer.time_left

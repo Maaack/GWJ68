@@ -3,6 +3,13 @@ extends Node
 
 @export var forge_area : Area2D
 @export var forge_temperature : float = 1000.0
+@export var forge_fire_particles_2d : GPUParticles2D 
+@export var enabled : bool = true :
+	set(value):
+		enabled = value
+		if is_inside_tree():
+			forge_fire_particles_2d.emitting = enabled
+			forge_area.monitoring = enabled
 
 var heating_pieces : Array[MetalPiece2D]
 
