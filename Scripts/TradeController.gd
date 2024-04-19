@@ -22,6 +22,8 @@ signal offer_completed
 @export var trade_offers : Array[TradeOffer]
 @export var trade_completed_particles_2d : GPUParticles2D
 @export var trade_accepted_particles_2d : GPUParticles2D
+@export var respawn_position_node_2d : Node2D
+@onready var _respawn_position = respawn_position_node_2d.position
 
 var tally : int :
 	set(value):
@@ -119,12 +121,17 @@ func _score_piece(piece : MetalPiece2D):
 	print(max_overlapping_percent)
 	if max_overlapping_percent >= trade_offer.precision_required:
 		_piece_accepted()
+		if delete_delay > 0:
+			await(get_tree().create_timer(delete_delay, false, true).timeout)
+		piece.queue_free()
+	else:
+		PhysicsServer2D.body_set_state(
+			piece.get_rid(),
+			PhysicsServer2D.BODY_STATE_TRANSFORM,
+			Transform2D.IDENTITY.translated(_respawn_position)
+		)
 
 func _delete_piece(object):
 	if object is MetalPiece2D and not object.scored:
-		_score_piece(object)
 		object.scored = true
-		if delete_delay > 0:
-			await(get_tree().create_timer(delete_delay, false, true).timeout)
-		object.queue_free()
-
+		_score_piece(object)

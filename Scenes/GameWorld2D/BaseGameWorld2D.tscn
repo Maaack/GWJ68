@@ -83,7 +83,7 @@ visibility_rect = Rect2(0, 0, 0, 0)
 [node name="PiecesContainer2D" type="Node2D" parent="."]
 
 [node name="SpawnMarker2D" type="Marker2D" parent="PiecesContainer2D"]
-position = Vector2(82, 17)
+position = Vector2(80, -10)
 
 [node name="WallsStaticBody2D" type="StaticBody2D" parent="."]
 
@@ -130,7 +130,7 @@ script = ExtResource("5_t0soh")
 garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
-[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area", "trade_completed_particles_2d", "trade_accepted_particles_2d")]
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area", "trade_completed_particles_2d", "trade_accepted_particles_2d", "respawn_position_node_2d")]
 script = ExtResource("6_gr1go")
 trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
@@ -138,6 +138,7 @@ trade_offer = ExtResource("7_krsw3")
 trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_k6soe"), ExtResource("9_xws7r"), ExtResource("10_ttudp"), ExtResource("7_krsw3")])
 trade_completed_particles_2d = NodePath("../TradeCompletedParticles2D")
 trade_accepted_particles_2d = NodePath("../TradeAcceptedParticles2D")
+respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area", "forge_fire_particles_2d")]
 script = ExtResource("7_ecyfw")

@@ -26,7 +26,7 @@ position = Vector2(62, 82)
 [node name="MetalPiece2D3" parent="PiecesContainer2D" index="6" instance=ExtResource("2_p66q2")]
 position = Vector2(98, 15)
 
-[node name="SpawnController" parent="." index="5"]
+[node name="SpawnController" parent="." index="7"]
 spawn_cooldown = 0.2
 
 [node name="Label" type="Label" parent="." index="14"]
