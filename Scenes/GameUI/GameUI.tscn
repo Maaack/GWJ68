@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=10 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_jawvc"]
-[ext_resource type="PackedScene" uid="uid://b5rw70otxnmqc" path="res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn" id="1_kqx6s"]
 [ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
+[ext_resource type="PackedScene" uid="uid://duroffod7xmi1" path="res://Examples/Scenes/SuccessScreen/SuccessScreenWithScenes.tscn" id="3_e1hxc"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="3_qbvvx"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="3_x1qn4"]
 [ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Examples/Scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="4_fp045"]
 [ext_resource type="PackedScene" uid="uid://ewdbpeyjjv41" path="res://Scenes/GameUI/NightPanelContainer.tscn" id="6_u8plx"]
 [ext_resource type="PackedScene" uid="uid://cj41q6rmfpshf" path="res://Scenes/GameUI/ShopPanel/ShopPanel.tscn" id="7_cuxy3"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="9_7mtuq"]
 
 [node name="GameUI" type="Control"]
 texture_filter = 1
@@ -18,6 +20,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jawvc")
 script = ExtResource("1_ph6xg")
+win_scene = ExtResource("3_e1hxc")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+bus = &"Music"
+
+[node name="LoadingScreen" parent="." instance=ExtResource("3_qbvvx")]
+visible = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -37,8 +48,6 @@ size = Vector2i(160, 90)
 size_2d_override = Vector2i(160, 90)
 size_2d_override_stretch = true
 render_target_update_mode = 4
-
-[node name="FirstGameWorld2D" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_kqx6s")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -135,10 +144,15 @@ layout_mode = 1
 offset_left = 126.0
 offset_bottom = 200.0
 
-[connection signal="day_count_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_count_updated"]
-[connection signal="day_ended" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_ended"]
-[connection signal="day_progress_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_day_progress_updated"]
-[connection signal="money_updated" from="SubViewportContainer/SubViewport/FirstGameWorld2D" to="." method="_on_first_game_world_2d_money_updated"]
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("9_7mtuq")
+level_container = NodePath("../SubViewportContainer/SubViewport")
+files = Array[String](["res://Scenes/GameWorld2D/Worlds/TutorialWorld.tscn", "res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn"])
+directory = "res://Scenes/GameWorld2D/Worlds"
+
 [connection signal="next_day_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_day_pressed"]
 [connection signal="money_spent" from="ShopControl/ShopPanel" to="." method="_on_shop_panel_money_spent"]
 [connection signal="pieces_bought" from="ShopControl/ShopPanel" to="." method="_on_shop_panel_pieces_bought"]
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
+[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]

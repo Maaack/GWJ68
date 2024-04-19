@@ -4,20 +4,14 @@ const MONEY_LABEL_TEXT = "$ %d"
 const RENT_LABEL_TEXT = "$ %d Due"
 const DAY_COUNT_LABEL_TEXT = "Day %02d"
 
+@export var win_scene : PackedScene
 @onready var money_label : Label = %MoneyLabel
 @onready var rent_label : Label = %RentLabel
 @onready var night_time_control : Control = %NightTimeControl
 @onready var night_panel_container : PanelContainer = %NightPanelContainer
-@onready var game_world : GameWorld2D = $SubViewportContainer/SubViewport/FirstGameWorld2D
+@onready var game_world : GameWorld2D
 @onready var shop_panel : ShopPanel = %ShopPanel
 @onready var day_count_label : Label = %DayCountLabel
-
-func _on_first_game_world_2d_money_updated(new_value):
-	shop_panel.money_available = new_value
-	money_label.text = MONEY_LABEL_TEXT % new_value
-
-func _on_first_game_world_2d_day_progress_updated(new_value):
-	%DayProgressBar.value = new_value
 
 func start_day():
 	game_world.start_day()
@@ -34,14 +28,25 @@ func _end_day():
 	night_panel_container.update()
 	pay_rent()
 
-func _on_first_game_world_2d_day_ended():
-	_end_day()
-
 func _ready():
-	start_day()
+	InGameMenuController.scene_tree = get_tree()
 
 func pay_rent():
 	game_world.money -= game_world.daily_rent_due
+
+func _on_world_day_ended():
+	_end_day()
+
+func _on_world_money_updated(new_value):
+	shop_panel.money_available = new_value
+	money_label.text = MONEY_LABEL_TEXT % new_value
+
+func _on_world_day_progress_updated(new_value):
+	%DayProgressBar.value = new_value
+
+func _on_world_day_count_updated(new_value):
+	day_count_label.text = DAY_COUNT_LABEL_TEXT % new_value
+
 
 func _on_night_panel_container_next_day_pressed():
 	night_time_control.hide()
@@ -54,5 +59,27 @@ func _on_shop_panel_pieces_bought(metal_pieces):
 func _on_shop_panel_money_spent(money):
 	game_world.money -= money
 
-func _on_first_game_world_2d_day_count_updated(new_value):
-	day_count_label.text = DAY_COUNT_LABEL_TEXT % new_value
+func _on_level_won():
+	$LevelLoader.advance_and_load_level()
+
+func _on_level_loader_level_loaded():
+	await $LevelLoader.current_level.ready
+	game_world = $LevelLoader.current_level
+	if $LevelLoader.current_level.has_signal("level_won"):
+		$LevelLoader.current_level.level_won.connect(_on_level_won)
+	if $LevelLoader.current_level.has_signal("day_ended"):
+		$LevelLoader.current_level.day_ended.connect(_on_world_day_ended)
+	if $LevelLoader.current_level.has_signal("money_updated"):
+		$LevelLoader.current_level.money_updated.connect(_on_world_money_updated)
+	if $LevelLoader.current_level.has_signal("day_progress_updated"):
+		$LevelLoader.current_level.day_progress_updated.connect(_on_world_day_progress_updated)
+	if $LevelLoader.current_level.has_signal("day_count_updated"):
+		$LevelLoader.current_level.day_count_updated.connect(_on_world_day_count_updated)
+	$LoadingScreen.close()
+	start_day()
+
+func _on_level_loader_levels_finished():
+	InGameMenuController.open_menu(win_scene, get_viewport())
+
+func _on_level_loader_level_load_started():
+	$LoadingScreen.reset()
