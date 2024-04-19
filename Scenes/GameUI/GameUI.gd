@@ -63,7 +63,6 @@ func _on_level_won():
 	$LevelLoader.advance_and_load_level()
 
 func _on_level_loader_level_loaded():
-	await $LevelLoader.current_level.ready
 	game_world = $LevelLoader.current_level
 	if $LevelLoader.current_level.has_signal("level_won"):
 		$LevelLoader.current_level.level_won.connect(_on_level_won)
@@ -75,6 +74,7 @@ func _on_level_loader_level_loaded():
 		$LevelLoader.current_level.day_progress_updated.connect(_on_world_day_progress_updated)
 	if $LevelLoader.current_level.has_signal("day_count_updated"):
 		$LevelLoader.current_level.day_count_updated.connect(_on_world_day_count_updated)
+	await $LevelLoader.current_level.ready
 	$LoadingScreen.close()
 	start_day()
 

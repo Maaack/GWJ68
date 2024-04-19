@@ -24,7 +24,7 @@ var day_count : int = 0 :
 		day_count_updated.emit(day_count)
 		
 
-@onready var money : int = starting_money :
+var money : int :
 	set(value):
 		money = value
 		money_updated.emit(money)
@@ -55,3 +55,6 @@ func _process(delta):
 
 func _on_day_timer_timeout():
 	_end_day()
+
+func _ready():
+	money = starting_money

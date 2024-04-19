@@ -30,7 +30,7 @@ const SizeDict : Dictionary = {
 }
 
 @export var value : int = 0
-@export var polygon : PackedVector2Array
+@export var piece_shape : PieceShape
 @export var tally : int = 0
 @export var precision_required : float = 1.0
 @export var check_size : Sizes = Sizes.TINY :
@@ -49,17 +49,7 @@ var area_size : Vector2
 var area_resolution : Vector2i
 
 func get_polygon() -> PackedVector2Array:
-	return polygon
+	return piece_shape.get_polygon()
 
 func get_polygon_center_of_mass() -> Vector2:
-	var area_sum = 0.0
-	var center_sum = Vector2.ZERO
-	for i in range(polygon.size()):
-		var current_vertex = polygon[i]
-		var next_vertex = polygon[(i + 1) % polygon.size()]
-		var cross_product = current_vertex.cross(next_vertex)
-		var area = cross_product / 2.0
-		area_sum += area
-		center_sum += (current_vertex + next_vertex) * area
-	var _center_of_mass = center_sum / (3.0 * area_sum)
-	return _center_of_mass
+	return piece_shape.get_polygon_center_of_mass()

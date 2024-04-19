@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr8wvgs0nu7i4"]
+[gd_scene load_steps=10 format=3 uid="uid://cr8wvgs0nu7i4"]
 
 [ext_resource type="PackedScene" uid="uid://baxpfxwed8vex" path="res://Scenes/GameWorld2D/BaseGameWorld2D.tscn" id="1_k8usc"]
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="2_p66q2"]
+[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/TetroOTradeOffer.tres" id="3_y3kld"]
+[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/TetroZTradeOffer.tres" id="4_o2y0h"]
+[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/TetroITradeOffer.tres" id="5_axxwd"]
+[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/TradeOffers/TetroLTradeOffer.tres" id="6_3gngf"]
+[ext_resource type="Resource" uid="uid://bs85q5265irh1" path="res://Scripts/Resources/TradeOffers/TetroJTradeOffer.tres" id="7_i2ily"]
+[ext_resource type="Resource" uid="uid://dcp8waqm78j11" path="res://Scripts/Resources/TradeOffers/TetroSTradeOffer.tres" id="8_hstp8"]
+[ext_resource type="Resource" uid="uid://b45xwkyoichjv" path="res://Scripts/Resources/TradeOffers/TetroTTradeOffer.tres" id="9_ge54e"]
 
 [node name="TutorialWorld2D" instance=ExtResource("1_k8usc")]
+starting_money = 3
 day_length = 120.0
 daily_rent_due = 6
 metadata/_edit_vertical_guides_ = [160.0]
@@ -28,6 +36,9 @@ position = Vector2(98, 15)
 
 [node name="SpawnController" parent="." index="7"]
 spawn_cooldown = 0.2
+
+[node name="TradeController" parent="." index="9"]
+trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("5_axxwd"), ExtResource("7_i2ily"), ExtResource("6_3gngf"), ExtResource("3_y3kld"), ExtResource("8_hstp8"), ExtResource("9_ge54e"), ExtResource("4_o2y0h")])
 
 [node name="Label" type="Label" parent="." index="14"]
 offset_right = 40.0

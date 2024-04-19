@@ -11,12 +11,12 @@
 [ext_resource type="Script" path="res://Scripts/TradeController.gd" id="6_gr1go"]
 [ext_resource type="Resource" uid="uid://dyt7qqhdrpk6d" path="res://Scripts/Resources/MetalPieces/CornerPiece2x2.tres" id="6_qbd48"]
 [ext_resource type="Script" path="res://Scripts/ForgeController.gd" id="7_ecyfw"]
-[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/TradeOffers/LTradeOffer.tres" id="7_krsw3"]
+[ext_resource type="Resource" uid="uid://di2hmupv38m6j" path="res://Scripts/Resources/TradeOffers/TetroLTradeOffer.tres" id="7_krsw3"]
 [ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="7_x12q4"]
-[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/SquareTradeOffer.tres" id="8_k6soe"]
+[ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/TetroOTradeOffer.tres" id="8_k6soe"]
 [ext_resource type="Resource" uid="uid://btq2t7apr2oo" path="res://Scripts/Resources/MetalPieces/LinePiece3x1.tres" id="8_p5ap1"]
-[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/ZTradeOffer.tres" id="9_xws7r"]
-[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/LineTradeOffer.tres" id="10_ttudp"]
+[ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/TetroZTradeOffer.tres" id="9_xws7r"]
+[ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/TetroITradeOffer.tres" id="10_ttudp"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3te0j"]
 particle_flag_disable_z = true

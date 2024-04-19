@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TradeOffer" load_steps=3 format=3 uid="uid://dcp8waqm78j11"]
+
+[ext_resource type="Resource" uid="uid://dx81r3uajc4ng" path="res://Scripts/Resources/PieceShapes/TetroSPiece.tres" id="1_3udmp"]
+[ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="2_g28la"]
+
+[resource]
+script = ExtResource("2_g28la")
+value = 2
+polygon = PackedVector2Array(-6, -4, 2, -4, 2, 0, 6, 0, 6, 4, -2, 4, -2, 0, -6, 0)
+piece_shape = ExtResource("1_3udmp")
+tally = 3
+precision_required = 0.95
+check_size = 0
+check_resolution = 3

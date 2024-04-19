@@ -15,7 +15,7 @@ signal offer_completed
 		trade_offer = value
 		if is_inside_tree():
 			%SellValue.text = "$ %d" % trade_offer.value
-			%TradePolygon.polygon = trade_offer.polygon
+			%TradePolygon.polygon = trade_offer.get_polygon()
 			%PrecisionLabel.text = "> %d%%" % round(trade_offer.precision_required * 100)
 			tally = trade_offer.tally
 

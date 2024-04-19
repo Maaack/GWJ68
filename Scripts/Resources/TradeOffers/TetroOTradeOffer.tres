@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="TradeOffer" load_steps=2 format=3 uid="uid://del2hs6rjardh"]
+[gd_resource type="Resource" script_class="TradeOffer" load_steps=3 format=3 uid="uid://del2hs6rjardh"]
 
+[ext_resource type="Resource" uid="uid://p26i0fm2n26a" path="res://Scripts/Resources/PieceShapes/TetroOPiece.tres" id="1_hhvwe"]
 [ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="1_x65bg"]
 
 [resource]
 script = ExtResource("1_x65bg")
 value = 2
 polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+piece_shape = ExtResource("1_hhvwe")
 tally = 3
 precision_required = 0.95
 check_size = 0
