@@ -36,6 +36,9 @@ func _unhandled_input(event):
 func spawn_metal_piece(metal_piece : MetalPiece):
 	$SpawnController.spawn_metal_piece(metal_piece)
 
+func earn_money(money_earned : int):
+	money += money_earned
+
 func _on_trade_controller_piece_sold(value):
 	money += value
 
@@ -58,3 +61,4 @@ func _on_day_timer_timeout():
 
 func _ready():
 	money = starting_money
+

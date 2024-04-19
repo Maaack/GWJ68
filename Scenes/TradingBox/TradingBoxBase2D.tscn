@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://c16ox6xq1j27n"]
+
+[ext_resource type="Script" path="res://Scenes/TradingBox/TradingBoxBase2D.gd" id="1_2ltjw"]
+[ext_resource type="Material" uid="uid://by7hek5nbsuf8" path="res://Scenes/GameWorld2D/TradeCompletedParticlesMaterial.tres" id="2_tnl2x"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0xuc7"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dhsa"]
+size = Vector2(44, 4)
+
+[node name="TradingBoxBase2D" type="Node2D"]
+script = ExtResource("1_2ltjw")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-24, -16, 24, -16, 24, 16, -24, 16)
+
+[node name="TradePolygon" type="Polygon2D" parent="Polygon2D"]
+unique_name_in_owner = true
+color = Color(0, 0, 0, 1)
+
+[node name="TradeCompletedParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+emitting = false
+amount = 16
+process_material = ExtResource("2_tnl2x")
+lifetime = 2.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="TradeAcceptedParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_0xuc7")
+lifetime = 2.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="BoxStaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoxStaticBody2D"]
+polygon = PackedVector2Array(-22, -14, -22, 14, 22, 14, 22, -14, 24, -16, 24, 16, -24, 16, -24, -16)
+
+[node name="TradeArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -12)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D"]
+shape = SubResource("RectangleShape2D_2dhsa")
+
+[node name="TallyLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 21.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 2
+
+[connection signal="body_entered" from="TradeArea2D" to="." method="_on_trade_area_2d_body_entered"]

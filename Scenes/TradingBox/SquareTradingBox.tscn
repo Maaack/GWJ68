@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr5e6gsqkna85"]
+
+[ext_resource type="PackedScene" uid="uid://c16ox6xq1j27n" path="res://Scenes/TradingBox/TradingBoxBase2D.tscn" id="1_vtcpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xv10"]
+size = Vector2(28, 4)
+
+[node name="SquareTradingBox" instance=ExtResource("1_vtcpv")]
+
+[node name="Polygon2D" parent="." index="0"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="CollisionPolygon2D" parent="BoxStaticBody2D" index="0"]
+polygon = PackedVector2Array(-14, -14, -14, 14, 14, 14, 14, -14, 16, -16, 16, 16, -16, 16, -16, -16)
+
+[node name="CollisionShape2D" parent="TradeArea2D" index="0"]
+shape = SubResource("RectangleShape2D_5xv10")
+
+[node name="TallyLabel" parent="." index="5"]
+offset_left = -1.0
+offset_right = 13.0

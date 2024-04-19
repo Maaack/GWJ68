@@ -1,10 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=22 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Material" uid="uid://dg3jqbgbnfqg7" path="res://Scenes/GameWorld2D/FireForgeParticlesMaterial.tres" id="2_x1620"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
 [ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="3_menv6"]
-[ext_resource type="Material" uid="uid://by7hek5nbsuf8" path="res://Scenes/GameWorld2D/TradeCompletedParticlesMaterial.tres" id="3_rckuj"]
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="4_thki7"]
 [ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="5_hl5mp"]
 [ext_resource type="Script" path="res://Scripts/GarbageController.gd" id="5_t0soh"]
@@ -17,31 +16,13 @@
 [ext_resource type="Resource" uid="uid://btq2t7apr2oo" path="res://Scripts/Resources/MetalPieces/LinePiece3x1.tres" id="8_p5ap1"]
 [ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/TetroZTradeOffer.tres" id="9_xws7r"]
 [ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/TetroITradeOffer.tres" id="10_ttudp"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3te0j"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(20, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-angle_max = 360.0
-direction = Vector3(0, -1, 0)
-spread = 30.0
-initial_velocity_min = 60.0
-initial_velocity_max = 100.0
-gravity = Vector3(0, 98, 0)
-scale_max = 3.0
+[ext_resource type="PackedScene" uid="uid://c16ox6xq1j27n" path="res://Scenes/TradingBox/TradingBoxBase2D.tscn" id="18_jmf3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(320, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alc1k"]
 size = Vector2(80, 240)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7m681"]
-size = Vector2(40, 6)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5jbj"]
-size = Vector2(6, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewraq"]
 size = Vector2(40, 30)
@@ -58,27 +39,6 @@ metadata/_edit_horizontal_guides_ = [90.0]
 position = Vector2(26, 90)
 amount = 32
 process_material = ExtResource("2_x1620")
-
-[node name="TradeCompletedParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(138, 53)
-emitting = false
-amount = 16
-process_material = ExtResource("3_rckuj")
-lifetime = 2.5
-one_shot = true
-speed_scale = 3.0
-explosiveness = 1.0
-visibility_rect = Rect2(0, 0, 0, 0)
-
-[node name="TradeAcceptedParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(138, 53)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_3te0j")
-lifetime = 2.5
-one_shot = true
-speed_scale = 3.0
-explosiveness = 1.0
-visibility_rect = Rect2(0, 0, 0, 0)
 
 [node name="PiecesContainer2D" type="Node2D" parent="."]
 
@@ -103,16 +63,6 @@ shape = SubResource("RectangleShape2D_alc1k")
 position = Vector2(200, -30)
 shape = SubResource("RectangleShape2D_alc1k")
 
-[node name="BoxStaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="BoxStaticBody2D"]
-position = Vector2(140, 85)
-shape = SubResource("RectangleShape2D_7m681")
-
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="BoxStaticBody2D"]
-position = Vector2(117, 68)
-shape = SubResource("RectangleShape2D_y5jbj")
-
 [node name="DragController" type="Node" parent="." node_paths=PackedStringArray("container")]
 script = ExtResource("2_xcqt5")
 container = NodePath("../PiecesContainer2D")
@@ -130,15 +80,12 @@ script = ExtResource("5_t0soh")
 garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
-[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("trade_area", "trade_completed_particles_2d", "trade_accepted_particles_2d", "respawn_position_node_2d")]
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("respawn_position_node_2d", "trading_boxes")]
 script = ExtResource("6_gr1go")
-trade_area = NodePath("../TradeArea2D2")
 delete_delay = 0.2
-trade_offer = ExtResource("7_krsw3")
 trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_k6soe"), ExtResource("9_xws7r"), ExtResource("10_ttudp"), ExtResource("7_krsw3")])
-trade_completed_particles_2d = NodePath("../TradeCompletedParticles2D")
-trade_accepted_particles_2d = NodePath("../TradeAcceptedParticles2D")
 respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
+trading_boxes = [NodePath("../TradingBoxBase2D")]
 
 [node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area", "forge_fire_particles_2d")]
 script = ExtResource("7_ecyfw")
@@ -155,15 +102,6 @@ monitorable = false
 position = Vector2(300, 142)
 shape = SubResource("RectangleShape2D_ewraq")
 
-[node name="TradeArea2D2" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TradeArea2D2"]
-position = Vector2(140, 68)
-shape = SubResource("RectangleShape2D_ewraq")
-
 [node name="ForgeArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -173,51 +111,11 @@ monitorable = false
 position = Vector2(25, 50)
 shape = SubResource("RectangleShape2D_jw3bm")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(140, 68)
-polygon = PackedVector2Array(-26, -14.4375, 20, -14.4375, 20, 20.625, -26, 20.625)
-
-[node name="SellValue" type="Label" parent="Polygon2D"]
-unique_name_in_owner = true
-texture_filter = 1
-offset_left = -24.0
-offset_top = -15.4688
-offset_right = 16.0
-offset_bottom = 7.53125
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "$0"
-metadata/_edit_use_anchors_ = true
-
-[node name="PrecisionLabel" type="Label" parent="Polygon2D"]
-unique_name_in_owner = true
-texture_filter = 1
-offset_left = -24.0
-offset_top = -5.46875
-offset_right = 16.0
-offset_bottom = 17.5312
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "100%"
-
-[node name="TallyLabel" type="Label" parent="Polygon2D"]
-unique_name_in_owner = true
-texture_filter = 1
-offset_left = -24.0
-offset_top = 4.53125
-offset_right = 16.0
-offset_bottom = 27.5312
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "0"
-
-[node name="TradePolygon" type="Polygon2D" parent="Polygon2D"]
-unique_name_in_owner = true
-position = Vector2(6, 9)
-color = Color(0, 0, 0, 1)
-
 [node name="DayTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="TradingBoxBase2D" parent="." instance=ExtResource("18_jmf3o")]
+position = Vector2(136, 74)
 
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
