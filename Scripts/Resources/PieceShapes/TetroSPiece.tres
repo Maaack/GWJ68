@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PieceShape" load_steps=2 format=3 uid="uid://dx81r3uajc4ng"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/PieceShape.gd" id="1_eeka0"]
+
+[resource]
+script = ExtResource("1_eeka0")
+name = "S Tetromino"
+size = 4.0
+polygon = PackedVector2Array(-2, -4, 6, -4, 6, 0, 2, 0, 2, 4, -6, 4, -6, 0, -2, 0)

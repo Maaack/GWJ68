@@ -8,10 +8,10 @@ signal clicked
 	set(value):
 		starting_metal_piece = value
 		if starting_metal_piece and is_inside_tree():
-			starting_collision_polygon_2d.polygon = starting_metal_piece.polygon
-			polygon_2d.polygon = starting_metal_piece.polygon
+			starting_collision_polygon_2d.polygon = starting_metal_piece.get_polygon()
+			polygon_2d.polygon = starting_metal_piece.get_polygon()
 			polygon_2d.color = starting_metal_piece.color
-			mass = starting_metal_piece.mass
+			mass = starting_metal_piece.get_mass()
 
 var held : bool = false
 @onready var heat_controller : HeatController = $HeatController

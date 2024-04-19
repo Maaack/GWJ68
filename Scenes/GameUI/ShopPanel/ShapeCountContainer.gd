@@ -18,7 +18,7 @@ extends VBoxContainer
 @onready var count_label : Label = %CountLabel
 
 func update():
-	polygon_2d.polygon = piece_count.metal_piece.polygon
+	polygon_2d.polygon = piece_count.metal_piece.get_polygon()
 	polygon_2d.color = piece_count.metal_piece.color
 	count_label.text = "%d" % piece_count.count
 	total_count = total_count

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PieceShape" load_steps=2 format=3 uid="uid://eln8xsk0cqqb"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/PieceShape.gd" id="1_wkkpn"]
+
+[resource]
+script = ExtResource("1_wkkpn")
+name = "Line 4x1"
+size = 4.0
+polygon = PackedVector2Array(-8, -2, 8, -2, 8, 2, -8, 2)
