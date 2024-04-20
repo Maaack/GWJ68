@@ -14,7 +14,7 @@ emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 angle_max = 360.0
 direction = Vector3(0.5, -1, 0)
-spread = 0.0
+spread = 20.0
 initial_velocity_min = 90.0
 initial_velocity_max = 120.0
 gravity = Vector3(0, 98, 0)
@@ -27,32 +27,35 @@ emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 angle_max = 360.0
 direction = Vector3(-0.5, -1, 0)
-spread = 0.0
+spread = 20.0
 initial_velocity_min = 90.0
 initial_velocity_max = 120.0
 gravity = Vector3(0, 98, 0)
 color_ramp = SubResource("GradientTexture1D_2j0k2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dhsa"]
-size = Vector2(28, 4)
+size = Vector2(20, 4)
 
 [node name="RecycleBox" type="Node2D"]
 script = ExtResource("1_5083w")
 recovered_piece = ExtResource("2_epgnj")
+resting_spark_ratio = 0.01
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+polygon = PackedVector2Array(-12, -8, 12, -8, 12, 8, -12, 8)
 
 [node name="TradePolygon" type="Polygon2D" parent="Polygon2D"]
 unique_name_in_owner = true
+position = Vector2(0, 1)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-2, -6, 2, -6, 2, -2, -2, -2, 1, 0, 5, 0, 5, 4, 1, 4, -1, 4, -5, 4, -5, 0, -1, 0)
 polygons = [PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11)]
 
 [node name="RecyclingParticles2D" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -16)
-emitting = false
+position = Vector2(0, -8)
+amount = 128
+amount_ratio = 0.01
 process_material = SubResource("ParticleProcessMaterial_rn8dx")
 lifetime = 2.5
 speed_scale = 3.0
@@ -61,8 +64,9 @@ visibility_rect = Rect2(0, 0, 0, 0)
 
 [node name="RecyclingParticles2D2" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -16)
-emitting = false
+position = Vector2(0, -8)
+amount = 128
+amount_ratio = 0.01
 process_material = SubResource("ParticleProcessMaterial_5ycnn")
 lifetime = 2.5
 speed_scale = 3.0
@@ -72,11 +76,11 @@ visibility_rect = Rect2(0, 0, 0, 0)
 [node name="BoxStaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoxStaticBody2D"]
-polygon = PackedVector2Array(-14, -14, -14, 14, 14, 14, 14, -14, 16, -16, 16, 16, -16, 16, -16, -16)
+polygon = PackedVector2Array(-10, -6, -10, 6, 10, 6, 10, -6, 12, -8, 12, 8, -12, 8, -12, -8)
 
 [node name="RecycleArea2D" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -12)
+position = Vector2(0, -4)
 collision_layer = 0
 collision_mask = 2
 monitorable = false

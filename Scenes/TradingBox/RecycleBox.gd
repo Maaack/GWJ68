@@ -5,12 +5,16 @@ extends Node2D
 signal pieces_recycled(metal_pieces : Array[MetalPiece])
 @export var recovered_piece : MetalPiece
 @export var sparks_per_mass : int = 8
+@export var resting_spark_ratio : float = 0.1 :
+	set(value):
+		resting_spark_ratio = value
+		for particles_2d in recycling_particles_2ds:
+			particles_2d.amount_ratio = resting_spark_ratio
 @onready var recycling_particles_2ds : Array[GPUParticles2D] = [%RecyclingParticles2D, %RecyclingParticles2D2]
 
 func _show_sparks(mass_recycled : int):
 	for particles_2d in recycling_particles_2ds:
-		particles_2d.amount = mass_recycled * sparks_per_mass
-		particles_2d.emitting = true
+		particles_2d.amount_ratio = clampf(float(mass_recycled * sparks_per_mass) / particles_2d.amount, 0, 1)
 	$ParticleEmittingTimer.start()
 
 func _recover_pieces(count : int):
@@ -31,7 +35,7 @@ func _recycle_piece(object):
 
 func _on_particle_emitting_timer_timeout():
 	for particles_2d in recycling_particles_2ds:
-		particles_2d.emitting = false
+		particles_2d.amount_ratio = resting_spark_ratio
 
 func _on_recycle_area_2d_body_entered(body):
 	_recycle_piece(body)

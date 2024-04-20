@@ -185,10 +185,31 @@ metadata/_edit_group_ = true
 [node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D7" index="0"]
 polygon = PackedVector2Array(-16, 2, -1.61159, 2, 16, 2, 16, -2, -16, -2)
 
+[node name="Polygon2D8" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="8"]
+position = Vector2(38, 84)
+polygon = PackedVector2Array(-16, -8, 16, 8, -16, 8)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D8" index="0"]
+polygon = PackedVector2Array(-16, -8, 16, 8, -16, 8)
+
+[node name="Polygon2D9" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="9"]
+position = Vector2(122, 84)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-16, -8, 16, 8, -16, 8)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D9" index="0"]
+polygon = PackedVector2Array(-16, -8, 16, 8, -16, 8)
+
 [node name="ForgeController" parent="." index="9" node_paths=PackedStringArray("forge_area_2ds")]
 forge_area_2ds = [NodePath("../ForgeArea2D2")]
 
 [node name="RecycleBox" parent="." index="11" instance=ExtResource("4_p46p3")]
-position = Vector2(146, 76)
+position = Vector2(150, 84)
+
+[node name="RecycleBox2" parent="." index="12" instance=ExtResource("4_p46p3")]
+position = Vector2(10, 84)
 
 [connection signal="pieces_recycled" from="RecycleBox" to="." method="_on_recycle_box_pieces_recycled"]
+[connection signal="pieces_recycled" from="RecycleBox2" to="." method="_on_recycle_box_pieces_recycled"]
