@@ -4,7 +4,7 @@ extends Node2D
 
 const ROTATION_STEPS : float = PI/4
 
-signal piece_sold(value : int)
+signal piece_sold(metal_piece : MetalPiece2D, value : int)
 signal piece_rejected(metal_piece : MetalPiece2D)
 signal offer_completed(completed_trade_offer : TradeOffer)
 
@@ -22,7 +22,6 @@ signal offer_completed(completed_trade_offer : TradeOffer)
 				%TradePolygon.polygon = []
 				tally = -1
 
-@export var delete_delay : float = 0.0
 @onready var trade_completed_particles_2d : GPUParticles2D = %TradeCompletedParticles2D
 @onready var trade_accepted_particles_2d : GPUParticles2D = %TradeAcceptedParticles2D
 @onready var trade_polygon : Polygon2D = %TradePolygon
@@ -91,8 +90,8 @@ func _lower_tally():
 		else:
 			trade_accepted_particles_2d.emitting = true
 
-func _piece_accepted():
-	piece_sold.emit(trade_offer.value)
+func _piece_accepted(piece : MetalPiece2D):
+	piece_sold.emit(piece, trade_offer.value)
 	_lower_tally()
 
 func _reject_piece(piece : MetalPiece2D):
@@ -123,10 +122,7 @@ func _score_piece(piece : MetalPiece2D):
 		rotation += ROTATION_STEPS
 	print(max_overlapping_percent)
 	if max_overlapping_percent >= trade_offer.precision_required:
-		_piece_accepted()
-		if delete_delay > 0:
-			await(get_tree().create_timer(delete_delay, false, true).timeout)
-		piece.queue_free()
+		_piece_accepted(piece)
 	else:
 		_reject_piece(piece)
 

@@ -16,7 +16,7 @@ var _current_trade_offers : Array[TradeOffer]
 
 func get_random_trade_offer() -> TradeOffer:
 	if _current_trade_offers.size() == 0:
-		push_error("no valid trade offers")
+		return null
 	_current_trade_offers.shuffle()
 	return _current_trade_offers.pop_back()
 
@@ -33,8 +33,11 @@ func _on_piece_rejected(metal_piece_2d : MetalPiece2D):
 		Transform2D.IDENTITY.translated(_respawn_position)
 	)
 
-func _on_piece_sold(money_earned):
+func _on_piece_sold(metal_piece, money_earned):
 	piece_sold.emit(money_earned)
+	if delete_delay > 0:
+		await(get_tree().create_timer(delete_delay, false, true).timeout)
+	metal_piece.queue_free()
 
 func _connect_trading_box(node : Node):
 	if node is TradingBoxBase2D:
