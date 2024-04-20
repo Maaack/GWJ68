@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3lntkdphk4ft"]
+
+[ext_resource type="Script" path="res://Scenes/TradingBox/RecycleBox.gd" id="1_5083w"]
+[ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="2_epgnj"]
+[ext_resource type="Gradient" uid="uid://5gyjve60bs4d" path="res://Scenes/Pieces/SparkGradient.tres" id="3_nkhcm"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2j0k2"]
+gradient = ExtResource("3_nkhcm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rn8dx"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 360.0
+direction = Vector3(0.5, -1, 0)
+spread = 0.0
+initial_velocity_min = 90.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_2j0k2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ycnn"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 360.0
+direction = Vector3(-0.5, -1, 0)
+spread = 0.0
+initial_velocity_min = 90.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_2j0k2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dhsa"]
+size = Vector2(28, 4)
+
+[node name="RecycleBox" type="Node2D"]
+script = ExtResource("1_5083w")
+recovered_piece = ExtResource("2_epgnj")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="TradePolygon" type="Polygon2D" parent="Polygon2D"]
+unique_name_in_owner = true
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -6, 2, -6, 2, -2, -2, -2, 1, 0, 5, 0, 5, 4, 1, 4, -1, 4, -5, 4, -5, 0, -1, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11)]
+
+[node name="RecyclingParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_rn8dx")
+lifetime = 2.5
+speed_scale = 3.0
+explosiveness = 0.1
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="RecyclingParticles2D2" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_5ycnn")
+lifetime = 2.5
+speed_scale = 3.0
+explosiveness = 0.1
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="BoxStaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoxStaticBody2D"]
+polygon = PackedVector2Array(-14, -14, -14, 14, 14, 14, 14, -14, 16, -16, 16, 16, -16, 16, -16, -16)
+
+[node name="RecycleArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -12)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RecycleArea2D"]
+shape = SubResource("RectangleShape2D_2dhsa")
+
+[node name="ParticleEmittingTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="RecycleArea2D" to="." method="_on_recycle_area_2d_body_entered"]
+[connection signal="timeout" from="ParticleEmittingTimer" to="." method="_on_particle_emitting_timer_timeout"]

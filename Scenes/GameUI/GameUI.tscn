@@ -148,7 +148,7 @@ offset_bottom = 200.0
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
 script = ExtResource("9_7mtuq")
 level_container = NodePath("../SubViewportContainer/SubViewport")
-files = Array[String](["res://Scenes/GameWorld2D/Worlds/TutorialWorld.tscn", "res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn"])
+files = Array[String](["res://Scenes/GameWorld2D/Worlds/TutorialWorld1.tscn", "res://Scenes/GameWorld2D/Worlds/TutorialWorld2.tscn", "res://Scenes/GameWorld2D/Worlds/FirstWorld.tscn"])
 directory = "res://Scenes/GameWorld2D/Worlds"
 
 [connection signal="next_day_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_day_pressed"]
