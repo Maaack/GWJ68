@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TradeOffer" load_steps=3 format=3 uid="uid://bufkforg7ct6"]
+
+[ext_resource type="Resource" uid="uid://bwurnfdmg55eo" path="res://Scripts/Resources/PieceShapes/Line3x1Shape.tres" id="1_k2m6f"]
+[ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="2_wp43w"]
+
+[resource]
+script = ExtResource("2_wp43w")
+value = 1
+piece_shape = ExtResource("1_k2m6f")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3

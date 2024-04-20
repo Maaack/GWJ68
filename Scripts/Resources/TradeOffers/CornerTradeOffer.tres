@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TradeOffer" load_steps=3 format=3 uid="uid://c540e7tohlre6"]
+
+[ext_resource type="Resource" uid="uid://bhcanvibkwmvv" path="res://Scripts/Resources/PieceShapes/CornerShape.tres" id="1_xgm6h"]
+[ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="2_ykj8t"]
+
+[resource]
+script = ExtResource("2_ykj8t")
+value = 1
+piece_shape = ExtResource("1_xgm6h")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3

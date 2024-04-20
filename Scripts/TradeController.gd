@@ -23,9 +23,9 @@ func get_random_trade_offer() -> TradeOffer:
 
 func _on_offer_completed(trade_offer_completed : TradeOffer, trading_box : TradingBoxBase2D):
 	offer_completed.emit()
-	_current_trade_offers.append(trade_offer_completed)
 	if refill_trade_box_offers:
-		trading_box.trade_offer = get_random_trade_offer()
+		_current_trade_offers.append(trade_offer_completed)
+	trading_box.trade_offer = get_random_trade_offer()
 
 func _on_piece_rejected(metal_piece_2d : MetalPiece2D):
 	if delete_delay > 0:

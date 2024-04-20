@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbxhx8qgciyay"]
+[gd_scene load_steps=11 format=3 uid="uid://bbxhx8qgciyay"]
 
 [ext_resource type="PackedScene" uid="uid://baxpfxwed8vex" path="res://Scenes/GameWorld2D/BaseGameWorld2D.tscn" id="1_nb6h5"]
+[ext_resource type="Script" path="res://Scenes/GameWorld2D/Worlds/TutorialWorld.gd" id="2_06we2"]
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="2_rjfvi"]
 [ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="3_n0iso"]
 [ext_resource type="PackedScene" uid="uid://d3lntkdphk4ft" path="res://Scenes/TradingBox/RecycleBox.tscn" id="4_p46p3"]
+[ext_resource type="Resource" uid="uid://bufkforg7ct6" path="res://Scripts/Resources/TradeOffers/Line3x1TradeOffer.tres" id="5_68pxu"]
 [ext_resource type="PackedScene" uid="uid://ianb10mn68wf" path="res://Scenes/Forge/ForgeArea2D.tscn" id="5_e0snr"]
+[ext_resource type="Resource" uid="uid://c540e7tohlre6" path="res://Scripts/Resources/TradeOffers/CornerTradeOffer.tres" id="6_x0olq"]
+[ext_resource type="Resource" uid="uid://bx8s7ufwpia8x" path="res://Scripts/Resources/TradeOffers/Line2x1TradeOffer.tres" id="7_0h5io"]
+[ext_resource type="PackedScene" uid="uid://cw8fcb3kkqh57" path="res://Scenes/TradingBox/SlimTradingBox.tscn" id="7_3xu7r"]
 
 [node name="TutorialWorld2" instance=ExtResource("1_nb6h5")]
+script = ExtResource("2_06we2")
+target_trade_offers_completed = 3
 day_length = 0.0
 has_money = false
 has_shop = false
@@ -19,142 +26,142 @@ radius = 84.0
 metadata/_edit_lock_ = true
 
 [node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("2_rjfvi")]
-position = Vector2(73, 30)
+position = Vector2(73, 38)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D2" parent="PiecesContainer2D" index="2" instance=ExtResource("2_rjfvi")]
-position = Vector2(65, 45)
+position = Vector2(65, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D3" parent="PiecesContainer2D" index="3" instance=ExtResource("2_rjfvi")]
-position = Vector2(70, 45)
+position = Vector2(70, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D4" parent="PiecesContainer2D" index="4" instance=ExtResource("2_rjfvi")]
-position = Vector2(75, 45)
+position = Vector2(75, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D5" parent="PiecesContainer2D" index="5" instance=ExtResource("2_rjfvi")]
-position = Vector2(80, 45)
+position = Vector2(80, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D6" parent="PiecesContainer2D" index="6" instance=ExtResource("2_rjfvi")]
-position = Vector2(85, 45)
+position = Vector2(85, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D7" parent="PiecesContainer2D" index="7" instance=ExtResource("2_rjfvi")]
-position = Vector2(90, 45)
+position = Vector2(90, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D8" parent="PiecesContainer2D" index="8" instance=ExtResource("2_rjfvi")]
-position = Vector2(95, 45)
+position = Vector2(95, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D9" parent="PiecesContainer2D" index="9" instance=ExtResource("2_rjfvi")]
-position = Vector2(88, 30)
+position = Vector2(88, 38)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D10" parent="PiecesContainer2D" index="10" instance=ExtResource("2_rjfvi")]
-position = Vector2(83, 20)
+position = Vector2(83, 28)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D11" parent="PiecesContainer2D" index="11" instance=ExtResource("2_rjfvi")]
-position = Vector2(75, 25)
+position = Vector2(75, 33)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D12" parent="PiecesContainer2D" index="12" instance=ExtResource("2_rjfvi")]
-position = Vector2(67, 40)
+position = Vector2(67, 48)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D13" parent="PiecesContainer2D" index="13" instance=ExtResource("2_rjfvi")]
-position = Vector2(72, 40)
+position = Vector2(72, 48)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D14" parent="PiecesContainer2D" index="14" instance=ExtResource("2_rjfvi")]
-position = Vector2(77, 40)
+position = Vector2(77, 48)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D15" parent="PiecesContainer2D" index="15" instance=ExtResource("2_rjfvi")]
-position = Vector2(82, 40)
+position = Vector2(82, 48)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D16" parent="PiecesContainer2D" index="16" instance=ExtResource("2_rjfvi")]
-position = Vector2(87, 40)
+position = Vector2(87, 48)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D17" parent="PiecesContainer2D" index="17" instance=ExtResource("2_rjfvi")]
-position = Vector2(92, 40)
+position = Vector2(92, 48)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D18" parent="PiecesContainer2D" index="18" instance=ExtResource("2_rjfvi")]
-position = Vector2(85, 25)
+position = Vector2(85, 33)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D21" parent="PiecesContainer2D" index="19" instance=ExtResource("2_rjfvi")]
-position = Vector2(78, 20)
+position = Vector2(78, 28)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D22" parent="PiecesContainer2D" index="20" instance=ExtResource("2_rjfvi")]
-position = Vector2(70, 35)
+position = Vector2(70, 43)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D23" parent="PiecesContainer2D" index="21" instance=ExtResource("2_rjfvi")]
-position = Vector2(75, 35)
+position = Vector2(75, 43)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D24" parent="PiecesContainer2D" index="22" instance=ExtResource("2_rjfvi")]
-position = Vector2(80, 35)
+position = Vector2(80, 43)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D27" parent="PiecesContainer2D" index="23" instance=ExtResource("2_rjfvi")]
-position = Vector2(78, 30)
+position = Vector2(78, 38)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D28" parent="PiecesContainer2D" index="24" instance=ExtResource("2_rjfvi")]
-position = Vector2(83, 30)
+position = Vector2(83, 38)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D29" parent="PiecesContainer2D" index="25" instance=ExtResource("2_rjfvi")]
-position = Vector2(80, 25)
+position = Vector2(80, 33)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D25" parent="PiecesContainer2D" index="26" instance=ExtResource("2_rjfvi")]
-position = Vector2(85, 35)
+position = Vector2(85, 43)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D26" parent="PiecesContainer2D" index="27" instance=ExtResource("2_rjfvi")]
-position = Vector2(90, 35)
+position = Vector2(90, 43)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="Polygon2D3" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="4"]
-position = Vector2(80, 49)
+position = Vector2(80, 57)
 polygon = PackedVector2Array(-24, 2, 24, 2, 24, -2, -24, -2)
 metadata/_edit_group_ = true
 
@@ -162,7 +169,7 @@ metadata/_edit_group_ = true
 polygon = PackedVector2Array(-24, 2, 24, 2, 24, -2, -24, -2)
 
 [node name="Polygon2D4" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="5"]
-position = Vector2(80, 73)
+position = Vector2(80, 80)
 polygon = PackedVector2Array(-24, 2, 24, 2, 24, -2, -24, -2)
 metadata/_edit_group_ = true
 
@@ -202,6 +209,11 @@ metadata/_edit_group_ = true
 [node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D9" index="0"]
 polygon = PackedVector2Array(-16, -8, 16, 8, -16, 8)
 
+[node name="TradeController" parent="." index="8" node_paths=PackedStringArray("trading_boxes")]
+trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("5_68pxu"), ExtResource("6_x0olq")])
+trading_boxes = [NodePath("../SlimTradingBox"), NodePath("../SlimTradingBox2")]
+refill_trade_box_offers = false
+
 [node name="ForgeController" parent="." index="9" node_paths=PackedStringArray("forge_area_2ds")]
 forge_area_2ds = [NodePath("../ForgeArea2D2")]
 
@@ -210,6 +222,13 @@ position = Vector2(150, 84)
 
 [node name="RecycleBox2" parent="." index="12" instance=ExtResource("4_p46p3")]
 position = Vector2(10, 84)
+
+[node name="SlimTradingBox" parent="." index="13" instance=ExtResource("7_3xu7r")]
+position = Vector2(8, 35)
+trade_offer = ExtResource("7_0h5io")
+
+[node name="SlimTradingBox2" parent="." index="14" instance=ExtResource("7_3xu7r")]
+position = Vector2(152, 35)
 
 [connection signal="pieces_recycled" from="RecycleBox" to="." method="_on_recycle_box_pieces_recycled"]
 [connection signal="pieces_recycled" from="RecycleBox2" to="." method="_on_recycle_box_pieces_recycled"]
