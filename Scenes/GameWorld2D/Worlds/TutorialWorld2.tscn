@@ -64,12 +64,12 @@ mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D10" parent="PiecesContainer2D" index="10" instance=ExtResource("2_rjfvi")]
-position = Vector2(83, 15)
+position = Vector2(83, 20)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D11" parent="PiecesContainer2D" index="11" instance=ExtResource("2_rjfvi")]
-position = Vector2(75, 20)
+position = Vector2(75, 25)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
@@ -104,12 +104,12 @@ mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D18" parent="PiecesContainer2D" index="18" instance=ExtResource("2_rjfvi")]
-position = Vector2(85, 20)
+position = Vector2(85, 25)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D21" parent="PiecesContainer2D" index="19" instance=ExtResource("2_rjfvi")]
-position = Vector2(78, 15)
+position = Vector2(78, 20)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
@@ -139,7 +139,7 @@ mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
 [node name="MetalPiece2D29" parent="PiecesContainer2D" index="25" instance=ExtResource("2_rjfvi")]
-position = Vector2(80, 20)
+position = Vector2(80, 25)
 mass = 1.0
 starting_metal_piece = ExtResource("3_n0iso")
 
@@ -169,19 +169,24 @@ metadata/_edit_group_ = true
 [node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D4" index="0"]
 polygon = PackedVector2Array(-24, 2, 24, 2, 24, -2, -24, -2)
 
-[node name="Polygon2D5" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="6"]
-position = Vector2(80, 25)
-polygon = PackedVector2Array(-24, 2, 24, 2, 24, -2, -24, -2)
+[node name="Polygon2D6" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="6"]
+position = Vector2(128, 25)
+polygon = PackedVector2Array(-16, 2, 16, 2, 16, -2, -16, -2)
 metadata/_edit_group_ = true
 
-[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D5" index="0"]
-polygon = PackedVector2Array(-24, 2, 24, 2, 24, -2, -24, -2)
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D6" index="0"]
+polygon = PackedVector2Array(-16, 2, -1.61159, 2, 16, 2, 16, -2, -16, -2)
 
-[node name="ForgeController" parent="." index="7" node_paths=PackedStringArray("forge_area_2ds")]
+[node name="Polygon2D7" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="7"]
+position = Vector2(32, 25)
+polygon = PackedVector2Array(-16, 2, 16, 2, 16, -2, -16, -2)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D7" index="0"]
+polygon = PackedVector2Array(-16, 2, -1.61159, 2, 16, 2, 16, -2, -16, -2)
+
+[node name="ForgeController" parent="." index="9" node_paths=PackedStringArray("forge_area_2ds")]
 forge_area_2ds = [NodePath("../ForgeArea2D2")]
-
-[node name="TradingBoxBase2D" parent="." index="10"]
-position = Vector2(281, 59)
 
 [node name="RecycleBox" parent="." index="11" instance=ExtResource("4_p46p3")]
 position = Vector2(146, 76)

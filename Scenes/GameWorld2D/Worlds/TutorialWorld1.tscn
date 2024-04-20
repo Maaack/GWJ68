@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cr8wvgs0nu7i4"]
+[gd_scene load_steps=25 format=3 uid="uid://cr8wvgs0nu7i4"]
 
 [ext_resource type="PackedScene" uid="uid://baxpfxwed8vex" path="res://Scenes/GameWorld2D/BaseGameWorld2D.tscn" id="1_vqv0r"]
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/Worlds/TutorialWorld.gd" id="2_f72nx"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://76dnffu4kw07" path="res://Scripts/Resources/PieceShapes/TetroZShape.tres" id="15_dsgl6"]
 [ext_resource type="Resource" uid="uid://bcu5718idwnqk" path="res://Scripts/Resources/PieceShapes/TetroJShape.tres" id="16_b1xek"]
 [ext_resource type="Resource" uid="uid://mfot7t4kuv0w" path="res://Scripts/Resources/PieceShapes/TetroIShape.tres" id="17_8db10"]
+[ext_resource type="PackedScene" uid="uid://ianb10mn68wf" path="res://Scenes/Forge/ForgeArea2D.tscn" id="18_mjk73"]
 
 [sub_resource type="Resource" id="Resource_jo7dg"]
 script = ExtResource("12_qysm6")
@@ -80,8 +81,9 @@ has_money = false
 has_shop = false
 metadata/_edit_vertical_guides_ = [160.0, 80.0]
 
-[node name="ForgeFireParticles2D" parent="." index="0"]
-position = Vector2(-203, 124)
+[node name="ForgeArea2D" parent="." index="0" instance=ExtResource("18_mjk73")]
+position = Vector2(80, 112)
+forge_temperature = 1000.0
 
 [node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("3_kwb1n")]
 position = Vector2(84, 88)
@@ -181,46 +183,58 @@ position = Vector2(62, 82)
 mass = 4.0
 starting_metal_piece = ExtResource("9_qh67s")
 
-[node name="SpawnController" parent="." index="4"]
+[node name="Polygon2D7" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="4"]
+position = Vector2(48, 14)
+rotation = 0.785397
+polygon = PackedVector2Array(-16, 2, 11.5645, 2, 16, 2, 16, -2, -16, -2)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D7" index="0"]
+polygon = PackedVector2Array(-16, 2, -1.61159, 2, 16, 2, 16, -2, -16, -2)
+
+[node name="Polygon2D8" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="5"]
+position = Vector2(112, 14)
+rotation = -0.785398
+polygon = PackedVector2Array(-16, 2, 11.5645, 2, 16, 2, 16, -2, -16, -2)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D8" index="0"]
+polygon = PackedVector2Array(-16, 2, -1.61159, 2, 16, 2, 16, -2, -16, -2)
+
+[node name="SpawnController" parent="." index="5"]
 spawn_cooldown = 0.2
 
-[node name="TradeController" parent="." index="6" node_paths=PackedStringArray("trading_boxes")]
+[node name="TradeController" parent="." index="8" node_paths=PackedStringArray("trading_boxes")]
 trade_offers = Array[ExtResource("12_qysm6")]([])
 trading_boxes = [NodePath("../SlimTradingBox"), NodePath("../SlimTradingBox2"), NodePath("../SlimTradingBox3"), NodePath("../SlimTradingBox4"), NodePath("../SlimTradingBox5"), NodePath("../SlimTradingBox6")]
 refill_trade_box_offers = false
 
-[node name="ForgeArea2D" parent="." index="9"]
-position = Vector2(-229, 34)
-
-[node name="TradingBoxBase2D" parent="." index="11"]
-position = Vector2(273, 73)
-
-[node name="SlimTradingBox" parent="." index="12" instance=ExtResource("10_onv5h")]
+[node name="SlimTradingBox" parent="." index="11" instance=ExtResource("10_onv5h")]
 position = Vector2(32, 74)
 rotation = 0.785397
 trade_offer = SubResource("Resource_jo7dg")
 
-[node name="SlimTradingBox2" parent="." index="13" instance=ExtResource("10_onv5h")]
+[node name="SlimTradingBox2" parent="." index="12" instance=ExtResource("10_onv5h")]
 position = Vector2(24, 52)
 rotation = 0.785397
 trade_offer = SubResource("Resource_cfdky")
 
-[node name="SlimTradingBox3" parent="." index="14" instance=ExtResource("10_onv5h")]
+[node name="SlimTradingBox3" parent="." index="13" instance=ExtResource("10_onv5h")]
 position = Vector2(17, 29)
 rotation = 0.785397
 trade_offer = SubResource("Resource_5e5jq")
 
-[node name="SlimTradingBox4" parent="." index="15" instance=ExtResource("10_onv5h")]
+[node name="SlimTradingBox4" parent="." index="14" instance=ExtResource("10_onv5h")]
 position = Vector2(128, 74)
 rotation = -0.785398
 trade_offer = SubResource("Resource_xbw7e")
 
-[node name="SlimTradingBox5" parent="." index="16" instance=ExtResource("10_onv5h")]
+[node name="SlimTradingBox5" parent="." index="15" instance=ExtResource("10_onv5h")]
 position = Vector2(136, 52)
 rotation = -0.785398
 trade_offer = SubResource("Resource_ssu6x")
 
-[node name="SlimTradingBox6" parent="." index="17" instance=ExtResource("10_onv5h")]
+[node name="SlimTradingBox6" parent="." index="16" instance=ExtResource("10_onv5h")]
 position = Vector2(143, 29)
 rotation = -0.785398
 trade_offer = SubResource("Resource_daldv")

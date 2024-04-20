@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=20 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://Scripts/OutOfBoundsController.gd" id="9_3yrpx"]
 [ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/TetroZTradeOffer.tres" id="9_xws7r"]
 [ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/TetroITradeOffer.tres" id="10_ttudp"]
-[ext_resource type="PackedScene" uid="uid://c16ox6xq1j27n" path="res://Scenes/TradingBox/TradingBoxBase2D.tscn" id="18_jmf3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ouby"]
 size = Vector2(160, 240)
@@ -88,21 +87,17 @@ respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 script = ExtResource("5_t0soh")
 delete_delay = 0.2
 
-[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("respawn_position_node_2d", "trading_boxes")]
+[node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("respawn_position_node_2d")]
 script = ExtResource("6_gr1go")
 delete_delay = 0.2
 trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_k6soe"), ExtResource("9_xws7r"), ExtResource("10_ttudp"), ExtResource("7_krsw3")])
 respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
-trading_boxes = [NodePath("../TradingBoxBase2D")]
 
 [node name="ForgeController" type="Node" parent="."]
 script = ExtResource("7_ecyfw")
 
 [node name="DayTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="TradingBoxBase2D" parent="." instance=ExtResource("18_jmf3o")]
-position = Vector2(136, 74)
 
 [connection signal="offer_completed" from="TradeController" to="." method="_on_trade_controller_offer_completed"]
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
