@@ -77,6 +77,8 @@ func _on_level_loader_level_loaded():
 	await $LevelLoader.current_level.ready
 	$LoadingScreen.close()
 	%ShopControl.visible = game_world.has_shop
+	%MoneyDayContainer.visible = game_world.has_money
+	%DayProgressBar.visible = game_world.day_length > 0
 	start_day()
 
 func _on_level_loader_levels_finished():

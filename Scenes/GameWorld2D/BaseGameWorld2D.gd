@@ -8,6 +8,7 @@ signal day_ended()
 
 @export var starting_money : int = 0
 @export var day_length : float = 60.0
+@export var has_money : bool = true
 @export var has_shop : bool = true
 @export var daily_rent_due : int = 0
 
@@ -45,7 +46,8 @@ func _on_trade_controller_piece_sold(value):
 
 func start_day():
 	day_count += 1
-	$DayTimer.start(day_length)
+	if day_length > 0 :
+		$DayTimer.start(day_length)
 	forge_controller.enabled = true
 
 func _end_day():

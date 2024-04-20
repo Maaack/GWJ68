@@ -86,26 +86,27 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="MoneyDayContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 0
 
-[node name="MoneyLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="MarginContainer/Control/MoneyDayContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "$ 0"
 
-[node name="RentLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+[node name="RentLabel" type="Label" parent="MarginContainer/Control/MoneyDayContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "$ 0 Due"
 
-[node name="DayCountLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+[node name="DayCountLabel" type="Label" parent="MarginContainer/Control/MoneyDayContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Day 1"

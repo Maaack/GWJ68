@@ -9,15 +9,14 @@ signal clicked
 	set(value):
 		starting_metal_piece = value
 		if starting_metal_piece and (is_inside_tree() or Engine.is_editor_hint()):
-			starting_collision_polygon_2d.polygon = starting_metal_piece.get_polygon()
-			polygon_2d.polygon = starting_metal_piece.get_polygon()
-			polygon_2d.color = starting_metal_piece.color
+			$CollisionPolygon2D.polygon = starting_metal_piece.get_polygon()
+			$Polygon2D.polygon = starting_metal_piece.get_polygon()
+			$Polygon2D.color = starting_metal_piece.color
 			mass = starting_metal_piece.get_mass()
 
 var held : bool = false
 @onready var heat_controller : HeatController = $HeatController
 @onready var polygon_2d : Polygon2D = $Polygon2D
-@onready var starting_collision_polygon_2d : CollisionPolygon2D = $CollisionPolygon2D
 
 var hold_offset : Vector2 = Vector2.ZERO
 var merging : bool = false

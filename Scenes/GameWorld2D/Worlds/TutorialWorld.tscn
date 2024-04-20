@@ -17,10 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://cw8fcb3kkqh57" path="res://Scenes/TradingBox/SlimTradingBox.tscn" id="10_otwip"]
 
 [node name="TutorialWorld2D" instance=ExtResource("1_k8usc")]
-starting_money = 3
-day_length = 120.0
+day_length = 0.0
+has_money = false
 has_shop = false
-daily_rent_due = 6
 metadata/_edit_vertical_guides_ = [160.0]
 
 [node name="ForgeFireParticles2D" parent="." index="0"]
@@ -42,12 +41,12 @@ mass = 4.0
 starting_metal_piece = ExtResource("4_lde3w")
 
 [node name="MetalPiece2D10" parent="PiecesContainer2D" index="4" instance=ExtResource("2_p66q2")]
-position = Vector2(87, 66)
+position = Vector2(67, 66)
 mass = 4.0
 starting_metal_piece = ExtResource("4_lde3w")
 
 [node name="MetalPiece2D5" parent="PiecesContainer2D" index="5" instance=ExtResource("2_p66q2")]
-position = Vector2(65, 62)
+position = Vector2(81, 62)
 mass = 4.0
 starting_metal_piece = ExtResource("5_5p756")
 
@@ -58,7 +57,8 @@ mass = 4.0
 starting_metal_piece = ExtResource("5_5p756")
 
 [node name="MetalPiece2D8" parent="PiecesContainer2D" index="7" instance=ExtResource("2_p66q2")]
-position = Vector2(69, 70)
+position = Vector2(59, 68)
+rotation = -1.57079
 mass = 4.0
 starting_metal_piece = ExtResource("5_5p756")
 
@@ -73,12 +73,13 @@ mass = 4.0
 starting_metal_piece = ExtResource("7_15y5g")
 
 [node name="MetalPiece2D11" parent="PiecesContainer2D" index="10" instance=ExtResource("2_p66q2")]
-position = Vector2(63, 72)
+position = Vector2(71, 60)
+rotation = -3.14159
 mass = 4.0
 starting_metal_piece = ExtResource("3_w3g4l")
 
 [node name="MetalPiece2D12" parent="PiecesContainer2D" index="11" instance=ExtResource("2_p66q2")]
-position = Vector2(79, 64)
+position = Vector2(91, 68)
 rotation = -1.57079
 mass = 4.0
 starting_metal_piece = ExtResource("6_xaxjf")
@@ -101,18 +102,19 @@ mass = 4.0
 starting_metal_piece = ExtResource("6_xaxjf")
 
 [node name="MetalPiece2D16" parent="PiecesContainer2D" index="15" instance=ExtResource("2_p66q2")]
-position = Vector2(69, 58)
-rotation = -1.57079
+position = Vector2(77, 66)
+rotation = -4.71238
 mass = 4.0
 starting_metal_piece = ExtResource("7_15y5g")
 
 [node name="MetalPiece2D3" parent="PiecesContainer2D" index="16" instance=ExtResource("2_p66q2")]
-position = Vector2(57, 66)
+position = Vector2(93, 82)
 mass = 4.0
 starting_metal_piece = ExtResource("8_c2ntd")
 
 [node name="MetalPiece2D17" parent="PiecesContainer2D" index="17" instance=ExtResource("2_p66q2")]
-position = Vector2(73, 62)
+position = Vector2(67, 72)
+rotation = -1.57079
 mass = 4.0
 starting_metal_piece = ExtResource("8_c2ntd")
 
