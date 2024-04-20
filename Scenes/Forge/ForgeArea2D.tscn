@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://ianb10mn68wf"]
+
+[ext_resource type="Script" path="res://Scenes/Forge/ForgeArea2D.gd" id="1_2txks"]
+[ext_resource type="Material" uid="uid://dg3jqbgbnfqg7" path="res://Scenes/GameWorld2D/FireForgeParticlesMaterial.tres" id="2_jyf2i"]
+[ext_resource type="Texture2D" uid="uid://coxd4adg01k4u" path="res://Scenes/Forge/ForgeAreaTexture.tres" id="2_ow67y"]
+[ext_resource type="Gradient" uid="uid://h0042q6waygo" path="res://Scenes/Forge/ForgeAreaGradient.tres" id="2_y0apk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_24v0h"]
+gradient = ExtResource("2_y0apk")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fvad"]
+radius = 100.0
+
+[node name="ForgeArea2D" type="Area2D"]
+script = ExtResource("1_2txks")
+forge_texture = ExtResource("2_ow67y")
+radius = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = SubResource("GradientTexture2D_24v0h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+visible = false
+shape = SubResource("CircleShape2D_1fvad")
+
+[node name="ForgeFireParticles2D" type="GPUParticles2D" parent="."]
+amount = 48
+process_material = ExtResource("2_jyf2i")
