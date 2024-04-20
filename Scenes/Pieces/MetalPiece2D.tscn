@@ -9,7 +9,9 @@
 collision_layer = 2
 collision_mask = 3
 input_pickable = true
+mass = 2.0
 can_sleep = false
+freeze_mode = 1
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_wkewi")
@@ -19,6 +21,7 @@ starting_metal_piece = ExtResource("2_7hdgw")
 polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.472195, 0.193333, 1.44392e-07, 1)
 polygon = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
 
 [node name="HeatController" type="Node" parent="." node_paths=PackedStringArray("body_2d")]

@@ -12,6 +12,7 @@ signal offer_completed
 @export var respawn_position_node_2d : Node2D
 @onready var _respawn_position = respawn_position_node_2d.position
 @export var trading_boxes : Array[TradingBoxBase2D]
+@export var refill_trade_box_offers : bool = true
 var _current_trade_offers : Array[TradeOffer]
 
 func get_random_trade_offer() -> TradeOffer:
@@ -23,8 +24,8 @@ func get_random_trade_offer() -> TradeOffer:
 func _on_offer_completed(trade_offer_completed : TradeOffer, trading_box : TradingBoxBase2D):
 	offer_completed.emit()
 	_current_trade_offers.append(trade_offer_completed)
-	trading_box.trade_offer = get_random_trade_offer()
-
+	if refill_trade_box_offers:
+		trading_box.trade_offer = get_random_trade_offer()
 
 func _on_piece_rejected(metal_piece_2d : MetalPiece2D):
 	PhysicsServer2D.body_set_state(
@@ -54,7 +55,8 @@ func _connect_trading_boxes():
 
 func _populate_trade_offers():
 	for trading_box in trading_boxes:
-		trading_box.trade_offer = get_random_trade_offer()
+		if trading_box.trade_offer == null:
+			trading_box.trade_offer = get_random_trade_offer()
 
 func _ready():
 	_current_trade_offers = trade_offers

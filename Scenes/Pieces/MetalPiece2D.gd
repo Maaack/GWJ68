@@ -1,3 +1,4 @@
+@tool
 class_name MetalPiece2D
 extends RigidBody2D
 
@@ -7,7 +8,7 @@ signal clicked
 @export var starting_metal_piece : MetalPiece :
 	set(value):
 		starting_metal_piece = value
-		if starting_metal_piece and is_inside_tree():
+		if starting_metal_piece and (is_inside_tree() or Engine.is_editor_hint()):
 			starting_collision_polygon_2d.polygon = starting_metal_piece.get_polygon()
 			polygon_2d.polygon = starting_metal_piece.get_polygon()
 			polygon_2d.color = starting_metal_piece.color
@@ -88,7 +89,7 @@ func get_surface_area() -> float:
 	return surface_area
 
 func pickup():
-	if held:
+	if scored or held:
 		return
 	freeze = true
 	held = true
@@ -96,9 +97,9 @@ func pickup():
 
 func drop(impulse=Vector2.ZERO):
 	if held:
-		freeze = false
-		apply_central_impulse(impulse * mass)
 		held = false
+		set_deferred("freeze", false)
+		apply_central_impulse(impulse * mass)
 
 func move_origin(new_origin_offset : Vector2):
 	hold_offset += new_origin_offset

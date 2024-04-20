@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("2_xmee6")
 piece_shape = ExtResource("1_nudpn")
-color = Color(0.472195, 0.193333, 1.44392e-07, 1)
+color = Color(0, 1, 1, 1)

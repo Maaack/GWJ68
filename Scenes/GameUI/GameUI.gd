@@ -76,6 +76,7 @@ func _on_level_loader_level_loaded():
 		$LevelLoader.current_level.day_count_updated.connect(_on_world_day_count_updated)
 	await $LevelLoader.current_level.ready
 	$LoadingScreen.close()
+	%ShopControl.visible = game_world.has_shop
 	start_day()
 
 func _on_level_loader_levels_finished():

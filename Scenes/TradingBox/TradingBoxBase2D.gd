@@ -128,6 +128,7 @@ func _score_piece(piece : MetalPiece2D):
 
 func _trade_piece(object):
 	if object is MetalPiece2D and not object.scored:
+		object.drop()
 		object.scored = true
 		_score_piece(object)
 

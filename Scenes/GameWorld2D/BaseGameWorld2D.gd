@@ -8,6 +8,7 @@ signal day_ended()
 
 @export var starting_money : int = 0
 @export var day_length : float = 60.0
+@export var has_shop : bool = true
 @export var daily_rent_due : int = 0
 
 @onready var drag_controller : DragController = $DragController
