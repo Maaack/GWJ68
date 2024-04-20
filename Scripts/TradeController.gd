@@ -28,6 +28,8 @@ func _on_offer_completed(trade_offer_completed : TradeOffer, trading_box : Tradi
 		trading_box.trade_offer = get_random_trade_offer()
 
 func _on_piece_rejected(metal_piece_2d : MetalPiece2D):
+	if delete_delay > 0:
+		await(get_tree().create_timer(delete_delay, false, true).timeout)
 	PhysicsServer2D.body_set_state(
 		metal_piece_2d.get_rid(),
 		PhysicsServer2D.BODY_STATE_TRANSFORM,
