@@ -4,7 +4,6 @@ extends Resource
 const MASS_DENSITY = 1.0
 
 @export var piece_shape : PieceShape
-@export var polygon : PackedVector2Array
 @export var color : Color
 
 func get_polygon() -> PackedVector2Array:

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TradeOffer" load_steps=3 format=3 uid="uid://bs85q5265irh1"]
 
-[ext_resource type="Resource" uid="uid://bcu5718idwnqk" path="res://Scripts/Resources/PieceShapes/TetroJPiece.tres" id="1_qjrkp"]
+[ext_resource type="Resource" uid="uid://bcu5718idwnqk" path="res://Scripts/Resources/PieceShapes/TetroJShape.tres" id="1_qjrkp"]
 [ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="2_uwtt6"]
 
 [resource]

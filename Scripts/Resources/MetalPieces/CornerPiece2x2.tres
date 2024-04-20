@@ -1,10 +1,9 @@
 [gd_resource type="Resource" script_class="MetalPiece" load_steps=3 format=3 uid="uid://dyt7qqhdrpk6d"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/MetalPiece.gd" id="1_20rxi"]
-[ext_resource type="Resource" uid="uid://bhcanvibkwmvv" path="res://Scripts/Resources/PieceShapes/CornerPiece2x2.tres" id="1_p3lx4"]
+[ext_resource type="Resource" uid="uid://bhcanvibkwmvv" path="res://Scripts/Resources/PieceShapes/CornerShape.tres" id="1_mxdtr"]
 
 [resource]
 script = ExtResource("1_20rxi")
-piece_shape = ExtResource("1_p3lx4")
-polygon = PackedVector2Array(-4, -4, 0, -4, 0, 0, 4, 0, 4, 4, -4, 4)
+piece_shape = ExtResource("1_mxdtr")
 color = Color(0.472195, 0.193333, 1.44392e-07, 1)

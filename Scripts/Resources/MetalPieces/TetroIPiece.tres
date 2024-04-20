@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MetalPiece" load_steps=3 format=3 uid="uid://clownqk4qytxl"]
+
+[ext_resource type="Resource" uid="uid://mfot7t4kuv0w" path="res://Scripts/Resources/PieceShapes/TetroIShape.tres" id="1_nudpn"]
+[ext_resource type="Script" path="res://Scripts/Resources/MetalPiece.gd" id="2_xmee6"]
+
+[resource]
+script = ExtResource("2_xmee6")
+piece_shape = ExtResource("1_nudpn")
+color = Color(0.472195, 0.193333, 1.44392e-07, 1)
