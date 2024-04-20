@@ -26,10 +26,16 @@ func _ready():
 	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 	starting_metal_piece = starting_metal_piece
 
+func get_snapped_rotation(input_rotation : float):
+	return round(input_rotation / ROTATION_STEPS) * ROTATION_STEPS
+
+func snap_rotation():
+	rotation = get_snapped_rotation(rotation)
+
 func _input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("select"):
 		clicked.emit(self)
-		rotation = round(rotation / ROTATION_STEPS) * ROTATION_STEPS
+		snap_rotation()
 	if held:
 		if event.is_action_pressed("rotate_left"):
 			rotation += ROTATION_STEPS
@@ -71,7 +77,23 @@ func update_polygon_shape():
 				merge_list.append(merge_polygon)
 			full_polygon = merged_polygons[0]
 		_last_merge_count = merge_list.size()
-
+	if merge_list.size() > 0:
+		# Last resort
+		var all_polygons : Array[PackedInt32Array]
+		var initial_polygon_ids := PackedInt32Array()
+		var vertex_ids = 0
+		for i in full_polygon.size():
+			initial_polygon_ids.append(vertex_ids)
+			vertex_ids += 1
+		all_polygons.append(initial_polygon_ids)
+		for merge_polygon in merge_list:
+			var polygon_ids := PackedInt32Array()
+			for i in merge_polygon.size():
+				polygon_ids.append(vertex_ids)
+				vertex_ids += 1
+			full_polygon += merge_polygon
+			all_polygons.append(polygon_ids)
+		polygon_2d.polygons = all_polygons
 	polygon_2d.polygon = full_polygon
 	polygon_2d.position = Vector2.ZERO
 
@@ -129,24 +151,35 @@ func _is_temp_greater_than_melting(heat_controller_a : HeatController, heat_cont
 
 func _can_merge_with_piece(piece : MetalPiece2D) -> bool:
 	var _melting_temp = _is_temp_greater_than_melting(heat_controller, piece.heat_controller)
+	if not _melting_temp:
+		return false
+	piece.snap_rotation()
+	snap_rotation()
 	var _global_polygon_1 = transform_polygon(get_polygon(), polygon_2d.global_transform, polygon_2d.global_position)
 	var _global_polygon_2 = transform_polygon(piece.get_polygon(), piece.polygon_2d.global_transform, piece.polygon_2d.global_position)
 	var _polygons_overlap_flag = _polygons_overlap(_global_polygon_1, _global_polygon_2)
 	return _melting_temp and _polygons_overlap_flag
 
+func _try_merging_with_piece(piece : MetalPiece2D):
+	if _can_merge_with_piece(piece):
+		merge_to(piece)
+	else:
+		merging = false
+
 func _on_body_entered(body):
 	if body is MetalPiece2D and not held and not body.merging:
-		if _can_merge_with_piece(body):
-			merging = true
-			call_deferred("merge_to", body)
+		merging = true
+		call_deferred("_try_merging_with_piece", body)
 
 func get_polygon_center_of_mass() -> Vector2:
+	return get_shape_center_of_mass(get_polygon())
+
+func get_shape_center_of_mass(polygon : PackedVector2Array) -> Vector2:
 	var area_sum = 0.0
 	var center_sum = Vector2.ZERO
-	var _polygon = get_polygon()
-	for i in range(_polygon.size()):
-		var current_vertex = _polygon[i]
-		var next_vertex = _polygon[(i + 1) % _polygon.size()]
+	for i in range(polygon.size()):
+		var current_vertex = polygon[i]
+		var next_vertex = polygon[(i + 1) % polygon.size()]
 		var cross_product = current_vertex.cross(next_vertex)
 		var area = cross_product / 2.0
 		area_sum += area
