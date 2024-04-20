@@ -68,11 +68,11 @@ func _get_percentage_overlapping_points(area_size : Vector2, area_resolution : V
 		total_overlapped += int(overlap_result)
 	return float(total_overlapped) / float(overlapping_points.size())
 
-func rotate_polygon(polygon: PackedVector2Array, rotation: float) -> PackedVector2Array:
+func rotate_polygon(polygon: PackedVector2Array, input_rotation: float) -> PackedVector2Array:
 	var rotated_polygon : PackedVector2Array = []
 	for vertex in polygon:
-		var x = vertex.x * cos(rotation) - vertex.y * sin(rotation)
-		var y = vertex.x * sin(rotation) + vertex.y * cos(rotation)
+		var x = vertex.x * cos(input_rotation) - vertex.y * sin(input_rotation)
+		var y = vertex.x * sin(input_rotation) + vertex.y * cos(input_rotation)
 		rotated_polygon.append(Vector2(x, y))
 	return rotated_polygon
 
@@ -112,14 +112,14 @@ func _score_piece(piece : MetalPiece2D):
 	#print(scoring_polygon_center, "  ...  ", scoring_normalized_polygon)
 	#print(trade_polygon_center, "  ...  ", trade_normalized_polygon)
 	var max_overlapping_percent : float = 0.0
-	var rotation : float = 0.0
+	var _rotation : float = 0.0
 	var area_size := trade_offer.area_size
 	var area_resolution := trade_offer.area_resolution
-	while(rotation < 2 * PI and max_overlapping_percent < 1):
-		var rotated_polygon = rotate_polygon(scoring_normalized_polygon, rotation)
+	while(_rotation < 2 * PI and max_overlapping_percent < 1):
+		var rotated_polygon = rotate_polygon(scoring_normalized_polygon, _rotation)
 		var overlapping_percent := _get_percentage_overlapping_points(area_size, area_resolution, rotated_polygon, trade_normalized_polygon)
 		max_overlapping_percent = max(overlapping_percent, max_overlapping_percent)
-		rotation += ROTATION_STEPS
+		_rotation += ROTATION_STEPS
 	print(max_overlapping_percent)
 	if max_overlapping_percent >= trade_offer.precision_required:
 		_piece_accepted(piece)

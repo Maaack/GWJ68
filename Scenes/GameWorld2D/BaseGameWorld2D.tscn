@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=21 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
@@ -13,9 +13,13 @@
 [ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="7_x12q4"]
 [ext_resource type="Resource" uid="uid://del2hs6rjardh" path="res://Scripts/Resources/TradeOffers/TetroOTradeOffer.tres" id="8_k6soe"]
 [ext_resource type="Resource" uid="uid://btq2t7apr2oo" path="res://Scripts/Resources/MetalPieces/LinePiece3x1.tres" id="8_p5ap1"]
+[ext_resource type="Script" path="res://Scripts/OutOfBoundsController.gd" id="9_3yrpx"]
 [ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/TetroZTradeOffer.tres" id="9_xws7r"]
 [ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/TetroITradeOffer.tres" id="10_ttudp"]
 [ext_resource type="PackedScene" uid="uid://c16ox6xq1j27n" path="res://Scenes/TradingBox/TradingBoxBase2D.tscn" id="18_jmf3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ouby"]
+size = Vector2(160, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sbf"]
 size = Vector2(320, 80)
@@ -23,13 +27,19 @@ size = Vector2(320, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alc1k"]
 size = Vector2(80, 240)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewraq"]
-size = Vector2(40, 30)
-
 [node name="GameWorld2D" type="Node2D"]
 script = ExtResource("1_0hvr0")
 metadata/_edit_vertical_guides_ = [160.0, -20.0, 0.0, 180.0]
 metadata/_edit_horizontal_guides_ = [90.0]
+
+[node name="PlayArea2D" type="Area2D" parent="."]
+position = Vector2(80, -30)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea2D"]
+shape = SubResource("RectangleShape2D_6ouby")
 
 [node name="PiecesContainer2D" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -69,9 +79,13 @@ spawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 spawn_piece = ExtResource("4_thki7")
 spawn_piece_list = Array[Resource("res://Scripts/Resources/MetalPiece.gd")]([ExtResource("5_hl5mp"), ExtResource("6_qbd48"), ExtResource("7_x12q4"), ExtResource("8_p5ap1")])
 
-[node name="GarbageController" type="Node" parent="." node_paths=PackedStringArray("garbage_area")]
+[node name="OutOfBoundsController" type="Node" parent="." node_paths=PackedStringArray("play_area", "respawn_position_node_2d")]
+script = ExtResource("9_3yrpx")
+play_area = NodePath("../PlayArea2D")
+respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
+
+[node name="GarbageController" type="Node" parent="."]
 script = ExtResource("5_t0soh")
-garbage_area = NodePath("../GarbageArea2D")
 delete_delay = 0.2
 
 [node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("respawn_position_node_2d", "trading_boxes")]
@@ -83,15 +97,6 @@ trading_boxes = [NodePath("../TradingBoxBase2D")]
 
 [node name="ForgeController" type="Node" parent="."]
 script = ExtResource("7_ecyfw")
-
-[node name="GarbageArea2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GarbageArea2D"]
-position = Vector2(300, 142)
-shape = SubResource("RectangleShape2D_ewraq")
 
 [node name="DayTimer" type="Timer" parent="."]
 one_shot = true

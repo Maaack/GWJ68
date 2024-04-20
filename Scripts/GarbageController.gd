@@ -5,6 +5,9 @@ extends Node
 @export var delete_delay : float = 0.0
 
 func _ready():
+	if not garbage_area:
+		queue_free()
+		return
 	if not garbage_area.body_entered.is_connected(_delete_piece):
 		garbage_area.body_entered.connect(_delete_piece)
 
