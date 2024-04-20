@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://ianb10mn68wf"]
+[gd_scene load_steps=11 format=3 uid="uid://ianb10mn68wf"]
 
 [ext_resource type="Script" path="res://Scenes/Forge/ForgeArea2D.gd" id="1_2txks"]
 [ext_resource type="Material" uid="uid://dg3jqbgbnfqg7" path="res://Scenes/GameWorld2D/FireForgeParticlesMaterial.tres" id="2_jyf2i"]
 [ext_resource type="Texture2D" uid="uid://coxd4adg01k4u" path="res://Scenes/Forge/ForgeAreaTexture.tres" id="2_ow67y"]
 [ext_resource type="Gradient" uid="uid://h0042q6waygo" path="res://Scenes/Forge/ForgeAreaGradient.tres" id="2_y0apk"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_24v0h"]
+[sub_resource type="Curve" id="Curve_5m3ir"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4b88u"]
 gradient = ExtResource("2_y0apk")
 width = 100
 height = 100
@@ -13,23 +17,94 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1fvad"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2jj5"]
 radius = 100.0
 
+[sub_resource type="Animation" id="Animation_4oxdv"]
+resource_name = "ForgeOn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ustn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kysjk"]
+_data = {
+"ForgeOn": SubResource("Animation_4oxdv"),
+"RESET": SubResource("Animation_ustn3")
+}
+
 [node name="ForgeArea2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 script = ExtResource("1_2txks")
-forge_texture = ExtResource("2_ow67y")
+forge_temperature = 4000.0
 radius = 100.0
+heat_ramp = SubResource("Curve_5m3ir")
+forge_texture = ExtResource("2_ow67y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-texture = SubResource("GradientTexture2D_24v0h")
+texture = SubResource("GradientTexture2D_4b88u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-visible = false
-shape = SubResource("CircleShape2D_1fvad")
+shape = SubResource("CircleShape2D_w2jj5")
 
 [node name="ForgeFireParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
 amount = 48
 process_material = ExtResource("2_jyf2i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_kysjk")
+}

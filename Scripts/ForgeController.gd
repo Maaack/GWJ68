@@ -1,30 +1,12 @@
+@tool
 class_name ForgeController
 extends Node
 
-@export var forge_area : Area2D
-@export var forge_temperature : float = 1000.0
-@export var forge_fire_particles_2d : GPUParticles2D 
+@export var forge_area_2ds : Array[ForgeArea2D]
 @export var enabled : bool = true :
 	set(value):
 		enabled = value
-		if is_inside_tree():
-			forge_fire_particles_2d.emitting = enabled
-			forge_area.monitoring = enabled
+		if is_inside_tree() or Engine.is_editor_hint():
+			for forge_area_2d in forge_area_2ds:
+				forge_area_2d.enabled = enabled
 
-var heating_pieces : Array[MetalPiece2D]
-
-func _ready():
-	if not forge_area.body_entered.is_connected(_add_heat_piece):
-		forge_area.body_entered.connect(_add_heat_piece)
-	if not forge_area.body_exited.is_connected(_remove_heat_piece):
-		forge_area.body_exited.connect(_remove_heat_piece)
-
-func _add_heat_piece(object):
-	if object is MetalPiece2D:
-		heating_pieces.append(object)
-		object.heat_controller.ambient_temperature = forge_temperature
-		
-func _remove_heat_piece(object):
-	if object is MetalPiece2D and object in heating_pieces:
-		heating_pieces.erase(object)
-		object.heat_controller.ambient_temperature = 0

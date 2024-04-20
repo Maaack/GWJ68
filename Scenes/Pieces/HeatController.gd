@@ -31,10 +31,14 @@ func print_status():
 func _get_melting_point_ratio() -> float:
 	if melting_point == 0:
 		return 0.0
-	return clampf(body_temperature / melting_point, 0, 1)
+	return body_temperature / melting_point
+
+func _get_heat_gradient_sample(melt_ratio):
+	var sample_point := clampf(melt_ratio / 2, 0, 1)
+	return heat_gradient.sample(sample_point)
 
 func _update_polygon_color():
 	var melt_ratio := _get_melting_point_ratio()
-	var heat_color = heat_gradient.sample(melt_ratio)
+	var heat_color = _get_heat_gradient_sample(melt_ratio)
 	var metal_color = body_2d.starting_metal_piece.color
 	body_2d.polygon_2d.color = metal_color + heat_color

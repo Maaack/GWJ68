@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=20 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
-[ext_resource type="Material" uid="uid://dg3jqbgbnfqg7" path="res://Scenes/GameWorld2D/FireForgeParticlesMaterial.tres" id="2_x1620"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
 [ext_resource type="Script" path="res://Scripts/SpawnController.gd" id="3_menv6"]
 [ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="4_thki7"]
@@ -27,25 +26,20 @@ size = Vector2(80, 240)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewraq"]
 size = Vector2(40, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw3bm"]
-size = Vector2(50, 80)
-
 [node name="GameWorld2D" type="Node2D"]
 script = ExtResource("1_0hvr0")
 metadata/_edit_vertical_guides_ = [160.0, -20.0, 0.0, 180.0]
 metadata/_edit_horizontal_guides_ = [90.0]
 
-[node name="ForgeFireParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(26, 90)
-amount = 32
-process_material = ExtResource("2_x1620")
-
 [node name="PiecesContainer2D" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="SpawnMarker2D" type="Marker2D" parent="PiecesContainer2D"]
-position = Vector2(80, -10)
+position = Vector2(80, -18)
 
 [node name="WallsStaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallsStaticBody2D"]
 position = Vector2(80, 130)
@@ -87,11 +81,8 @@ trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtReso
 respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 trading_boxes = [NodePath("../TradingBoxBase2D")]
 
-[node name="ForgeController" type="Node" parent="." node_paths=PackedStringArray("forge_area", "forge_fire_particles_2d")]
+[node name="ForgeController" type="Node" parent="."]
 script = ExtResource("7_ecyfw")
-forge_area = NodePath("../ForgeArea2D")
-forge_temperature = 4000.0
-forge_fire_particles_2d = NodePath("../ForgeFireParticles2D")
 
 [node name="GarbageArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -101,15 +92,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GarbageArea2D"]
 position = Vector2(300, 142)
 shape = SubResource("RectangleShape2D_ewraq")
-
-[node name="ForgeArea2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ForgeArea2D"]
-position = Vector2(25, 50)
-shape = SubResource("RectangleShape2D_jw3bm")
 
 [node name="DayTimer" type="Timer" parent="."]
 one_shot = true
