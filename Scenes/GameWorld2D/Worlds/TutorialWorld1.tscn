@@ -1,0 +1,226 @@
+[gd_scene load_steps=24 format=3 uid="uid://cr8wvgs0nu7i4"]
+
+[ext_resource type="PackedScene" uid="uid://baxpfxwed8vex" path="res://Scenes/GameWorld2D/BaseGameWorld2D.tscn" id="1_vqv0r"]
+[ext_resource type="Script" path="res://Scenes/GameWorld2D/Worlds/TutorialWorld.gd" id="2_f72nx"]
+[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="3_kwb1n"]
+[ext_resource type="Resource" uid="uid://c01g8pfanb2wu" path="res://Scripts/Resources/MetalPieces/TetroLPiece.tres" id="4_nwppm"]
+[ext_resource type="Resource" uid="uid://bogqm0e5rg7u4" path="res://Scripts/Resources/MetalPieces/TetroOPiece.tres" id="5_spd3y"]
+[ext_resource type="Resource" uid="uid://weg6nl0vkw63" path="res://Scripts/Resources/MetalPieces/TetroZPiece.tres" id="6_wb7rk"]
+[ext_resource type="Resource" uid="uid://byovyaqls0ckh" path="res://Scripts/Resources/MetalPieces/TetroSPiece.tres" id="7_jmv5r"]
+[ext_resource type="Resource" uid="uid://cvrq0lpkr4ftg" path="res://Scripts/Resources/MetalPieces/TetroJPiece.tres" id="8_chtjd"]
+[ext_resource type="Resource" uid="uid://clownqk4qytxl" path="res://Scripts/Resources/MetalPieces/TetroIPiece.tres" id="9_qh67s"]
+[ext_resource type="PackedScene" uid="uid://cw8fcb3kkqh57" path="res://Scenes/TradingBox/SlimTradingBox.tscn" id="10_onv5h"]
+[ext_resource type="Resource" uid="uid://dx81r3uajc4ng" path="res://Scripts/Resources/PieceShapes/TetroSShape.tres" id="11_sdr4s"]
+[ext_resource type="Script" path="res://Scripts/Resources/TradeOffer.gd" id="12_qysm6"]
+[ext_resource type="Resource" uid="uid://bp2vluurgtpdv" path="res://Scripts/Resources/PieceShapes/TetroLShape.tres" id="13_au4c0"]
+[ext_resource type="Resource" uid="uid://p26i0fm2n26a" path="res://Scripts/Resources/PieceShapes/TetroOShape.tres" id="14_imtgq"]
+[ext_resource type="Resource" uid="uid://76dnffu4kw07" path="res://Scripts/Resources/PieceShapes/TetroZShape.tres" id="15_dsgl6"]
+[ext_resource type="Resource" uid="uid://bcu5718idwnqk" path="res://Scripts/Resources/PieceShapes/TetroJShape.tres" id="16_b1xek"]
+[ext_resource type="Resource" uid="uid://mfot7t4kuv0w" path="res://Scripts/Resources/PieceShapes/TetroIShape.tres" id="17_8db10"]
+
+[sub_resource type="Resource" id="Resource_jo7dg"]
+script = ExtResource("12_qysm6")
+value = 2
+piece_shape = ExtResource("11_sdr4s")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3
+
+[sub_resource type="Resource" id="Resource_cfdky"]
+script = ExtResource("12_qysm6")
+value = 2
+piece_shape = ExtResource("13_au4c0")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3
+
+[sub_resource type="Resource" id="Resource_5e5jq"]
+script = ExtResource("12_qysm6")
+value = 2
+piece_shape = ExtResource("14_imtgq")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3
+
+[sub_resource type="Resource" id="Resource_xbw7e"]
+script = ExtResource("12_qysm6")
+value = 2
+piece_shape = ExtResource("15_dsgl6")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3
+
+[sub_resource type="Resource" id="Resource_ssu6x"]
+script = ExtResource("12_qysm6")
+value = 2
+piece_shape = ExtResource("16_b1xek")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3
+
+[sub_resource type="Resource" id="Resource_daldv"]
+script = ExtResource("12_qysm6")
+value = 2
+piece_shape = ExtResource("17_8db10")
+tally = 2
+precision_required = 0.95
+check_size = 0
+check_resolution = 3
+
+[node name="TutorialWorld1" instance=ExtResource("1_vqv0r")]
+script = ExtResource("2_f72nx")
+target_trade_offers_completed = 6
+day_length = 0.0
+has_money = false
+has_shop = false
+metadata/_edit_vertical_guides_ = [160.0, 80.0]
+
+[node name="ForgeFireParticles2D" parent="." index="0"]
+position = Vector2(-203, 124)
+
+[node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("3_kwb1n")]
+position = Vector2(84, 88)
+mass = 4.0
+starting_metal_piece = ExtResource("4_nwppm")
+
+[node name="MetalPiece2D4" parent="PiecesContainer2D" index="2" instance=ExtResource("3_kwb1n")]
+position = Vector2(92, 86)
+mass = 4.0
+starting_metal_piece = ExtResource("5_spd3y")
+
+[node name="MetalPiece2D9" parent="PiecesContainer2D" index="3" instance=ExtResource("3_kwb1n")]
+position = Vector2(84, 74)
+mass = 4.0
+starting_metal_piece = ExtResource("5_spd3y")
+
+[node name="MetalPiece2D10" parent="PiecesContainer2D" index="4" instance=ExtResource("3_kwb1n")]
+position = Vector2(72, 66)
+mass = 4.0
+starting_metal_piece = ExtResource("5_spd3y")
+
+[node name="MetalPiece2D5" parent="PiecesContainer2D" index="5" instance=ExtResource("3_kwb1n")]
+position = Vector2(86, 62)
+mass = 4.0
+starting_metal_piece = ExtResource("6_wb7rk")
+
+[node name="MetalPiece2D7" parent="PiecesContainer2D" index="6" instance=ExtResource("3_kwb1n")]
+position = Vector2(88, 80)
+rotation = 1.57079
+mass = 4.0
+starting_metal_piece = ExtResource("6_wb7rk")
+
+[node name="MetalPiece2D8" parent="PiecesContainer2D" index="7" instance=ExtResource("3_kwb1n")]
+position = Vector2(64, 68)
+rotation = -1.57079
+mass = 4.0
+starting_metal_piece = ExtResource("6_wb7rk")
+
+[node name="MetalPiece2D6" parent="PiecesContainer2D" index="8" instance=ExtResource("3_kwb1n")]
+position = Vector2(70, 86)
+mass = 4.0
+starting_metal_piece = ExtResource("7_jmv5r")
+
+[node name="MetalPiece2D2" parent="PiecesContainer2D" index="9" instance=ExtResource("3_kwb1n")]
+position = Vector2(76, 88)
+mass = 4.0
+starting_metal_piece = ExtResource("8_chtjd")
+
+[node name="MetalPiece2D11" parent="PiecesContainer2D" index="10" instance=ExtResource("3_kwb1n")]
+position = Vector2(76, 60)
+rotation = -3.14159
+mass = 4.0
+starting_metal_piece = ExtResource("4_nwppm")
+
+[node name="MetalPiece2D12" parent="PiecesContainer2D" index="11" instance=ExtResource("3_kwb1n")]
+position = Vector2(96, 68)
+rotation = -1.57079
+mass = 4.0
+starting_metal_piece = ExtResource("7_jmv5r")
+
+[node name="MetalPiece2D13" parent="PiecesContainer2D" index="12" instance=ExtResource("3_kwb1n")]
+position = Vector2(68, 76)
+rotation = -3.14159
+mass = 4.0
+starting_metal_piece = ExtResource("8_chtjd")
+
+[node name="MetalPiece2D14" parent="PiecesContainer2D" index="13" instance=ExtResource("3_kwb1n")]
+position = Vector2(92, 72)
+rotation = 3.14825
+mass = 4.0
+starting_metal_piece = ExtResource("4_nwppm")
+
+[node name="MetalPiece2D15" parent="PiecesContainer2D" index="14" instance=ExtResource("3_kwb1n")]
+position = Vector2(74, 78)
+mass = 4.0
+starting_metal_piece = ExtResource("7_jmv5r")
+
+[node name="MetalPiece2D16" parent="PiecesContainer2D" index="15" instance=ExtResource("3_kwb1n")]
+position = Vector2(82, 66)
+rotation = -4.71238
+mass = 4.0
+starting_metal_piece = ExtResource("8_chtjd")
+
+[node name="MetalPiece2D3" parent="PiecesContainer2D" index="16" instance=ExtResource("3_kwb1n")]
+position = Vector2(98, 82)
+mass = 4.0
+starting_metal_piece = ExtResource("9_qh67s")
+
+[node name="MetalPiece2D17" parent="PiecesContainer2D" index="17" instance=ExtResource("3_kwb1n")]
+position = Vector2(72, 72)
+rotation = -1.57079
+mass = 4.0
+starting_metal_piece = ExtResource("9_qh67s")
+
+[node name="MetalPiece2D18" parent="PiecesContainer2D" index="18" instance=ExtResource("3_kwb1n")]
+position = Vector2(62, 82)
+mass = 4.0
+starting_metal_piece = ExtResource("9_qh67s")
+
+[node name="SpawnController" parent="." index="4"]
+spawn_cooldown = 0.2
+
+[node name="TradeController" parent="." index="6" node_paths=PackedStringArray("trading_boxes")]
+trade_offers = Array[ExtResource("12_qysm6")]([])
+trading_boxes = [NodePath("../SlimTradingBox"), NodePath("../SlimTradingBox2"), NodePath("../SlimTradingBox3"), NodePath("../SlimTradingBox4"), NodePath("../SlimTradingBox5"), NodePath("../SlimTradingBox6")]
+refill_trade_box_offers = false
+
+[node name="ForgeArea2D" parent="." index="9"]
+position = Vector2(-229, 34)
+
+[node name="TradingBoxBase2D" parent="." index="11"]
+position = Vector2(273, 73)
+
+[node name="SlimTradingBox" parent="." index="12" instance=ExtResource("10_onv5h")]
+position = Vector2(32, 74)
+rotation = 0.785397
+trade_offer = SubResource("Resource_jo7dg")
+
+[node name="SlimTradingBox2" parent="." index="13" instance=ExtResource("10_onv5h")]
+position = Vector2(24, 52)
+rotation = 0.785397
+trade_offer = SubResource("Resource_cfdky")
+
+[node name="SlimTradingBox3" parent="." index="14" instance=ExtResource("10_onv5h")]
+position = Vector2(17, 29)
+rotation = 0.785397
+trade_offer = SubResource("Resource_5e5jq")
+
+[node name="SlimTradingBox4" parent="." index="15" instance=ExtResource("10_onv5h")]
+position = Vector2(128, 74)
+rotation = -0.785398
+trade_offer = SubResource("Resource_xbw7e")
+
+[node name="SlimTradingBox5" parent="." index="16" instance=ExtResource("10_onv5h")]
+position = Vector2(136, 52)
+rotation = -0.785398
+trade_offer = SubResource("Resource_ssu6x")
+
+[node name="SlimTradingBox6" parent="." index="17" instance=ExtResource("10_onv5h")]
+position = Vector2(143, 29)
+rotation = -0.785398
+trade_offer = SubResource("Resource_daldv")

@@ -117,5 +117,6 @@ one_shot = true
 [node name="TradingBoxBase2D" parent="." instance=ExtResource("18_jmf3o")]
 position = Vector2(136, 74)
 
+[connection signal="offer_completed" from="TradeController" to="." method="_on_trade_controller_offer_completed"]
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

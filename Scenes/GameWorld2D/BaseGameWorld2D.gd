@@ -5,6 +5,7 @@ signal money_updated(new_value : int)
 signal day_progress_updated(new_value : float)
 signal day_count_updated(new_value : int)
 signal day_ended()
+signal level_won
 
 @export var starting_money : int = 0
 @export var day_length : float = 60.0
@@ -30,10 +31,6 @@ var money : int :
 	set(value):
 		money = value
 		money_updated.emit(money)
-
-func _unhandled_input(event):
-	if event.is_action_pressed("interact"):
-		$SpawnController.spawn()
 
 func spawn_metal_piece(metal_piece : MetalPiece):
 	$SpawnController.spawn_metal_piece(metal_piece)
@@ -65,3 +62,13 @@ func _on_day_timer_timeout():
 func _ready():
 	money = starting_money
 
+func _trade_offer_completed():
+	pass
+
+func _on_trade_controller_offer_completed():
+	_trade_offer_completed()
+
+
+func _on_recycle_box_pieces_recycled(metal_pieces):
+	for metal_piece in metal_pieces:
+		$SpawnController.spawn_metal_piece(metal_piece)
