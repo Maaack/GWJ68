@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=18 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_jawvc"]
 [ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
 [ext_resource type="PackedScene" uid="uid://duroffod7xmi1" path="res://Examples/Scenes/SuccessScreen/SuccessScreenWithScenes.tscn" id="3_e1hxc"]
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="3_qbvvx"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="3_x1qn4"]
+[ext_resource type="AudioStream" uid="uid://dvtutetpp16c4" path="res://Assets/8-bit-arcade-138828.mp3" id="4_d70yb"]
 [ext_resource type="PackedScene" uid="uid://dtdpd6o5xj4dq" path="res://Examples/Scenes/Menus/PauseMenu/PauseMenuWithScenes.tscn" id="4_fp045"]
 [ext_resource type="PackedScene" uid="uid://ewdbpeyjjv41" path="res://Scenes/GameUI/NightPanelContainer.tscn" id="6_u8plx"]
 [ext_resource type="PackedScene" uid="uid://cj41q6rmfpshf" path="res://Scenes/GameUI/ShopPanel/ShopPanel.tscn" id="7_cuxy3"]
@@ -89,6 +90,8 @@ win_scene = ExtResource("3_e1hxc")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+stream = ExtResource("4_d70yb")
+volume_db = -12.0
 autoplay = true
 bus = &"Music"
 
@@ -187,7 +190,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1048.0
-offset_right = -1048.0
+offset_right = 232.0
+offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

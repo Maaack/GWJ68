@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://sbluwaaplbsg"]
+[gd_scene load_steps=17 format=3 uid="uid://sbluwaaplbsg"]
 
 [ext_resource type="PackedScene" uid="uid://bu1fmh7ltlnbm" path="res://Examples/Scenes/Menus/MainMenu/MainMenuWithScenes.tscn" id="1_6ic5b"]
 [ext_resource type="Script" path="res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_xe54b"]
+[ext_resource type="AudioStream" uid="uid://dxhuypwjcju45" path="res://Assets/8-bit-arcade-mode-158814.mp3" id="3_6oqcu"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -327,6 +328,9 @@ graph_offset = Vector2(-180.277, 49)
 script = ExtResource("2_xe54b")
 level_select_scene = "res://Scenes/LevelSelect/LevelSelect.tscn"
 game_scene_path = "res://Scenes/GameUI/GameUI.tscn"
+
+[node name="BackgroundMusicPlayer" parent="." index="0"]
+stream = ExtResource("3_6oqcu")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
