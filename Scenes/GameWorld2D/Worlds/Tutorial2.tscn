@@ -208,11 +208,11 @@ position = Vector2(150, 84)
 position = Vector2(10, 84)
 
 [node name="SlimTradingBox" parent="." index="13" instance=ExtResource("9_ld0s8")]
-position = Vector2(10, 36)
+position = Vector2(10, 44)
 trade_offer = ExtResource("10_f000k")
 
 [node name="SlimTradingBox2" parent="." index="14" instance=ExtResource("9_ld0s8")]
-position = Vector2(150, 36)
+position = Vector2(150, 44)
 
 [connection signal="pieces_recycled" from="RecycleBox" to="." method="_on_recycle_box_pieces_recycled"]
 [connection signal="pieces_recycled" from="RecycleBox2" to="." method="_on_recycle_box_pieces_recycled"]

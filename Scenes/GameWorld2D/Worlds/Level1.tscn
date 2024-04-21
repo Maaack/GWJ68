@@ -94,10 +94,10 @@ position = Vector2(150, 84)
 position = Vector2(10, 84)
 
 [node name="SquareTradingBox" parent="." index="13" instance=ExtResource("5_1p53g")]
-position = Vector2(12, 36)
+position = Vector2(12, 44)
 
 [node name="SquareTradingBox2" parent="." index="14" instance=ExtResource("5_1p53g")]
-position = Vector2(148, 36)
+position = Vector2(148, 44)
 
 [connection signal="pieces_recycled" from="RecycleBox" to="." method="_on_recycle_box_pieces_recycled"]
 [connection signal="pieces_recycled" from="RecycleBox2" to="." method="_on_recycle_box_pieces_recycled"]

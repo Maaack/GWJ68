@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c16ox6xq1j27n"]
+[gd_scene load_steps=6 format=3 uid="uid://c16ox6xq1j27n"]
 
 [ext_resource type="Script" path="res://Scenes/TradingBox/TradingBoxBase2D.gd" id="1_2ltjw"]
+[ext_resource type="PackedScene" uid="uid://c50l177ukx3bp" path="res://Scenes/TradingBox/FadeOutText.tscn" id="2_c3j1f"]
 [ext_resource type="Material" uid="uid://by7hek5nbsuf8" path="res://Scenes/GameWorld2D/TradeCompletedParticlesMaterial.tres" id="2_tnl2x"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0xuc7"]
@@ -21,6 +22,7 @@ size = Vector2(44, 4)
 
 [node name="TradingBoxBase2D" type="Node2D"]
 script = ExtResource("1_2ltjw")
+fade_out_text_scene = ExtResource("2_c3j1f")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-24, -16, 24, -16, 24, 16, -24, 16)
@@ -76,5 +78,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="FadeOutTextMarker2D" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
 
 [connection signal="body_entered" from="TradeArea2D" to="." method="_on_trade_area_2d_body_entered"]

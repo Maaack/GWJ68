@@ -8,7 +8,6 @@ signal piece_sold(metal_piece : MetalPiece2D, value : int)
 signal piece_rejected(metal_piece : MetalPiece2D)
 signal offer_completed(completed_trade_offer : TradeOffer)
 
-@onready var trade_area : Area2D = %TradeArea2D
 @export var trade_offer : TradeOffer :
 	set(value):
 		trade_offer = value
@@ -21,10 +20,14 @@ signal offer_completed(completed_trade_offer : TradeOffer)
 			else:
 				%TradePolygon.polygon = []
 				tally = -1
+@export var fade_out_text_scene : PackedScene
 
+@onready var trade_area : Area2D = %TradeArea2D
 @onready var trade_completed_particles_2d : GPUParticles2D = %TradeCompletedParticles2D
 @onready var trade_accepted_particles_2d : GPUParticles2D = %TradeAcceptedParticles2D
 @onready var trade_polygon : Polygon2D = %TradePolygon
+@onready var fade_out_text_marker_2d : Marker2D = %FadeOutTextMarker2D
+
 var tally : int :
 	set(value):
 		tally = value
@@ -90,13 +93,35 @@ func _lower_tally():
 		else:
 			trade_accepted_particles_2d.emitting = true
 
-func _piece_accepted(piece : MetalPiece2D):
+func _spawn_fade_out_text(quality : FadeOutText.Qualities):
+	var fade_out_text : FadeOutText = fade_out_text_scene.instantiate()
+	if not fade_out_text: return
+	add_child(fade_out_text)
+	fade_out_text.position = fade_out_text_marker_2d.position
+	fade_out_text.quality = quality
+
+func _piece_accepted(piece : MetalPiece2D, percent_match : float):
 	piece_sold.emit(piece, trade_offer.value)
+	if percent_match == 1:
+		_spawn_fade_out_text(FadeOutText.Qualities.PERFECT)
+	elif percent_match > 0.975:
+		_spawn_fade_out_text(FadeOutText.Qualities.EXCELLENT)
+	elif percent_match > 0.950:
+		_spawn_fade_out_text(FadeOutText.Qualities.GREAT)
+	elif percent_match > 0.925:
+		_spawn_fade_out_text(FadeOutText.Qualities.GOOD)
+	elif percent_match > 0.900:
+		_spawn_fade_out_text(FadeOutText.Qualities.OKAY)
+	elif percent_match > 0.850:
+		_spawn_fade_out_text(FadeOutText.Qualities.BAD)
+	else:
+		_spawn_fade_out_text(FadeOutText.Qualities.TERRIBLE)
 	_lower_tally()
 
 func _reject_piece(piece : MetalPiece2D):
 	piece_rejected.emit(piece)
 	piece.scored = false
+	_spawn_fade_out_text(FadeOutText.Qualities.REJECTED)
 
 func _score_piece(piece : MetalPiece2D):
 	if trade_offer == null:
@@ -122,7 +147,7 @@ func _score_piece(piece : MetalPiece2D):
 		_rotation += ROTATION_STEPS
 	print(max_overlapping_percent)
 	if max_overlapping_percent >= trade_offer.precision_required:
-		_piece_accepted(piece)
+		_piece_accepted(piece, max_overlapping_percent)
 	else:
 		_reject_piece(piece)
 
