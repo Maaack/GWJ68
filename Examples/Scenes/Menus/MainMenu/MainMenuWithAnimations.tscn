@@ -325,6 +325,7 @@ graph_offset = Vector2(-180.277, 49)
 
 [node name="MainMenu" instance=ExtResource("1_6ic5b")]
 script = ExtResource("2_xe54b")
+level_select_scene = "res://Scenes/LevelSelect/LevelSelect.tscn"
 game_scene_path = "res://Scenes/GameUI/GameUI.tscn"
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
@@ -333,9 +334,6 @@ libraries = {
 }
 
 [node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
-libraries = {
-"": SubResource("AnimationLibrary_2kqig")
-}
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
@@ -351,3 +349,11 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/VBoxContainer/MenuMargin/MenuButtons" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 40)
+layout_mode = 2
+text = "Level Select"
+
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuMargin/MenuButtons/LevelSelectButton" to="." method="_on_level_select_button_pressed"]

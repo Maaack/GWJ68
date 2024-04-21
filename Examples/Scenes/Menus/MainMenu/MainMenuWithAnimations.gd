@@ -1,6 +1,7 @@
 extends MainMenu
 
 var animation_state_machine : AnimationNodeStateMachinePlayback
+@export_file("*.tscn") var level_select_scene : String
 
 func play_game():
 	GameLog.game_started()
@@ -37,3 +38,12 @@ func _input(event):
 func _ready():
 	super._ready()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+
+func _setup_menu():
+	if GameLevelLog.get_max_level_reached() < 1:
+		%LevelSelectButton.hide()
+	else:
+		%LevelSelectButton.show()
+
+func _on_level_select_button_pressed():
+	load_scene(level_select_scene)
