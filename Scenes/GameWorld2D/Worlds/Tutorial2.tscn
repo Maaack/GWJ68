@@ -14,6 +14,14 @@
 [node name="TutorialWorld2" instance=ExtResource("1_o6pp6")]
 script = ExtResource("2_e0ddy")
 target_trade_offers_completed = 3
+start_text = "[center]Forge [color=ff0]hot pieces[/color] together to  make the desired shapes.
+
+[wave amp=10.0 freq=5.0 connected=1]Gently[/wave] tap the pieces together, or [wave amp=10.0 freq=5.0 connected=1]lightly[/wave] drop one piece onto another.
+
+You can recycle any pieces you mess up.
+
+As it heats, metal turns [color=f20]red[/color], [color=f80]orange[/color], then [color=ff0]bright yellow[/color] when it is ready to forge. Both pieces need to be [color=ff0]hot[/color].
+[/center]"
 day_length = 0.0
 has_money = false
 has_shop = false
@@ -21,142 +29,144 @@ metadata/_edit_vertical_guides_ = [160.0, -20.0, 0.0, 180.0, 80.0]
 
 [node name="ForgeArea2D2" parent="." index="0" instance=ExtResource("3_d786t")]
 position = Vector2(80, 90)
+monitoring = false
 forge_temperature = 2500.0
 radius = 84.0
+enabled = false
 metadata/_edit_lock_ = true
 
 [node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("4_8i1ku")]
-position = Vector2(73, 63)
+position = Vector2(75, 63)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D2" parent="PiecesContainer2D" index="2" instance=ExtResource("4_8i1ku")]
-position = Vector2(65, 78)
+position = Vector2(67, 78)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D3" parent="PiecesContainer2D" index="3" instance=ExtResource("4_8i1ku")]
-position = Vector2(70, 78)
+position = Vector2(72, 78)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D4" parent="PiecesContainer2D" index="4" instance=ExtResource("4_8i1ku")]
-position = Vector2(75, 78)
+position = Vector2(77, 78)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D5" parent="PiecesContainer2D" index="5" instance=ExtResource("4_8i1ku")]
-position = Vector2(80, 78)
+position = Vector2(82, 78)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D6" parent="PiecesContainer2D" index="6" instance=ExtResource("4_8i1ku")]
-position = Vector2(85, 78)
+position = Vector2(87, 78)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D7" parent="PiecesContainer2D" index="7" instance=ExtResource("4_8i1ku")]
-position = Vector2(90, 78)
+position = Vector2(92, 78)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D8" parent="PiecesContainer2D" index="8" instance=ExtResource("4_8i1ku")]
-position = Vector2(95, 78)
+position = Vector2(85, 30)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D9" parent="PiecesContainer2D" index="9" instance=ExtResource("4_8i1ku")]
-position = Vector2(88, 63)
+position = Vector2(80, 30)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D10" parent="PiecesContainer2D" index="10" instance=ExtResource("4_8i1ku")]
-position = Vector2(83, 53)
+position = Vector2(75, 30)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D11" parent="PiecesContainer2D" index="11" instance=ExtResource("4_8i1ku")]
-position = Vector2(75, 58)
+position = Vector2(77, 58)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D12" parent="PiecesContainer2D" index="12" instance=ExtResource("4_8i1ku")]
-position = Vector2(67, 73)
+position = Vector2(69, 73)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D13" parent="PiecesContainer2D" index="13" instance=ExtResource("4_8i1ku")]
-position = Vector2(72, 73)
+position = Vector2(74, 73)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D14" parent="PiecesContainer2D" index="14" instance=ExtResource("4_8i1ku")]
-position = Vector2(77, 73)
+position = Vector2(79, 73)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D15" parent="PiecesContainer2D" index="15" instance=ExtResource("4_8i1ku")]
-position = Vector2(82, 73)
+position = Vector2(84, 73)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D16" parent="PiecesContainer2D" index="16" instance=ExtResource("4_8i1ku")]
-position = Vector2(87, 73)
+position = Vector2(89, 73)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D17" parent="PiecesContainer2D" index="17" instance=ExtResource("4_8i1ku")]
-position = Vector2(92, 73)
+position = Vector2(82, 25)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D18" parent="PiecesContainer2D" index="18" instance=ExtResource("4_8i1ku")]
-position = Vector2(85, 58)
+position = Vector2(77, 25)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D21" parent="PiecesContainer2D" index="19" instance=ExtResource("4_8i1ku")]
-position = Vector2(78, 53)
+position = Vector2(80, 53)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D22" parent="PiecesContainer2D" index="20" instance=ExtResource("4_8i1ku")]
-position = Vector2(70, 68)
+position = Vector2(72, 68)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D23" parent="PiecesContainer2D" index="21" instance=ExtResource("4_8i1ku")]
-position = Vector2(75, 68)
+position = Vector2(77, 68)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D24" parent="PiecesContainer2D" index="22" instance=ExtResource("4_8i1ku")]
-position = Vector2(80, 68)
+position = Vector2(82, 68)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D27" parent="PiecesContainer2D" index="23" instance=ExtResource("4_8i1ku")]
-position = Vector2(78, 63)
+position = Vector2(80, 63)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D28" parent="PiecesContainer2D" index="24" instance=ExtResource("4_8i1ku")]
-position = Vector2(83, 63)
+position = Vector2(85, 63)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D29" parent="PiecesContainer2D" index="25" instance=ExtResource("4_8i1ku")]
-position = Vector2(80, 58)
+position = Vector2(82, 58)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D25" parent="PiecesContainer2D" index="26" instance=ExtResource("4_8i1ku")]
-position = Vector2(85, 68)
+position = Vector2(87, 68)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 
 [node name="MetalPiece2D26" parent="PiecesContainer2D" index="27" instance=ExtResource("4_8i1ku")]
-position = Vector2(90, 68)
+position = Vector2(80, 20)
 mass = 1.0
 starting_metal_piece = ExtResource("5_s5pj0")
 

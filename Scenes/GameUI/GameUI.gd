@@ -60,7 +60,11 @@ func _on_shop_panel_money_spent(money):
 	game_world.money -= money
 
 func _on_level_won():
-	$LevelLoader.advance_and_load_level()
+	if $LevelLoader.is_last_level():
+		InGameMenuController.open_menu(win_scene, get_viewport())
+	else:
+		%LevelStartEndControl.show()
+		%LevelEndPanel.show()
 
 func _on_level_loader_level_loaded():
 	game_world = $LevelLoader.current_level
@@ -79,10 +83,27 @@ func _on_level_loader_level_loaded():
 	%ShopControl.visible = game_world.has_shop
 	%MoneyDayContainer.visible = game_world.has_money
 	%DayProgressBar.visible = game_world.day_length > 0
-	start_day()
+	if game_world.start_text.is_empty():
+		start_day()
+	else:
+		%LevelStartEndControl.show()
+		%LevelStartPanel.show()
+		%StartLevelLabel.text = game_world.start_text
+
 
 func _on_level_loader_levels_finished():
 	InGameMenuController.open_menu(win_scene, get_viewport())
 
 func _on_level_loader_level_load_started():
 	$LoadingScreen.reset()
+
+
+func _on_next_level_button_pressed():
+	$LevelLoader.advance_and_load_level()
+	%LevelStartEndControl.hide()
+	%LevelEndPanel.hide()
+
+func _on_ok_button_pressed():
+	%LevelStartEndControl.hide()
+	%LevelStartPanel.hide()
+	start_day()

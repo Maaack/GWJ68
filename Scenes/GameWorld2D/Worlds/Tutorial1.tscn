@@ -76,6 +76,12 @@ check_resolution = 3
 [node name="TutorialWorld1" instance=ExtResource("1_3cxts")]
 script = ExtResource("2_pnyvh")
 target_trade_offers_completed = 6
+start_text = "[center]Move the [rainbow freq=0.2 sat=0.8 val=0.8]shapes[/rainbow] into the boxes.
+
+Click and hold on a shape to pick it up.
+
+Drag the shape into a box with a matching shape.
+[/center]"
 day_length = 0.0
 has_money = false
 has_shop = false

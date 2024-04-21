@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dr5e6gsqkna85" path="res://Scenes/TradingBox/SquareTradingBox.tscn" id="5_1p53g"]
 
 [node name="Level1" instance=ExtResource("1_7qk4i")]
+start_text = "[center]Now you have some $ and you have to buy your pieces from the shop.
+
+Try to make $20.[/center]"
 starting_money = 3
 day_length = 120.0
 daily_rent_due = 6

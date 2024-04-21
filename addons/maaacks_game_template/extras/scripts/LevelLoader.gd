@@ -65,3 +65,6 @@ func advance_and_load_level():
 func _ready():
 	if auto_load:
 		load_level()
+
+func is_last_level() -> bool:
+	return get_current_level_id() >= files.size() - 1

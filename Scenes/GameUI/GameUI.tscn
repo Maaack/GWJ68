@@ -151,9 +151,109 @@ level_container = NodePath("../SubViewportContainer/SubViewport")
 files = Array[String](["res://Scenes/GameWorld2D/Worlds/Tutorial1.tscn", "res://Scenes/GameWorld2D/Worlds/Tutorial2.tscn", "res://Scenes/GameWorld2D/Worlds/Level1.tscn"])
 directory = "res://Scenes/GameWorld2D/Worlds"
 
+[node name="LevelStartEndControl" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="LevelStartEndControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.74902)
+
+[node name="LevelEndPanel" type="PanelContainer" parent="LevelStartEndControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -48.0
+offset_right = 140.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelStartEndControl/LevelEndPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelStartEndControl/LevelEndPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="LevelStartEndControl/LevelEndPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Complete!"
+
+[node name="NextLevelButton" type="Button" parent="LevelStartEndControl/LevelEndPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Next Level"
+
+[node name="LevelStartPanel" type="PanelContainer" parent="LevelStartEndControl"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -48.0
+offset_right = 140.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelStartEndControl/LevelStartPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelStartEndControl/LevelStartPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="StartLevelLabel" type="RichTextLabel" parent="LevelStartEndControl/LevelStartPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Forge [color=ff0]hot pieces[/color] together to  make the desired shapes.
+
+[wave amp=10.0 freq=5.0 connected=1]Gently[/wave] tap the pieces together, or [wave amp=10.0 freq=5.0 connected=1]lightly[/wave] drop one piece onto another.
+
+You can recycle any pieces you mess up.
+
+As it heats, metal turns [color=f20]red[/color], [color=f80]orange[/color], then [color=ff0]bright yellow[/color] when it is ready to forge. Both pieces need to be [color=ff0]hot[/color].
+[/center]"
+fit_content = true
+
+[node name="OkButton" type="Button" parent="LevelStartEndControl/LevelStartPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Okay"
+
 [connection signal="next_day_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_day_pressed"]
 [connection signal="money_spent" from="ShopControl/ShopPanel" to="." method="_on_shop_panel_money_spent"]
 [connection signal="pieces_bought" from="ShopControl/ShopPanel" to="." method="_on_shop_panel_pieces_bought"]
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
 [connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]
+[connection signal="pressed" from="LevelStartEndControl/LevelEndPanel/MarginContainer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="LevelStartEndControl/LevelStartPanel/MarginContainer/VBoxContainer/OkButton" to="." method="_on_ok_button_pressed"]

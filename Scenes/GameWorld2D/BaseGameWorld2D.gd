@@ -7,6 +7,7 @@ signal day_count_updated(new_value : int)
 signal day_ended()
 signal level_won
 
+@export_multiline var start_text : String
 @export var starting_money : int = 0
 @export var day_length : float = 60.0
 @export var has_money : bool = true
