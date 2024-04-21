@@ -20,24 +20,21 @@ script = ExtResource("1_rr2ko")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
 
 [node name="DayOverLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
 text = "Day Over"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "The stuff you did today."
 horizontal_alignment = 1
 
 [node name="CashAvailableContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -75,6 +72,7 @@ layout_mode = 2
 
 [node name="TotalRemainingContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TotalRemainingContainer"]
 layout_mode = 2
@@ -102,5 +100,12 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Next Day"
 
+[node name="NextLevelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Next Level"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextDayButton" to="." method="_on_next_day_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]

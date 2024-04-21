@@ -13,6 +13,7 @@ signal level_won
 @export var has_money : bool = true
 @export var has_shop : bool = true
 @export var daily_rent_due : int = 0
+@export var money_goal : int = 0
 
 @onready var drag_controller : DragController = $DragController
 @onready var forge_controller : ForgeController = $ForgeController

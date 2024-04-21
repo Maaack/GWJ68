@@ -7,12 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://dr5e6gsqkna85" path="res://Scenes/TradingBox/SquareTradingBox.tscn" id="5_1p53g"]
 
 [node name="Level1" instance=ExtResource("1_7qk4i")]
-start_text = "[center]Now you have some $ and you have to buy your pieces from the shop.
+start_text = "[center]Now you have [color=0f0]$3[/color] and you'll need to buy your pieces from the shop. 
 
-Try to make $20.[/center]"
+Also, there's [color=f00]rent[/color] to pay! Every. Day.
+
+End the day with $20.[/center]"
 starting_money = 3
 day_length = 120.0
 daily_rent_due = 6
+money_goal = 20
 metadata/_edit_vertical_guides_ = [160.0, 80.0]
 
 [node name="ForgeArea2D2" parent="." index="0" instance=ExtResource("2_mrjtp")]

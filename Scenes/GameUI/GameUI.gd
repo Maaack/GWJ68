@@ -25,6 +25,7 @@ func _end_day():
 	night_time_control.show()
 	night_panel_container.cash_available = game_world.money
 	night_panel_container.rent_due = game_world.daily_rent_due
+	night_panel_container.money_goal = game_world.money_goal
 	night_panel_container.update()
 	pay_rent()
 
@@ -90,20 +91,22 @@ func _on_level_loader_level_loaded():
 		%LevelStartPanel.show()
 		%StartLevelLabel.text = game_world.start_text
 
-
 func _on_level_loader_levels_finished():
 	InGameMenuController.open_menu(win_scene, get_viewport())
 
 func _on_level_loader_level_load_started():
 	$LoadingScreen.reset()
 
-
 func _on_next_level_button_pressed():
-	$LevelLoader.advance_and_load_level()
 	%LevelStartEndControl.hide()
 	%LevelEndPanel.hide()
+	$LevelLoader.advance_and_load_level()
 
 func _on_ok_button_pressed():
 	%LevelStartEndControl.hide()
 	%LevelStartPanel.hide()
 	start_day()
+
+func _on_night_panel_container_next_level_pressed():
+	night_time_control.hide()
+	$LevelLoader.advance_and_load_level()
