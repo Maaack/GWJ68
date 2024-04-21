@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b53lcrioc6qsn"]
+[gd_scene load_steps=5 format=3 uid="uid://b53lcrioc6qsn"]
 
 [ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/extras/scenes/Opening/Opening.tscn" id="1_cwqk6"]
-[ext_resource type="Texture2D" uid="uid://b1o6mhwyq1j7s" path="res://Examples/Assets/Images/logo_vertical_color_dark.png" id="2_3fui6"]
+[ext_resource type="Texture2D" uid="uid://c0p0lbbkmgth8" path="res://Assets/GWJ/GWJ-Full-Logo-tag-Orange2.svg" id="2_02jc6"]
+[ext_resource type="Texture2D" uid="uid://b33amgr0iksqs" path="res://Assets/GWJ/68-Forge.webp" id="3_2o2h6"]
 [ext_resource type="AudioStream" uid="uid://dxhuypwjcju45" path="res://Assets/8-bit-arcade-mode-158814.mp3" id="3_x3kte"]
 
 [node name="Opening" instance=ExtResource("1_cwqk6")]
 next_scene = "res://Examples/Scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
-images = Array[Texture2D]([ExtResource("2_3fui6")])
+images = Array[Texture2D]([ExtResource("2_02jc6"), ExtResource("3_2o2h6")])
+start_delay = 0.2
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("3_x3kte")
