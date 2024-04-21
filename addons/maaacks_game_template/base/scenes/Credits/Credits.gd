@@ -6,7 +6,10 @@ signal end_reached
 @onready var scroll_container = $ScrollContainer
 @onready var rich_text_label = $ScrollContainer/VBoxContainer/RichTextLabel
 
-@export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md"
+@export_file("*.md") var attribution_file_path: String = "res://ATTRIBUTION.md" :
+	set(value):
+		attribution_file_path = value
+		_update_text_from_file()
 @export var h1_font_size: int
 @export var h2_font_size: int
 @export var h3_font_size: int

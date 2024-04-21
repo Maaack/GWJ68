@@ -10,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-attribution_file_path = "res://addons/maaacks_game_template/ATTRIBUTION.md"
 h1_font_size = 64
 h2_font_size = 48
 h3_font_size = 32
@@ -38,14 +37,26 @@ custom_minimum_size = Vector2(1280, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
+theme_override_constants/line_separation = 16
 bbcode_enabled = true
 text = "[center]
-[font_size=48]Collaborators[/font_size]
+[font_size=48]Game By[/font_size]
+[url=https://maaack.itch.io/]Maaack[/url]  
 
-[font_size=32]Godot Game Template[/font_size]
-Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
-Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
-License: [url=LICENSE.txt]MIT License[/url]  
+[font_size=48]Sourced[/font_size]
+[font_size=32]Music[/font_size]
+Author: [url=https://pixabay.com/users/moodmode-33139253/]moodmode[/url]  
+Source: [url=https://pixabay.com/music/video-games-8-bit-arcade-mode-158814/]pixabay.com : video-games-8-bit-arcade-mode[/url]  
+Source: [url=https://pixabay.com/music/video-games-8-bit-arcade-138828/]pixabay.com : video-games-8-bit-arcade[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=48]Font[/font_size]
+Author: [url=https://ggbot.itch.io/]GGBotNet[/url]  
+Source: [url=https://ggbot.itch.io/public-pixel-font]itch.io: public-pixel-font[/url]  
+License: [url=https://creativecommons.org/publicdomain/zero/1.0/]CC0 1.0 Universal[/url]  
+
+[font_size=48]Shop Icon[/font_size]
+Source: [url=https://game-icons.net/]game-icons.net[/url]  
 
 [font_size=48]Tools[/font_size]
 [font_size=24]Godot[/font_size]
@@ -53,10 +64,21 @@ Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and c
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
 License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
 
+[font_size=24]Godot Game Template[/font_size]
+Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+
 [font_size=24]Git[/font_size]
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
-License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url][/center]"
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+
+[font_size=24]jsfxr[/font_size]
+Author: [url=http://fredricksen.net/]Eric Fredricksen[/url]  
+Source: [url=https://github.com/chr15m/jsfxr]github: jsfxr[/url]  
+License: [url=https://github.com/chr15m/jsfxr?tab=Unlicense-1-ov-file#readme]Unlicense license[/url]  
+[/center]"
 fit_content = true
 scroll_active = false
 
