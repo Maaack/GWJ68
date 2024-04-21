@@ -98,6 +98,7 @@ func _spawn_fade_out_text(quality : FadeOutText.Qualities):
 	if not fade_out_text: return
 	add_child(fade_out_text)
 	fade_out_text.position = fade_out_text_marker_2d.position
+	fade_out_text.global_rotation = 0.0
 	fade_out_text.quality = quality
 
 func _piece_accepted(piece : MetalPiece2D, percent_match : float):
