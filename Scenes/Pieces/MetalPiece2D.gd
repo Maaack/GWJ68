@@ -17,6 +17,7 @@ signal clicked
 var held : bool = false
 @onready var heat_controller : HeatController = $HeatController
 @onready var polygon_2d : Polygon2D = $Polygon2D
+@onready var merge_particles : GPUParticles2D = $MergeParticles2D
 
 var hold_offset : Vector2 = Vector2.ZERO
 var merging : bool = false
@@ -51,8 +52,12 @@ func merge_to(other_piece : MetalPiece2D):
 		if child is CollisionPolygon2D:
 			child.reparent(other_piece)
 	other_piece.mass += mass
-	other_piece.update_polygon_shape()
+	other_piece.finish_merging()
 	queue_free()
+
+func finish_merging():
+	merge_particles.emitting = true
+	update_polygon_shape()
 
 func get_polygon() -> PackedVector2Array:
 	return polygon_2d.polygon

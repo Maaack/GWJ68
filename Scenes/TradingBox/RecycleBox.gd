@@ -39,3 +39,6 @@ func _on_particle_emitting_timer_timeout():
 
 func _on_recycle_area_2d_body_entered(body):
 	_recycle_piece(body)
+
+func _ready():
+	resting_spark_ratio = resting_spark_ratio

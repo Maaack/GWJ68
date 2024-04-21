@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://c485gcvalxniv"]
+[gd_scene load_steps=8 format=3 uid="uid://c485gcvalxniv"]
 
 [ext_resource type="Script" path="res://Scenes/Pieces/MetalPiece2D.gd" id="1_wkewi"]
 [ext_resource type="Script" path="res://Scenes/Pieces/HeatController.gd" id="2_2fmst"]
 [ext_resource type="Resource" uid="uid://bp80ahqw7v0jh" path="res://Scripts/Resources/MetalPieces/LinePiece2x1.tres" id="2_7hdgw"]
 [ext_resource type="Gradient" uid="uid://dc6xden8jxt7a" path="res://Scenes/Pieces/HeatGradient.tres" id="3_5cum6"]
+[ext_resource type="Gradient" uid="uid://5gyjve60bs4d" path="res://Scenes/Pieces/SparkGradient.tres" id="5_86pvt"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ffrcn"]
+gradient = ExtResource("5_86pvt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1mjlh"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 90.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_ffrcn")
 
 [node name="MetalPiece2D" type="RigidBody2D"]
 collision_layer = 2
@@ -32,6 +49,12 @@ heat_gradient = ExtResource("3_5cum6")
 
 [node name="Timer" type="Timer" parent="HeatController"]
 wait_time = 3.0
+
+[node name="MergeParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_1mjlh")
+one_shot = true
+explosiveness = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HeatController/Timer" to="HeatController" method="print_status"]
