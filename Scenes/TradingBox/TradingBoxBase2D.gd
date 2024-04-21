@@ -27,6 +27,11 @@ signal offer_completed(completed_trade_offer : TradeOffer)
 @onready var trade_accepted_particles_2d : GPUParticles2D = %TradeAcceptedParticles2D
 @onready var trade_polygon : Polygon2D = %TradePolygon
 @onready var fade_out_text_marker_2d : Marker2D = %FadeOutTextMarker2D
+@onready var accepted_stream_player : AudioStreamPlayer2D = $AcceptedStreamPlayer2D
+@onready var completed_stream_player : AudioStreamPlayer2D = $CompletedStreamPlayer2D
+@onready var rejected_stream_player : AudioStreamPlayer2D = $RejectedStreamPlayer2D
+
+
 
 var tally : int :
 	set(value):
@@ -80,6 +85,7 @@ func rotate_polygon(polygon: PackedVector2Array, input_rotation: float) -> Packe
 	return rotated_polygon
 
 func _offer_completed():
+	completed_stream_player.play()
 	trade_completed_particles_2d.emitting = true
 	var completed_trade_offer : TradeOffer = trade_offer
 	trade_offer = null
@@ -91,6 +97,7 @@ func _lower_tally():
 		if tally == 0:
 			_offer_completed()
 		else:
+			accepted_stream_player.play()
 			trade_accepted_particles_2d.emitting = true
 
 func _spawn_fade_out_text(quality : FadeOutText.Qualities):
@@ -120,6 +127,7 @@ func _piece_accepted(piece : MetalPiece2D, percent_match : float):
 	_lower_tally()
 
 func _reject_piece(piece : MetalPiece2D):
+	rejected_stream_player.play()
 	piece_rejected.emit(piece)
 	piece.scored = false
 	_spawn_fade_out_text(FadeOutText.Qualities.REJECTED)

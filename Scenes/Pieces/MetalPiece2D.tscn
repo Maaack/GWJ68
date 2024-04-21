@@ -65,6 +65,7 @@ explosiveness = 1.0
 
 [node name="MergeStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_chajl")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HeatController/Timer" to="HeatController" method="print_status"]
