@@ -81,8 +81,8 @@ func _on_level_loader_level_loaded():
 		$LevelLoader.current_level.day_count_updated.connect(_on_world_day_count_updated)
 	await $LevelLoader.current_level.ready
 	$LoadingScreen.close()
-	%ShopControl.visible = game_world.has_shop
-	%MoneyDayContainer.visible = game_world.has_money
+	%ShopControl.visible = game_world.has_money
+	%ShopButton.visible = game_world.has_shop
 	%DayProgressBar.visible = game_world.day_length > 0
 	if game_world.start_text.is_empty():
 		start_day()
@@ -110,3 +110,10 @@ func _on_ok_button_pressed():
 func _on_night_panel_container_next_level_pressed():
 	night_time_control.hide()
 	$LevelLoader.advance_and_load_level()
+
+
+func _on_shop_button_toggled(toggled_on):
+	if toggled_on:
+		%ShopAnimationPlayer.play("OpenShop")
+	else:
+		%ShopAnimationPlayer.play_backwards("OpenShop")

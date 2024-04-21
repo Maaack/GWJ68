@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1njcddlmjnif"]
+[gd_scene load_steps=17 format=3 uid="uid://d1njcddlmjnif"]
 
 [ext_resource type="Theme" uid="uid://d1w0k3n5nblm" path="res://Scenes/MainTheme.tres" id="1_jawvc"]
 [ext_resource type="Script" path="res://Scenes/GameUI/GameUI.gd" id="1_ph6xg"]
@@ -9,6 +9,47 @@
 [ext_resource type="PackedScene" uid="uid://ewdbpeyjjv41" path="res://Scenes/GameUI/NightPanelContainer.tscn" id="6_u8plx"]
 [ext_resource type="PackedScene" uid="uid://cj41q6rmfpshf" path="res://Scenes/GameUI/ShopPanel/ShopPanel.tscn" id="7_cuxy3"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="9_7mtuq"]
+[ext_resource type="Texture2D" uid="uid://ckn6r1mhwspgr" path="res://Assets/shopping-cart-shadow.png" id="9_perqb"]
+[ext_resource type="Texture2D" uid="uid://bg1c18gj2ymcy" path="res://Assets/shopping-cart-buy.png" id="10_p54tc"]
+[ext_resource type="Texture2D" uid="uid://cu5gtr185437i" path="res://Assets/shopping-cart-hover.png" id="11_1icjv"]
+[ext_resource type="Texture2D" uid="uid://b5nffpy5fu8fk" path="res://Assets/shopping-cart-disabled.png" id="12_6x8jl"]
+
+[sub_resource type="Animation" id="Animation_dqfj3"]
+resource_name = "OpenShop"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1048, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u76xx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1048, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ql5fs"]
+_data = {
+"OpenShop": SubResource("Animation_dqfj3"),
+"RESET": SubResource("Animation_u76xx")
+}
 
 [node name="GameUI" type="Control"]
 texture_filter = 1
@@ -86,31 +127,6 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="MoneyDayContainer" type="VBoxContainer" parent="MarginContainer/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 0
-
-[node name="MoneyLabel" type="Label" parent="MarginContainer/Control/MoneyDayContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "$ 0"
-
-[node name="RentLabel" type="Label" parent="MarginContainer/Control/MoneyDayContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "$ 0 Due"
-
-[node name="DayCountLabel" type="Label" parent="MarginContainer/Control/MoneyDayContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Day 1"
-
 [node name="PauseController" type="Node" parent="."]
 script = ExtResource("3_x1qn4")
 pause_menu_packed = ExtResource("4_fp045")
@@ -131,20 +147,72 @@ layout_mode = 1
 
 [node name="ShopControl" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -513.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ShopPanel" parent="ShopControl" instance=ExtResource("7_cuxy3")]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl"]
 layout_mode = 1
-offset_left = 126.0
-offset_bottom = 200.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1048.0
+offset_right = -1048.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="ShopPanel" parent="ShopControl/HBoxContainer" instance=ExtResource("7_cuxy3")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoneyDayContainer" type="VBoxContainer" parent="ShopControl/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="MoneyLabel" type="Label" parent="ShopControl/HBoxContainer/MoneyDayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "$ 0"
+
+[node name="RentLabel" type="Label" parent="ShopControl/HBoxContainer/MoneyDayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "$ 0 Due"
+
+[node name="DayCountLabel" type="Label" parent="ShopControl/HBoxContainer/MoneyDayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Day 1"
+
+[node name="ShopButton" type="TextureButton" parent="ShopControl/HBoxContainer/MoneyDayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+toggle_mode = true
+texture_normal = ExtResource("9_perqb")
+texture_pressed = ExtResource("10_p54tc")
+texture_hover = ExtResource("11_1icjv")
+texture_disabled = ExtResource("12_6x8jl")
+stretch_mode = 3
+
+[node name="ShopAnimationPlayer" type="AnimationPlayer" parent="ShopControl"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ql5fs")
+}
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
 script = ExtResource("9_7mtuq")
@@ -154,6 +222,7 @@ directory = "res://Scenes/GameWorld2D/Worlds"
 
 [node name="LevelStartEndControl" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -244,8 +313,9 @@ text = "Okay"
 
 [connection signal="next_day_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_day_pressed"]
 [connection signal="next_level_pressed" from="NightTimeControl/NightPanelContainer" to="." method="_on_night_panel_container_next_level_pressed"]
-[connection signal="money_spent" from="ShopControl/ShopPanel" to="." method="_on_shop_panel_money_spent"]
-[connection signal="pieces_bought" from="ShopControl/ShopPanel" to="." method="_on_shop_panel_pieces_bought"]
+[connection signal="money_spent" from="ShopControl/HBoxContainer/ShopPanel" to="." method="_on_shop_panel_money_spent"]
+[connection signal="pieces_bought" from="ShopControl/HBoxContainer/ShopPanel" to="." method="_on_shop_panel_pieces_bought"]
+[connection signal="toggled" from="ShopControl/HBoxContainer/MoneyDayContainer/ShopButton" to="." method="_on_shop_button_toggled"]
 [connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
 [connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
 [connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]
