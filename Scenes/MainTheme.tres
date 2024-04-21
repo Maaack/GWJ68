@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://d1w0k3n5nblm"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://d1w0k3n5nblm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8gjf"]
 content_margin_left = 8.0
@@ -66,6 +66,13 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ucaf"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_uvfhh"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 4
+vertical = true
+
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/styles/disabled = SubResource("StyleBoxFlat_p8gjf")
@@ -77,4 +84,4 @@ HSeparator/styles/separator = SubResource("StyleBoxLine_v10ll")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_m666r")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_41d41")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_8ucaf")
-VSeparator/styles/separator = SubResource("StyleBoxLine_v10ll")
+VSeparator/styles/separator = SubResource("StyleBoxLine_uvfhh")

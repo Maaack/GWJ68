@@ -55,6 +55,8 @@ func _update_shape_counts():
 
 func _ready():
 	metal_piece_count_array = metal_piece_count_array
+	buy_cost = buy_cost
+	buy_count = buy_count
 
 func _get_full_metal_piece_list() -> Array[MetalPiece]:
 	var full_metal_piece_list : Array[MetalPiece] = []
