@@ -11,6 +11,7 @@ signal pieces_recycled(metal_pieces : Array[MetalPiece])
 		for particles_2d in recycling_particles_2ds:
 			particles_2d.amount_ratio = resting_spark_ratio
 @onready var recycling_particles_2ds : Array[GPUParticles2D] = [%RecyclingParticles2D, %RecyclingParticles2D2]
+@onready var recycle_stream_player : AudioStreamPlayer2D = $RecycleStreamPlayer2D
 
 func _show_sparks(mass_recycled : int):
 	for particles_2d in recycling_particles_2ds:
@@ -30,6 +31,7 @@ func _recycle_piece(object):
 		if object.scored:
 			return
 		object.drop()
+		recycle_stream_player.play()
 		_recover_pieces(round(object.mass))
 		object.queue_free()
 

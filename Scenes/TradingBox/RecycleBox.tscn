@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3lntkdphk4ft"]
+[gd_scene load_steps=10 format=3 uid="uid://d3lntkdphk4ft"]
 
 [ext_resource type="Script" path="res://Scenes/TradingBox/RecycleBox.gd" id="1_5083w"]
 [ext_resource type="Resource" uid="uid://cj28cnbivls2n" path="res://Scripts/Resources/MetalPieces/BlockPiece1x1.tres" id="2_epgnj"]
 [ext_resource type="Gradient" uid="uid://b64nq86tx84c2" path="res://Scenes/Pieces/BlueSparkGradient.tres" id="3_2cpkq"]
+[ext_resource type="AudioStream" uid="uid://clf1ipggn4myu" path="res://Assets/piece_recylced.wav" id="4_wshl0"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2j0k2"]
 gradient = ExtResource("3_2cpkq")
@@ -35,6 +36,12 @@ color_ramp = SubResource("GradientTexture1D_2j0k2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dhsa"]
 size = Vector2(20, 4)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5jkpk"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_wshl0")
+stream_0/weight = 1.0
 
 [node name="RecycleBox" type="Node2D"]
 script = ExtResource("1_5083w")
@@ -91,6 +98,10 @@ shape = SubResource("RectangleShape2D_2dhsa")
 [node name="ParticleEmittingTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="RecycleStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_5jkpk")
+bus = &"SFX"
 
 [connection signal="body_entered" from="RecycleArea2D" to="." method="_on_recycle_area_2d_body_entered"]
 [connection signal="timeout" from="ParticleEmittingTimer" to="." method="_on_particle_emitting_timer_timeout"]
