@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://baxpfxwed8vex"]
+[gd_scene load_steps=23 format=3 uid="uid://baxpfxwed8vex"]
 
 [ext_resource type="Script" path="res://Scenes/GameWorld2D/BaseGameWorld2D.gd" id="1_0hvr0"]
 [ext_resource type="Script" path="res://Scripts/DragControl.gd" id="2_xcqt5"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://Scripts/OutOfBoundsController.gd" id="9_3yrpx"]
 [ext_resource type="Resource" uid="uid://bp6l202uda5yl" path="res://Scripts/Resources/TradeOffers/TetroZTradeOffer.tres" id="9_xws7r"]
 [ext_resource type="Resource" uid="uid://p2bg4hhbnd2u" path="res://Scripts/Resources/TradeOffers/TetroITradeOffer.tres" id="10_ttudp"]
+[ext_resource type="Resource" uid="uid://bs85q5265irh1" path="res://Scripts/Resources/TradeOffers/TetroJTradeOffer.tres" id="13_1wmp0"]
+[ext_resource type="Resource" uid="uid://dcp8waqm78j11" path="res://Scripts/Resources/TradeOffers/TetroSTradeOffer.tres" id="16_gdoh5"]
+[ext_resource type="Resource" uid="uid://b45xwkyoichjv" path="res://Scripts/Resources/TradeOffers/TetroTTradeOffer.tres" id="17_o5hc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ouby"]
 size = Vector2(160, 240)
@@ -79,6 +82,7 @@ container = NodePath("../PiecesContainer2D")
 spawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 spawn_piece = ExtResource("4_thki7")
 spawn_piece_list = Array[Resource("res://Scripts/Resources/MetalPiece.gd")]([ExtResource("5_hl5mp"), ExtResource("6_qbd48"), ExtResource("7_x12q4"), ExtResource("8_p5ap1")])
+spawn_cooldown = 0.1
 
 [node name="OutOfBoundsController" type="Node" parent="." node_paths=PackedStringArray("play_area", "respawn_position_node_2d")]
 script = ExtResource("9_3yrpx")
@@ -92,7 +96,7 @@ delete_delay = 0.2
 [node name="TradeController" type="Node" parent="." node_paths=PackedStringArray("respawn_position_node_2d")]
 script = ExtResource("6_gr1go")
 delete_delay = 0.2
-trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("8_k6soe"), ExtResource("9_xws7r"), ExtResource("10_ttudp"), ExtResource("7_krsw3")])
+trade_offers = Array[Resource("res://Scripts/Resources/TradeOffer.gd")]([ExtResource("10_ttudp"), ExtResource("13_1wmp0"), ExtResource("7_krsw3"), ExtResource("8_k6soe"), ExtResource("16_gdoh5"), ExtResource("17_o5hc3"), ExtResource("9_xws7r")])
 respawn_position_node_2d = NodePath("../PiecesContainer2D/SpawnMarker2D")
 
 [node name="ForgeController" type="Node" parent="."]

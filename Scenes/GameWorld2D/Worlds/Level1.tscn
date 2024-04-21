@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5rw70otxnmqc"]
+
+[ext_resource type="PackedScene" uid="uid://baxpfxwed8vex" path="res://Scenes/GameWorld2D/BaseGameWorld2D.tscn" id="1_7qk4i"]
+[ext_resource type="PackedScene" uid="uid://ianb10mn68wf" path="res://Scenes/Forge/ForgeArea2D.tscn" id="2_mrjtp"]
+[ext_resource type="PackedScene" uid="uid://c485gcvalxniv" path="res://Scenes/Pieces/MetalPiece2D.tscn" id="3_nlulm"]
+[ext_resource type="PackedScene" uid="uid://d3lntkdphk4ft" path="res://Scenes/TradingBox/RecycleBox.tscn" id="4_qy03u"]
+[ext_resource type="PackedScene" uid="uid://dr5e6gsqkna85" path="res://Scenes/TradingBox/SquareTradingBox.tscn" id="5_1p53g"]
+
+[node name="Level1" instance=ExtResource("1_7qk4i")]
+starting_money = 3
+day_length = 120.0
+daily_rent_due = 6
+metadata/_edit_vertical_guides_ = [160.0, 80.0]
+
+[node name="ForgeArea2D2" parent="." index="0" instance=ExtResource("2_mrjtp")]
+position = Vector2(80, 90)
+forge_temperature = 3000.0
+radius = 84.0
+metadata/_edit_lock_ = true
+
+[node name="MetalPiece2D" parent="PiecesContainer2D" index="1" instance=ExtResource("3_nlulm")]
+position = Vector2(95, 56)
+
+[node name="MetalPiece2D4" parent="PiecesContainer2D" index="2" instance=ExtResource("3_nlulm")]
+position = Vector2(90, 52)
+
+[node name="MetalPiece2D5" parent="PiecesContainer2D" index="3" instance=ExtResource("3_nlulm")]
+position = Vector2(85, 56)
+
+[node name="MetalPiece2D6" parent="PiecesContainer2D" index="4" instance=ExtResource("3_nlulm")]
+position = Vector2(75, 56)
+
+[node name="MetalPiece2D2" parent="PiecesContainer2D" index="5" instance=ExtResource("3_nlulm")]
+position = Vector2(65, 56)
+
+[node name="MetalPiece2D3" parent="PiecesContainer2D" index="6" instance=ExtResource("3_nlulm")]
+position = Vector2(70, 52)
+
+[node name="MetalPiece2D7" parent="PiecesContainer2D" index="7" instance=ExtResource("3_nlulm")]
+position = Vector2(80, 52)
+
+[node name="MetalPiece2D8" parent="PiecesContainer2D" index="8" instance=ExtResource("3_nlulm")]
+position = Vector2(85, 48)
+
+[node name="MetalPiece2D9" parent="PiecesContainer2D" index="9" instance=ExtResource("3_nlulm")]
+position = Vector2(75, 48)
+
+[node name="MetalPiece2D10" parent="PiecesContainer2D" index="10" instance=ExtResource("3_nlulm")]
+position = Vector2(80, 44)
+
+[node name="Polygon2D3" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="4"]
+position = Vector2(80, 60)
+polygon = PackedVector2Array(-19, 2, 19, 2, 19, -2, -19, -2)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D3" index="0"]
+polygon = PackedVector2Array(-19, 2, 19, 2, 19, -2, -19, -2)
+
+[node name="Polygon2D5" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="5"]
+position = Vector2(80, 82)
+polygon = PackedVector2Array(-24, -2, 24, -2, 34, 8, 30, 8, 24, 2, -24, 2, -30, 8, -34, 8)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D5" index="0"]
+polygon = PackedVector2Array(-24, -2, 24, -2, 34, 8, 30, 8, 24, 2, -24, 2, -30, 8, -34, 8)
+
+[node name="Polygon2D8" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="6"]
+position = Vector2(38, 92)
+polygon = PackedVector2Array(-16, -16, 8, 8, -16, 8)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D8" index="0"]
+polygon = PackedVector2Array(-16, -16, 8, 8, -16, 8)
+
+[node name="Polygon2D9" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="7"]
+position = Vector2(122, 92)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-16, -16, 8, 8, -16, 8)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D9" index="0"]
+polygon = PackedVector2Array(-16, -16, 8, 8, -16, 8)
+
+[node name="Polygon2D10" type="CollisionPolygon2D" parent="WallsStaticBody2D" index="8"]
+position = Vector2(80, 35)
+polygon = PackedVector2Array(-10, 2, 10, 2, 10, -2, -10, -2)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="WallsStaticBody2D/Polygon2D10" index="0"]
+polygon = PackedVector2Array(-10, 2, 10, 2, 10, -2, -10, -2)
+
+[node name="TradeController" parent="." index="8" node_paths=PackedStringArray("trading_boxes")]
+trading_boxes = [NodePath("../SquareTradingBox"), NodePath("../SquareTradingBox2")]
+
+[node name="RecycleBox" parent="." index="11" instance=ExtResource("4_qy03u")]
+position = Vector2(150, 84)
+
+[node name="RecycleBox2" parent="." index="12" instance=ExtResource("4_qy03u")]
+position = Vector2(10, 84)
+
+[node name="SquareTradingBox" parent="." index="13" instance=ExtResource("5_1p53g")]
+position = Vector2(12, 36)
+
+[node name="SquareTradingBox2" parent="." index="14" instance=ExtResource("5_1p53g")]
+position = Vector2(148, 36)
+
+[connection signal="pieces_recycled" from="RecycleBox" to="." method="_on_recycle_box_pieces_recycled"]
+[connection signal="pieces_recycled" from="RecycleBox2" to="." method="_on_recycle_box_pieces_recycled"]
