@@ -10,6 +10,9 @@ size = Vector2(16, 4)
 [node name="Polygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-10, -12, 10, -12, 10, 12, -10, 12)
 
+[node name="TradePolygon" parent="Polygon2D" index="0"]
+position = Vector2(0, -2)
+
 [node name="TradeCompletedParticles2D" parent="." index="1"]
 position = Vector2(0, -12)
 
@@ -24,7 +27,7 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_el44d")
 
 [node name="TallyLabel" parent="." index="5"]
-offset_left = -6.0
-offset_top = 2.0
+offset_left = -8.0
+offset_top = -1.0
 offset_right = 8.0
-offset_bottom = 14.0
+offset_bottom = 11.0

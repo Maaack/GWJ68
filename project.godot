@@ -36,6 +36,8 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 
 [gui]
 
+theme/custom="res://Scenes/MainTheme.tres"
+theme/custom_font="res://Assets/Public_Pixel_Font_1_2/PublicPixel.otf"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

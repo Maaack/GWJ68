@@ -69,12 +69,12 @@ shape = SubResource("RectangleShape2D_2dhsa")
 
 [node name="TallyLabel" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 7.0
-offset_top = 4.0
-offset_right = 21.0
-offset_bottom = 16.0
+offset_top = 6.0
+offset_right = 23.0
+offset_bottom = 14.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="body_entered" from="TradeArea2D" to="." method="_on_trade_area_2d_body_entered"]
