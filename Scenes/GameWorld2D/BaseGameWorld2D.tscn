@@ -105,6 +105,10 @@ script = ExtResource("7_ecyfw")
 [node name="DayTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(80, 50)
+current = true
+
 [connection signal="offer_completed" from="TradeController" to="." method="_on_trade_controller_offer_completed"]
 [connection signal="piece_sold" from="TradeController" to="." method="_on_trade_controller_piece_sold"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

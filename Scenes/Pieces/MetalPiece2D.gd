@@ -18,6 +18,7 @@ var held : bool = false
 @onready var heat_controller : HeatController = $HeatController
 @onready var polygon_2d : Polygon2D = $Polygon2D
 @onready var merge_particles : GPUParticles2D = $MergeParticles2D
+@onready var merge_stream_player : AudioStreamPlayer2D = $MergeStreamPlayer2D
 
 var hold_offset : Vector2 = Vector2.ZERO
 var merging : bool = false
@@ -57,6 +58,7 @@ func merge_to(other_piece : MetalPiece2D):
 
 func finish_merging():
 	merge_particles.emitting = true
+	merge_stream_player.play()
 	update_polygon_shape()
 
 func get_polygon() -> PackedVector2Array:
